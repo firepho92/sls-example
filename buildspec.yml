@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - node -v
+      - yarn
+      - yarn global add serverless@3.16.0
+      - sls -v
+  build:
+    commands:
+      - echo $Stage
+      - serverless deploy --stage $Stage
