@@ -3,7 +3,27 @@ import middy from '@middy/core'
 import formatJSONResponse from '../../../../../src/utils/response/formatJSONResponse';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
 
-export const main = middy(async (event: any) => {
+export const main = middy(async (event: any, context: any) => {
+  // console.log('env', process.env);
+  // console.log('context', context);
+  // console.log('event', event.requestContext);
+  const https = require('http')
+  const options = {
+      hostname: 'localhost',
+      port: 8080,
+      path: '/cache/SecretDBName',
+      method: 'GET'
+  }
+  const req = https.request(options, res => {
+      res.on('data', d => {
+          console.log("Response from cache: "+d);
+          return d;
+      })
+  })
+  req.on('error', error => {
+      console.error(error)
+  })
+  req.end()
   return formatJSONResponse({
     event,
   }, 404);

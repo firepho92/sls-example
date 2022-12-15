@@ -1,0 +1,4 @@
+SecretManagers:
+  - secrets:
+    - dev-pr-email-templates-db-secret
+    - SecretDBName

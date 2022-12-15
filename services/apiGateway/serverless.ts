@@ -61,7 +61,7 @@ const serverlessConfiguration: AWS = {
       external:['mjml'],
       bundle: true,
       minify: false,
-      sourcemap: process.env.ENVIRONMENT === 'local',
+      sourcemap: process.env.IS_OFFLINE === 'true',
       exclude: ['*'],
       target: 'node16',
       define: { 'require.resolve': undefined },
@@ -69,7 +69,7 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
     service: 'api-gateway',
-    stage: '${env:Stage, "Stage"}',
+    stage: '${env:Stage, "local"}',
     func_prefix: '${self:custom.stage}-${self:custom.service}',
   },
 };
