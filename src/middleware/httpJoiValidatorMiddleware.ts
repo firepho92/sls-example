@@ -1,7 +1,7 @@
-import Joi from "joi";
-import HttpStatusCode from "../shared/enums/httpStatusCode";
-import ErrorCode from "../shared/error/errorCode";
-import Warning from "../shared/error/Warning";
+import Joi from 'joi';
+import HttpStatusCode from '../utils/enums/httpStatusCode';
+import ErrorCode from '../utils/error/errorCode';
+import Warning from '../utils/error/Warning';
 
 /**
  * Enum for validation type
@@ -10,9 +10,9 @@ import Warning from "../shared/error/Warning";
  */
 
 export enum VALIDATOR_TYPE {
-  BODY = "BODY",
-  PATH = "PATH",
-  QUERY = "QUERY",
+  BODY = 'BODY',
+  PATH = 'PATH',
+  QUERY = 'QUERY',
 }
 
 /**
@@ -36,11 +36,11 @@ export interface IValidatorMiddleware {
  * @TODO Add option to validate multiple path params if required
  */
 
-export const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) => {
+const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) => {
   const validatorMiddleware = async (request: any) => {
     try {
       // Validation for body
-      if (validateData.type === VALIDATOR_TYPE["BODY"]) {
+      if (validateData.type === VALIDATOR_TYPE['BODY']) {
         await validateData.schema.validateAsync(
           request.event.body,
           { abortEarly: false }
@@ -48,7 +48,7 @@ export const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) =
       }
 
       // Validation for query
-      if (validateData.type === VALIDATOR_TYPE["QUERY"]) {
+      if (validateData.type === VALIDATOR_TYPE['QUERY']) {
         await validateData.schema.validateAsync(
           request.event.queryStringParameters ? request.event.queryStringParameters : {},
           { abortEarly: false }
@@ -56,14 +56,14 @@ export const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) =
       }
 
       // Validation for path
-      if (validateData.type === VALIDATOR_TYPE["PATH"]) {
+      if (validateData.type === VALIDATOR_TYPE['PATH']) {
         await validateData.schema.validateAsync(
-          request.event.pathParameters[validateData.pathParam ? validateData.pathParam : "id"],
+          request.event.pathParameters[validateData.pathParam ? validateData.pathParam : 'id'],
           { abortEarly: false }
         );
       }
     } catch (err) {
-      console.log("JOI ERR: ", err)
+      console.log('JOI ERR: ', err)
 
       let errorCodes = [];
       err.details.map( (detail: { message: string; }) => {
@@ -83,3 +83,5 @@ export const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) =
     before: validatorMiddleware,
   };
 };
+
+export default httpJoiValidatorMiddleware;
