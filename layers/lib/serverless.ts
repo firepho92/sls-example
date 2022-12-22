@@ -1,15 +1,11 @@
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'letter-request-layer-${env:STAGE, "stage"}',
+  service: 'architecture-example-layer-${env:Stage, "local"}',
   frameworkVersion: '3',
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
-    apiGateway: {
-      minimumCompressionSize: 1024,
-      shouldStartNameWithService: true,
-    },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
@@ -19,15 +15,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    CommonLetterRequest: {
+    CommonArchitectureExample: {
       path: './'
     }
   },
   resources: {
     Outputs: {
-      CommonLetterRequestLambdaLayerQualifiedArn: {
+      CommonArchitectureExampleLambdaLayerQualifiedArn: {
         Value: {
-          "Ref": "CommonLetterRequestLambdaLayer"
+          "Ref": "CommonArchitectureExampleLambdaLayer"
         }
       }
     }

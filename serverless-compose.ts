@@ -1,13 +1,13 @@
 const serverlessCompose = {
   services: {
-    'letter-request-layer': {
+    'architecture-example': {
       path: 'layers/lib'
     },
-    'letter': {
-      path: 'service/letterService',
-      dependsOn: ['letter-request-layer'],
+    'apiGateway': {
+      path: 'service/apiGateway',
+      dependsOn: ['architecture-example'],
       params: {
-        'commonLibs': '${letter-request-layer.CommonLetterRequestLambdaLayerQualifiedArn}',
+        'commonLibs': '${architecture-example.CommonArchitectureExampleLambdaLayerQualifiedArn}',
       }
     },
   }
