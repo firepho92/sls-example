@@ -16,7 +16,7 @@ export const main = middy(async (event: any, context: any) => {
   }
   const req = https.request(options, res => {
       res.on('data', d => {
-          console.log("Response from cache: "+d);
+          console.log('Response from cache: '+d);
           return d;
       })
   })
