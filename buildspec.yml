@@ -6,6 +6,9 @@ phases:
       - yarn
       - yarn global add serverless@3.16.0
       - sls -v
+      - cd layers/lib
+      - yarn
+      - ../..
   build:
     commands:
       - echo $Stage
