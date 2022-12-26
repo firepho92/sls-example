@@ -8,7 +8,7 @@ phases:
       - sls -v
       - cd layers/lib
       - yarn
-      - ../..
+      - cd ../..
   build:
     commands:
       - echo $Stage
