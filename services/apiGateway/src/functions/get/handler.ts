@@ -9,6 +9,7 @@ export const main = middy(async (event: any, context: any) => {
   // console.log('env', process.env);
   // console.log('context', context);
   // console.log('event', event.requestContext);
+  console.log('env', process.env);
   const options = {
       hostname: 'localhost',
       port: 8080,
