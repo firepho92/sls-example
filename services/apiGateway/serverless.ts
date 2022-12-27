@@ -79,7 +79,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     logRetentionInDays: 30,
     esbuild: {
-      external:['mjml'],
+      external:['mjml', 'pg-native'],
       bundle: true,
       minify: false,
       sourcemap: process.env.IS_OFFLINE === 'true',

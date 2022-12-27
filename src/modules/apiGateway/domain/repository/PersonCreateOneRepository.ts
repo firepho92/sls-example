@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'inversify';
-import CreateBaseRepository from 'src/modules/common/domain/repository/CreateBaseRepository';
+import CreateBaseRepository from '../../../../../src/modules/common/domain/repository/CreateBaseRepository';
 import { DataSource, InsertQueryBuilder, QueryRunner } from 'typeorm';
 import Person from '../entity/Person';
 import TYPES from 'src/TYPES';
-import DBConnectionManager from 'src/utils/database/DBConnectionManager';
+import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
 
 @injectable()
 export default class PersonCreateOneRepository extends CreateBaseRepository<Person> {
