@@ -25,7 +25,7 @@
     "_warmup/**/*",
     ".vscode/**/*"
   ],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+  // "ts-node": {
+  //   "require": ["tsconfig-paths/register"]
+  // }
 }
