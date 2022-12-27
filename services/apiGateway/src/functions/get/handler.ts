@@ -10,22 +10,25 @@ export const main = middy(async (event: any, context: any) => {
   // console.log('context', context);
   // console.log('event', event.requestContext);
 
-  const options = {
-      hostname: 'localhost',
-      port: 8080,
-      path: '/cache/SecretDBName',
-      method: 'GET'
-  }
-  const req = https.request(options, res => {
-      res.on('data', d => {
-          console.log('Response from cache: '+d);
-          return d;
-      })
-  });
-  req.on('error', error => {
-      console.error(error)
-  });
-  req.end();
+  // const options = {
+  //     hostname: 'localhost',
+  //     port: 8080,
+  //     path: '/cache/SecretDBName',
+  //     method: 'GET',
+  //     headers: {
+  //       'X-Aws-Parameters-Secrets-Token': process.env.AWS_SESSION_TOKEN
+  //   },
+  // }
+  // const req = https.request(options, res => {
+  //     res.on('data', d => {
+  //         console.log('Response from cache: '+d);
+  //         return d;
+  //     })
+  // });
+  // req.on('error', error => {
+  //     console.error(error)
+  // });
+  // req.end();
   return formatJSONResponse({
     event,
   }, 404);
