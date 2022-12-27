@@ -21,6 +21,7 @@
     "inversify": "^6.0.1",
     "joi": "^17.7.0",
     "middy": "^0.36.0",
+    "pg": "^8.8.0",
     "typeorm": "^0.3.11",
     "typeorm-naming-strategies": "^4.1.0",
     "uuid": "^9.0.0"
@@ -28,11 +29,9 @@
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
     "@types/aws-lambda": "^8.10.71",
-    "@types/mustache": "4.2.2",
     "@types/node": "^14.14.25",
     "@types/uuid": "8.3.4",
     "esbuild": "^0.14.11",
-    "json-schema-to-ts": "^1.5.0",
     "reflect-metadata": "^0.1.13",
     "serverless": "^3.25.0",
     "serverless-dotenv-plugin": "4.0.2",

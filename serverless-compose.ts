@@ -7,7 +7,7 @@ const serverlessCompose = {
       path: 'services/apiGateway',
       dependsOn: ['architecture-example'],
       params: {
-        'commonLibs': '${architecture-example.CommonArchitectureExampleLambdaLayerQualifiedArn}',
+        'commonLibs': '${architecture-example.CommonArchitectureExampleLibLambdaLayerQualifiedArn}',
       }
     },
   }

@@ -1,7 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'architecture-example-layer-lib-${env:Stage, "local"}',
+  service: 'architecture-example-layer-db-${env:Stage, "local"}',
   frameworkVersion: '3',
   provider: {
     name: 'aws',
@@ -15,15 +15,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    CommonArchitectureExampleLib: {
+    CommonArchitectureExampleDb: {
       path: './'
     }
   },
   resources: {
     Outputs: {
-      CommonArchitectureExampleLibLambdaLayerQualifiedArn: {
+      CommonArchitectureExampleDbLambdaLayerQualifiedArn: {
         Value: {
-          "Ref": "CommonArchitectureExampleLibLambdaLayer"
+          "Ref": "CommonArchitectureExampleDbLambdaLayer"
         }
       }
     }
