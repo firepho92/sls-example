@@ -9,14 +9,13 @@ import formatJSONResponse from '../../../../../src/utils/response/formatJSONResp
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
 import ApiGatewayPostAdapterParams from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapterParams';
 import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
+import CoupleDto from '../../../../../src/modules/apiGateway/domain/dto/CoupleDto';
 
 export const main = middy(async (event: any) => {
-  const adapter: Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>> = container.get<Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>>>(TYPES.ApiGatewayPostAdapter);
+  const adapter: Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>> = container.get<Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>>(TYPES.ApiGatewayPostAdapter);
   console.log('body', event.body);
-  const response: ApiGatewayPostAdapterParams = await adapter.execute(event.body);
-  return formatJSONResponse({
-    response
-  });
+  const data: CoupleDto = await adapter.execute(event.body);
+  return formatJSONResponse(data);
 });
 
 main

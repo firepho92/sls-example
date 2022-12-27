@@ -6,15 +6,18 @@ import Adapter from 'src/modules/common/adapter/Adapter';
 import UseCase from 'src/modules/common/useCase/UseCase';
 import ApiGatewayAdapterParams from './ApiGatewayPostAdapterParams';
 import ApiGatewayPostUseCaseParams from '../useCase/ApiGatewayPostUseCaseParams';
+import BaseMapper from 'src/modules/common/domain/mapper/BaseMapper';
+import CoupleDto from '../domain/dto/CoupleDto';
 
 @injectable()
-export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParams, Promise<Couple>> {
+export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParams, Promise<CoupleDto>> {
 
   constructor(
-    @inject(TYPES.ApiGatewayPostUseCase) private apiGatewayPostUseCase: UseCase<ApiGatewayPostUseCaseParams, Promise<Couple>>
+    @inject(TYPES.ApiGatewayPostUseCase) private apiGatewayPostUseCase: UseCase<ApiGatewayPostUseCaseParams, Promise<Couple>>,
+    @inject(TYPES.CoupleMapper) private coupleMapper: BaseMapper<Couple, CoupleDto>
   ) {}
 
-  async execute(port?: ApiGatewayAdapterParams): Promise<Couple> {
+  async execute(port?: ApiGatewayAdapterParams): Promise<CoupleDto> {
     const apiGatewayPostUseCaseParams = {
       principal: port.couple.at(0),
       companion: port.couple.at(1)
@@ -22,6 +25,8 @@ export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParam
 
     const couple = await this.apiGatewayPostUseCase.execute(apiGatewayPostUseCaseParams);
 
-    return couple;
+    const coupleDto = this.coupleMapper.execute(couple);
+
+    return coupleDto;
   }
 }

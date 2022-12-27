@@ -1,7 +1,7 @@
-const formatJSONResponse = (response: Record<string, unknown>, statusCode = 200) => {
+const formatJSONResponse = (data: object, statusCode = 200) => {
   return {
     statusCode,
-    data: response
+    data
   }
 };
 
