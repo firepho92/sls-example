@@ -1,11 +1,11 @@
 import { Container } from 'inversify';
 import TYPES from '../../../../../src/TYPES';
 import Adapter from '../../../../../src/modules/common/adapter/Adapter';
-import ApiGatewayAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayAdapter';
-import ApiGatewayAdapterParams from '../../../../../src/modules/apiGateway/adapter/ApiGatewayAdapterParams';
+import ApiGatewayPostAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapter';
+import ApiGatewayPostAdapterParams from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapterParams';
 
 const container: Container = new Container();
 
-container.bind<Adapter<ApiGatewayAdapterParams, Promise<ApiGatewayAdapterParams>>>(TYPES.ApiGatewayAdapter).to(ApiGatewayAdapter);
+container.bind<Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>>>(TYPES.ApiGatewayAdapter).to(ApiGatewayPostAdapter);
 
 export default container;
