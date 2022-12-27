@@ -1,8 +1,10 @@
 export default interface ApiGatewayPostUseCaseParams {
-  couple: [
-    {
-      name: string,
-      age?: number
-    }
-  ]
+  principal: {
+    name: string,
+    age: number
+  },
+  companion: {
+    name: string,
+    age: number
+  }
 }

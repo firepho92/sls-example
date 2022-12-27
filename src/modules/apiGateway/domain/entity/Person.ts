@@ -9,7 +9,7 @@ export default class Person extends BaseEntity {
   @Column({type: 'number', name: 'age'})
   private _age: number;
 
-  constructor(name, age) {
+  constructor({name, age}) {
     super();
     if (age < 0)
       throw new Error('Invalid age');
