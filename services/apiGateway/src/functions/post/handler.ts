@@ -11,7 +11,8 @@ import ApiGatewayPostAdapterParams from '../../../../../src/modules/apiGateway/a
 import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
 
 export const main = middy(async (event: any) => {
-  const adapter: Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>> = container.get<Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>>>(TYPES.ApiGatewayAdapter);
+  const adapter: Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>> = container.get<Adapter<ApiGatewayPostAdapterParams, Promise<ApiGatewayPostAdapterParams>>>(TYPES.ApiGatewayPostAdapter);
+  console.log('body', event.body);
   const response: ApiGatewayPostAdapterParams = await adapter.execute(event.body);
   return formatJSONResponse({
     response
