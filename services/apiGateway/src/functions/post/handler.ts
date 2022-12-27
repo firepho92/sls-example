@@ -7,6 +7,7 @@ import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/m
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
 
 export const main = middy(async (event: any) => {
+  console.log(event.body);
   return formatJSONResponse({
     event,
   });
