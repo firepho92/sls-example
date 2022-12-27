@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - node -v
-      - yarn --prod
+      - yarn
       - yarn global add serverless@3.16.0
       - sls -v
       - cd layers/lib
