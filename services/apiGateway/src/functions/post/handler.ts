@@ -2,14 +2,19 @@ import 'reflect-metadata';
 import schema from './schema';
 import middy from '@middy/core';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
+import Adapter from '../../../../../src/modules/common/adapter/Adapter';
 import formatJSONResponse from '../../../../../src/utils/response/formatJSONResponse';
-import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
+import ApiGatewayAdapterParams from '../../../../../src/modules/apiGateway/adapter/ApiGatewayAdapterParams';
+import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
+import container from './inversify.config';
+import TYPES from '../../../../../src/TYPES';
 
 export const main = middy(async (event: any) => {
-  console.log('event', event.body);
+  const adapter: Adapter<ApiGatewayAdapterParams, Promise<ApiGatewayAdapterParams>> = container.get<Adapter<ApiGatewayAdapterParams, Promise<ApiGatewayAdapterParams>>>(TYPES.ApiGatewayAdapter);
+  const response: ApiGatewayAdapterParams = await adapter.execute(event.body);
   return formatJSONResponse({
-    event,
+    response
   });
 });
 
