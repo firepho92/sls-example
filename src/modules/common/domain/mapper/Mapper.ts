@@ -6,7 +6,7 @@
  */
 
 export default interface Mapper<S, T> {
-  transform(entity: S): T;
-  transform(array: S[]): T[];
-  transform(entityOrArray: S | S[]): T | T[];
+  execute(entity: S): T;
+  execute(array: S[]): T[];
+  execute(entityOrArray: S | S[]): T | T[];
 }

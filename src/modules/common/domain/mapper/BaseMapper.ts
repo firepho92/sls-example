@@ -11,11 +11,11 @@ import Mapper from './Mapper';
 
 @injectable()
 export default abstract class BaseMapper<S, T> implements Mapper<S, T> {
-  protected abstract execute(entity: S): T;
+  protected abstract transform(entity: S): T;
 
-  transform(entity: S): T;
-  transform(array: S[]): T[];
-  transform(entityOrArray: S | S[]): T | T[] {
-    return Array.isArray(entityOrArray) ? entityOrArray.map((item: S) => this.execute(item)) : this.execute(entityOrArray);
+  execute(entity: S): T;
+  execute(array: S[]): T[];
+  execute(entityOrArray: S | S[]): T | T[] {
+    return Array.isArray(entityOrArray) ? entityOrArray.map((item: S) => this.transform(item)) : this.transform(entityOrArray);
   }
 }
