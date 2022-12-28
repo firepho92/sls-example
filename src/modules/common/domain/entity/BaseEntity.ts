@@ -19,13 +19,13 @@ export default abstract class BaseEntity {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @Column('varchar', { length: 50 })
+  @Column('varchar', { length: 50, default: 'user' })
   createdBy: string;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Column('varchar', { length: 50 })
+  @Column('varchar', { length: 50, default: 'user' })
   updatedBy: string;
 
   @Column('bool', { default: 'true' })

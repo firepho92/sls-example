@@ -1,9 +1,9 @@
 import 'reflect-metadata';
+import Person from '../entity/Person';
 import { inject, injectable } from 'inversify';
 import CreateBaseRepository from '../../../../../src/modules/common/domain/repository/CreateBaseRepository';
 import { DataSource, InsertQueryBuilder, QueryRunner } from 'typeorm';
-import Person from '../entity/Person';
-import TYPES from 'src/TYPES';
+import TYPES from '../../../../../src/TYPES';
 import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
 
 @injectable()
@@ -15,7 +15,8 @@ export default class PersonCreateOneRepository extends CreateBaseRepository<Pers
     super();
   }
 
-  protected async buildQuery(port?: Partial<Person> | Person[]): Promise<InsertQueryBuilder<Person>> {
+  protected async buildQuery(port: Partial<Person> | Person[]): Promise<InsertQueryBuilder<Person>> {
+    console.log('PersonCreateOneRepository buildQuery: ', port)
     const connection: DataSource | QueryRunner = await this.dbConnectionManager.getActiveConnection();
 
     const queryBuilder = connection.manager.createQueryBuilder()

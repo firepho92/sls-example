@@ -14,7 +14,7 @@ import CoupleDto from '../../../../../src/modules/apiGateway/domain/dto/CoupleDt
 export const main = middy(async (event: any) => {
   // console.log('env', process.env);
   const adapter: Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>> = container.get<Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>>(TYPES.ApiGatewayPostAdapter);
-  console.log('body', event.body);
+  // console.log('body', event.body);
   const data: CoupleDto = await adapter.execute(event.body);
   return formatJSONResponse(data);
 });

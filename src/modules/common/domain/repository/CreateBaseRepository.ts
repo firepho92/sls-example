@@ -34,6 +34,7 @@ export default abstract class CreateBaseRepository<T> implements Repository<Part
   public async execute(port?: T): Promise<T>;
   public async execute(port?: T[]): Promise<T[]>;
   public async execute(port?: Partial<T> | Partial<T[]>): Promise<T | T[]> {
+    console.log('CreateBaseRepository', port);
     try {
       const query: InsertQueryBuilder<T> = await this.buildQuery(port)
       query.returning('*');

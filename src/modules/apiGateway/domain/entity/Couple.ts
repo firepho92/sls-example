@@ -1,37 +1,20 @@
 import BaseEntity from 'src/modules/common/domain/entity/BaseEntity';
-import { Entity } from 'typeorm';
+import { Entity, ManyToOne } from 'typeorm';
 import Person from './Person';
 
 @Entity({name: 'couple'})
 export default class Couple extends BaseEntity {
-  private _principal: Person;
-  private _companion: Person;
+  @ManyToOne(() => Person, (person) => person.principal)
+  principal: Person;
 
-  constructor(principal: Person, companion: Person) {
-    super();
-    if (principal.age < 18 && companion.age < 18)
-      throw new Error('')
-    this._principal = principal;
-    this._companion = companion;
-  }
+  @ManyToOne(() => Person, (person) => person.companion)
+  companion: Person;
 
-  get principal(): Person {
-    return this._principal;
-  }
-
-  set principal(principal: Person) {
-    if (principal.age < 18)
-      throw new Error('Minors not allowed');
-    this._principal = principal;
-  }
-
-  get companion(): Person {
-    return this._companion;
-  }
-
-  set companion(companion: Person) {
-    if (companion.age < 18)
-      throw new Error('Minors not allowed');
-    this._companion = companion;
-  }
+  // constructor(principal: Person, companion: Person) {
+  //   super();
+  //   if (principal?.age < 18 && companion?.age < 18)
+  //     throw new Error('Couple participants must be adults');
+  //   this.principal = principal;
+  //   this.companion = companion;
+  // }
 }

@@ -1,37 +1,44 @@
 import BaseEntity from 'src/modules/common/domain/entity/BaseEntity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
+import Couple from './Couple';
 
 @Entity({name: 'person'})
 export default class Person extends BaseEntity {
   @Column({type: 'varchar', length: 120, name: 'name'})
-  private _name: string;
+  name: string;
 
-  @Column({type: 'number', name: 'age'})
-  private _age: number;
+  @Column({type: 'int2', name: 'age'})
+  age: number;
 
-  constructor({name, age}) {
+  @OneToMany(() => Couple, (couple) => couple.principal)
+  principal: Couple[]
+
+  @OneToMany(() => Couple, (couple) => couple.companion)
+  companion: Couple[]
+
+  constructor(name: string, age: number) {
     super();
     if (age < 0)
       throw new Error('Invalid age');
-    this._name = name;
-    this._age = age;
+    this.name = name;
+    this.age = age;
   }
 
-  get name(): string {
-    return this._name;
+  getName(): string {
+    return this.name;
   }
 
-  set name(name: string) {
-    this._name = name;
+  setName(name: string) {
+    this.name = name;
   }
 
-  get age(): number {
-    return this._age;
+  getAge(): number {
+    return this.age;
   }
 
-  set age(age: number) {
+  setAge(age: number) {
     if (age < 0)
       throw new Error('Invalid age');
-    this._age = age;
+    this.age = age;
   }
 }

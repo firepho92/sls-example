@@ -17,7 +17,7 @@ export default class DBConnectionHelper {
 			port,
 			namingStrategy: new SnakeNamingStrategy(),
 			entities,
-			synchronize: true,
+			synchronize: false,
 			logging: true
 		};
 		return await new DataSource(dataSourceOptions).initialize();

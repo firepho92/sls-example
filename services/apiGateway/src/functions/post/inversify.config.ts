@@ -19,7 +19,7 @@ import DBConnectionManagerTypeORM from '../../../../../src/utils/database/DBConn
 
 const container: Container = new Container();
 
-container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM);
+container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>>(TYPES.ApiGatewayPostAdapter).to(ApiGatewayPostAdapter);
 container.bind<UseCase<ApiGatewayPostUseCaseParams, Promise<ApiGatewayPostUseCaseParams>>>(TYPES.ApiGatewayPostUseCase).to(ApiGatewayPostUseCase);
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);
