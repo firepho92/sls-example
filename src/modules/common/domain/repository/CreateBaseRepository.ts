@@ -42,7 +42,7 @@ export default abstract class CreateBaseRepository<T> implements Repository<Part
 
       return Array.isArray(port) ? result.generatedMaps as T[] : result.generatedMaps.at(0) as T;
     } catch (error) {
-      console.log('error', error);
+      console.error('CreateBaseRepository error', error);
       if (error.code === PostgresSQLErrorCodes.UNIQUE_VIOLATION)
         throw new Warning(HttpStatusCode.BAD_REQUEST, [], ErrorCode.ERR0007);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)
