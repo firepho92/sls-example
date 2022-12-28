@@ -10,11 +10,11 @@ export default class Couple extends BaseEntity {
   @ManyToOne(() => Person, (person) => person.companion)
   companion: Person;
 
-  // constructor(principal: Person, companion: Person) {
-  //   super();
-  //   if (principal?.age < 18 && companion?.age < 18)
-  //     throw new Error('Couple participants must be adults');
-  //   this.principal = principal;
-  //   this.companion = companion;
-  // }
+  constructor(principal: Person, companion: Person) {
+    super();
+    if (principal?.age < 18 && companion?.age < 18)
+      throw new Error('Couple participants must be adults');
+    this.principal = principal;
+    this.companion = companion;
+  }
 }
