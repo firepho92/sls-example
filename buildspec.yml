@@ -7,11 +7,15 @@ phases:
       - yarn global add serverless@3.16.0
       - sls -v
       - cd layers/lib/nodejs
+      - ls
       - yarn --prod
       - cd ../../..
+      - ls
       - cd layers/db/nodejs
+      - ls
       - yarn --prod
       - cd ../../..
+      - ls
   build:
     commands:
       - echo $Stage
