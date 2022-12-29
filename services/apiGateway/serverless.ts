@@ -79,7 +79,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     logRetentionInDays: 30,
     esbuild: {
-      external:['pg-native', 'joi', 'middy', 'pg', 'typeorm', 'inversify', 'uuid'],
+      external:['pg-native', 'joi', '@middy', 'pg', 'typeorm', 'inversify', 'uuid', 'typeorm-naming-strategies'],
       bundle: true,
       minify: false,
       sourcemap: process.env.IS_OFFLINE === 'true',
