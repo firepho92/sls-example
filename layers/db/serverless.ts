@@ -27,24 +27,7 @@ const serverlessConfiguration: AWS = {
         }
       }
     }
-  },
-  custom: {
-    logRetentionInDays: 30,
-    esbuild: {
-      external:['joi', 'middy', 'pg', 'typeorm', 'inversify', 'uuid'],
-      bundle: true,
-      minify: false,
-      sourcemap: process.env.IS_OFFLINE === 'true',
-      exclude: ['*'],
-      target: 'node16',
-      define: { 'require.resolve': undefined },
-      platform: 'node',
-      concurrency: 10,
-    },
-    service: 'api-gateway',
-    stage: '${env:Stage, "local"}',
-    func_prefix: '${self:custom.stage}-${self:custom.service}',
   }
 }
 
-module.exports = serverlessConfiguration; 
+module.exports = serverlessConfiguration;
