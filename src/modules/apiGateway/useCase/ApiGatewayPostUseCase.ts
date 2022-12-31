@@ -25,8 +25,8 @@ export default class ApiGatewayPostUseCase implements UseCase<ApiGatewayPostUseC
       const companion = await this.personCreateOneRepository.execute(new Person(port.companion.name, port.companion.age));
       // console.log('principal', principal);
       // console.log('companion', companion);
-
-      const couple: Couple = await this.coupleCreateOneRepository.execute({principal, companion}) as Couple;
+      const couple = new Couple(principal, companion);
+      await this.coupleCreateOneRepository.execute(couple);
       console.log('couple', couple);
       return couple;
     } catch (error) {
