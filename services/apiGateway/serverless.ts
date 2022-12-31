@@ -59,11 +59,11 @@ const serverlessConfiguration: AWS = {
       CLEVER_USER_PWD: '${ssm:CLEVER_USER_PWD, "CLEVER_USER_PWD"}',      
     },
     layers: [
-      "${param:commonLib, 'commonLib'}",
-      "${param:commonDb, 'commonDb'}",
+      '${param:commonLib, "commonlib"}',
+      "${param:commonDb, 'commonlb'}",
     ],
     deploymentBucket: {
-      name: '${ssm:s3_bucket_deploy_sls, "s3_bucket_deploy_sls"}',
+      name: '${ssm:s3_bucket_deploy_sls, "s3bucketdeploysls"}',
     },
     iam: {
       role: '${env:IamRole, "IamRole"}',
@@ -82,10 +82,22 @@ const serverlessConfiguration: AWS = {
   custom: {
     logRetentionInDays: 30,
     esbuild: {
-      external:['pg-native', 'joi', '@middy', 'pg', 'typeorm', 'inversify', 'uuid', 'typeorm-naming-strategies'],
+      external:[
+        "pg-native",
+        "joi",
+        "@middy",
+        "pg",
+        "typeorm",
+        "inversify",
+        "uuid",
+        "typeorm-naming-strategies",
+        "@serverless",
+        "reflect-metadata",
+        "aws-sdk"
+      ],
       bundle: true,
       minify: false,
-      sourcemap: process.env.IS_OFFLINE === 'true',
+      sourcemap: false,
       exclude: ['*'],
       target: 'node16',
       define: { 'require.resolve': undefined },
