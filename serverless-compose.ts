@@ -4,7 +4,7 @@ const serverlessCompose = {
       path: 'layers/lib'
     },
     'architecture-example-layer-db': {
-      path: 'layers/lib'
+      path: 'layers/db'
     },
     'apiGateway': {
       path: 'services/apiGateway',
