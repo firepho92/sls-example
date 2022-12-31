@@ -58,7 +58,10 @@ const serverlessConfiguration: AWS = {
       CLEVER_USER: '${ssm:CLEVER_USER, "CLEVER_USER"}',
       CLEVER_USER_PWD: '${ssm:CLEVER_USER_PWD, "CLEVER_USER_PWD"}',      
     },
-    layers: ["${param:commonLibs, 'commonLibs'}"],
+    layers: [
+      "${param:commonLib, 'commonLib'}",
+      "${param:commonDb, 'commonDb'}",
+    ],
     deploymentBucket: {
       name: '${ssm:s3_bucket_deploy_sls, "s3_bucket_deploy_sls"}',
     },

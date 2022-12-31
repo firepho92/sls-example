@@ -1,13 +1,17 @@
 const serverlessCompose = {
   services: {
-    'architecture-example': {
+    'architecture-example-lib': {
+      path: 'layers/lib'
+    },
+    'architecture-example-layer-db': {
       path: 'layers/lib'
     },
     'apiGateway': {
       path: 'services/apiGateway',
-      dependsOn: ['architecture-example'],
+      dependsOn: ['architecture-example-lib', 'architecture-example-layer-db'],
       params: {
-        'commonLibs': '${architecture-example.CommonArchitectureExampleLibLambdaLayerQualifiedArn}',
+        'commonLib': '${architecture-example-lib.CommonArchitectureExampleLibLambdaLayerQualifiedArn}',
+        'commonDb': '${architecture-example-db.CommonArchitectureExampleDbLambdaLayerQualifiedArn}',
       }
     },
   }
