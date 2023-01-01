@@ -97,7 +97,7 @@ const serverlessConfiguration: AWS = {
       ],
       bundle: true,
       minify: false,
-      sourcemap: false,
+      sourcemap: process.env.IS_OFFLINE === 'true',
       exclude: ['*'],
       target: 'node16',
       define: { 'require.resolve': undefined },
