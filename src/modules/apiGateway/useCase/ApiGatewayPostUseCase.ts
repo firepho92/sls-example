@@ -18,7 +18,7 @@ export default class ApiGatewayPostUseCase implements UseCase<ApiGatewayPostUseC
   ) {}
 
   async execute(port: ApiGatewayPostUseCaseParams): Promise<Couple> {
-    await this.dbConnectionManager.getActiveConnection();
+    const transaction = await this.dbConnectionManager.getTransaction();
     try {
       // console.log('ApiGatewayPostUseCase port', port);
       const principal = await this.personCreateOneRepository.execute(new Person(port.principal.name, port.principal.age));
@@ -28,10 +28,14 @@ export default class ApiGatewayPostUseCase implements UseCase<ApiGatewayPostUseC
       const couple = new Couple(principal, companion);
       await this.coupleCreateOneRepository.execute(couple);
       console.log('couple', couple);
+      await transaction.commitTransaction();
       return couple;
     } catch (error) {
       console.log('ApiGatewayPostUseCase error', error);
+      await transaction.rollbackTransaction();
+      throw error;
     } finally {
+      await this.dbConnectionManager.endTransaction();
       await this.dbConnectionManager.disconnect();
     }
   }

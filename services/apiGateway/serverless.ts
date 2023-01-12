@@ -60,7 +60,7 @@ const serverlessConfiguration: AWS = {
     },
     layers: [
       '${param:commonLib, "commonlib"}',
-      "${param:commonDb, 'commonlb'}",
+      "${param:commonDb, 'commondb'}",
     ],
     deploymentBucket: {
       name: '${ssm:s3_bucket_deploy_sls, "s3bucketdeploysls"}',

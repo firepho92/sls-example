@@ -5,5 +5,8 @@ export default {
   PersonMapper: Symbol.for('PersonMapper'),
   CoupleMapper: Symbol.for('CoupleMapper'),
   CoupleCreateOneRepository: Symbol.for('CoupleCreateOneRepository'),
-  PersonCreateOneRepository: Symbol.for('PersonCreateOneRepository')
+  PersonCreateOneRepository: Symbol.for('PersonCreateOneRepository'),
+  PropertyGetAdapter: Symbol.for('PropertyGetAdapter'),
+  PropertyGetUseCase: Symbol.for('PropertyGetUseCase'),
+  PropertyFindRepository: Symbol.for('PropertyFindRepository')
 }

@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import Repository from './Repository';
 import { injectable } from 'inversify';
 import { InsertQueryBuilder } from 'typeorm';
-import PostgresSQLErrorCodes from 'src/utils/enums/postgrestSQLErrorCodes';
+import PostgresSQLErrorCodes from 'src/utils/enums/postgresSQLErrorCodes';
 import HttpStatusCode from 'src/utils/enums/httpStatusCode';
 import ErrorCode from 'src/utils/error/errorCode';
 import Warning from 'src/utils/error/Warning';

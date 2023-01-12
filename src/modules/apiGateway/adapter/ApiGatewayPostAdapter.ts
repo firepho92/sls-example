@@ -11,13 +11,12 @@ import CoupleDto from '../domain/dto/CoupleDto';
 
 @injectable()
 export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParams, Promise<CoupleDto>> {
-
   constructor(
     @inject(TYPES.ApiGatewayPostUseCase) private apiGatewayPostUseCase: UseCase<ApiGatewayPostUseCaseParams, Promise<Couple>>,
     @inject(TYPES.CoupleMapper) private coupleMapper: BaseMapper<Couple, CoupleDto>
   ) {}
 
-  async execute(port?: ApiGatewayAdapterParams): Promise<CoupleDto> {
+  async execute(port: ApiGatewayAdapterParams): Promise<CoupleDto> {
     const apiGatewayPostUseCaseParams = {
       principal: port.couple.at(0),
       companion: port.couple.at(1)
