@@ -6,9 +6,13 @@ const serverlessCompose = {
     'architecture-example-layer-db': {
       path: 'layers/db'
     },
+    'default-authorizer': {
+      dependsOn: ['architecture-example-layer-lib', 'architecture-example-layer-db'],
+      path: 'authorizer/lambda-authorizer',
+    },
     'apiGateway': {
       path: 'services/apiGateway',
-      dependsOn: ['architecture-example-layer-lib', 'architecture-example-layer-db'],
+      dependsOn: ['default-authorizer'],
       params: {
         'commonLib': '${architecture-example-layer-lib.CommonArchitectureExampleLibLambdaLayerQualifiedArn}',
         'commonDb': '${architecture-example-layer-db.CommonArchitectureExampleDbLambdaLayerQualifiedArn}',
