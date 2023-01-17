@@ -12,7 +12,7 @@ export default class Couple extends BaseEntity {
 
   constructor(principal: Person, companion: Person) {
     super();
-    if (principal?.age < 18 || companion?.age < 18)
+    if (principal?.age < 18 && companion?.age < 18)
       throw new Error('Couple participants must be adults');
     this.principal = principal;
     this.companion = companion;
