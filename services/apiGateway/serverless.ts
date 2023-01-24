@@ -47,7 +47,6 @@ const serverlessConfiguration: AWS = {
       ProjectName: '${env:ProjectName,"ProjectName"}',
       Stage: '${env:Stage,"local"}',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       FailedEmailsTable: '${env:FailedEmailsTable, "FailedEmailsTable"}',
       SqsFailedEmailsSQSDeadLetterArn: '${env:SqsFailedEmailsSQSDeadLetterArn, "SqsFailedEmailsSQSDeadLetterArn"}',
       SqsFailedEmailsSQSDeadLetterUrl: '${env:SqsFailedEmailsSQSDeadLetterUrl, "SqsFailedEmailsSQSDeadLetterUrl"}',

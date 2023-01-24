@@ -11,8 +11,7 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true,
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
     },
     deploymentBucket: {
       name: '${ssm:s3_bucket_deploy_sls, "s3_bucket_deploy_sls"}',
