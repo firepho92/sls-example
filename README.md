@@ -16,6 +16,15 @@ El objetivo principal de una arquitectura es asegurar la separación de responsa
 6.- Onion (Cebolla)
 
 ```mermaid
+flowchart LR
+
+    A[Hard] -->|Text| B(Round)
+    B --> C{Decision}
+    C -->|One| D[Result 1]
+    C -->|Two| E[Result 
+```
+
+```mermaid
 erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : has
     CUSTOMER ||--o{ ORDER : places
