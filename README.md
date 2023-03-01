@@ -16,11 +16,16 @@ El objetivo principal de una arquitectura es asegurar la separación de responsa
 6.- Onion (Cebolla)
 
 ```mermaid
-flowchart LR
-    A[Hard] -->|Text| B(Round)
-    B --> C{Decision}
-    C -->|One| D[Result 1]
-    C -->|Two| E[Result] 
+sequenceDiagram
+    autonumber
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
 ```
 
 ```mermaid
@@ -34,26 +39,4 @@ erDiagram
     ORDER ||--|{ ORDER-ITEM : includes
     PRODUCT-CATEGORY ||--|{ PRODUCT : contains
     PRODUCT ||--o{ ORDER-ITEM : "ordered in"  
-```
-
-```plantUML
-@startuml
-!include aws.puml
-
-left to right direction
-
-Users(sources, "Events", "millions of users")
-APIGateway(votingAPI, "Voting API", "user votes")
-Cognito(userAuth, "User Authentication", "jwt to submit votes")
-Lambda(generateToken, "User Credentials", "return jwt")
-Lambda(recordVote, "Record Vote", "enter or update vote per user")
-SimpleQueueService(voteDb, "Vote Database", "one entry per user")
-
-sources --> userAuth
-sources --> votingAPI
-userAuth <--> generateToken
-votingAPI --> recordVote
-recordVote --> voteDb
-
-@enduml
 ```

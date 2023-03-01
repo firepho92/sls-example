@@ -7,7 +7,21 @@
 !include AWSPuml/General/Users.puml
 !include AWSPuml/ApplicationIntegration/APIGateway.puml
 !include AWSPuml/SecurityIdentityCompliance/Cognito.puml
-!include AWSPuml/Compute/Lambda.puml
-!include AWSPuml/Database/DynamoDB.puml
+!include AWSPuml/Compute/all.puml
+!include AWSPuml/Database/all.puml
 !include AWSPuml/ApplicationIntegration/all.puml
 
+left to right direction
+
+Users(sources, "Events", "millions of users")
+APIGateway(votingAPI, "Voting API", "user votes")
+Cognito(userAuth, "User Authentication", "jwt to submit votes")
+Lambda(generateToken, "User Credentials", "return jwt")
+Lambda(recordVote, "Record Vote", "enter or update vote per user")
+SimpleQueueService(voteDb, "Vote Database", "one entry per user")
+
+sources --> userAuth
+sources --> votingAPI
+userAuth <--> generateToken
+votingAPI --> recordVote
+recordVote --> voteDb
