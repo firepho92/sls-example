@@ -3,16 +3,16 @@ import Repository from './Repository';
 import { injectable } from 'inversify';
 import { UpdateQueryBuilder } from 'typeorm';
 import camelcaseKeysDeep from 'camelcase-keys-deep';
-import Warning from '../../../../shared/error/Warning';
-import ErrorCode from '../../../../shared/error/ErrorCode';
-import Exception from '../../../../shared/error/Exception';
-import HttpStatusCode from '../../../../shared/enums/HttpStatusCode';
-import PostgresSQLErrorCodes from '../../../../shared/enums/PostgresSQLErrorCodes';
+import PostgresSQLErrorCodes from 'src/utils/enums/postgresSQLErrorCodes';
+import HttpStatusCode from 'src/utils/enums/httpStatusCode';
+import Exception from 'src/utils/error/Exception';
+import Warning from 'src/utils/error/Warning';
+import ErrorCode from 'src/utils/error/errorCode';
 
 /**
  * @absract class SoftDeleteBaseRepository
  * @template T
- * @implements ISoftDeleteBaseRepository<T>
+ * @implements Repository<T, Promise<T>>
  * @description Base soft delete repository class which updates active property
  * @author Raul Dominguez
  * @created 2022-07-18
@@ -20,14 +20,14 @@ import PostgresSQLErrorCodes from '../../../../shared/enums/PostgresSQLErrorCode
  * @updatedBy Alexandro Aguilar
  */
 @injectable()
-export default abstract class SoftDeleteBaseRepository<T> implements Repository<T, T> {
+export default abstract class SoftDeleteBaseRepository<T> implements Repository<T, Promise<T>> {
 
   protected abstract buildQuery(port?: T): Promise<UpdateQueryBuilder<T>>;
 
   /**
    * @function execute
    * @param {Partial<T>} port
-   * @returns Promise<U>
+   * @returns Promise<T>
    * @description Updates an item to soft delete it
    * @belongsTo Repository
    */
