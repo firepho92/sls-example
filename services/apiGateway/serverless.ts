@@ -17,9 +17,9 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs16.x',
     region: 'us-east-1',
     tags: {
-      Department: 'desarrollo',
-      Environment: '${env:Stage, "local"}',
-      ProjectName: 'architecture-guidelines'
+      department: 'desarrollo',
+      environment: '${env:Stage, "local"}',
+      'project-name': 'architecture-guidelines'
     },
     stage: '${env:Stage, "dev"}',
     apiGateway: {
