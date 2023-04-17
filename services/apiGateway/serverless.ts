@@ -18,7 +18,7 @@ const serverlessConfiguration: AWS = {
     region: 'us-east-1',
     tags: {
       Department: 'desarrollo',
-      Environment: 'dev',
+      Environment: '${env:Stage, "local"}',
       ProjectName: 'architecture-guidelines'
     },
     stage: '${env:Stage, "dev"}',
