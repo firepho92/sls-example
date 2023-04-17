@@ -4,7 +4,7 @@ export default {
   name: '${self:custom.func_prefix}-post',
   handler: `${handlerPath(__dirname)}/handler.main`,
   tags: {
-    Name: 'apiGateway-post'
+    Name: 'api-gateway-post'
   },
   events: [
     {
