@@ -19,7 +19,7 @@ const serverlessConfiguration: AWS = {
     tags: {
       department: 'desarrollo',
       environment: '${env:Stage, "local"}',
-      'project-name': 'architecture-guidelines'
+      project_name: 'architecture-guidelines'
     },
     stage: '${env:Stage, "dev"}',
     apiGateway: {
