@@ -21,7 +21,7 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
     try {
       console.log('🚀 ~ DBConnectionManager: Connect');
       if (process.env.IS_OFFLINE !== 'true') {
-        if (!this.secrets) this.secrets = await (new Secrets()).get();
+        if (!this.secrets) this.secrets = await (new Secrets()).get(); console.log(this.secrets);
       } else {
         this.secrets = {
           username: process.env.DB_POSTGRES_USERNAME,
