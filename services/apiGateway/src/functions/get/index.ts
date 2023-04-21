@@ -1,6 +1,7 @@
 import { handlerPath } from '../../lib/handler-resolver';
+import type { AWS } from '@serverless/typescript';
 
-export default {
+const lambda: AWS['functions']['k'] = {
   name: '${self:custom.func_prefix}-get',
   handler: `${handlerPath(__dirname)}/handler.main`,
   tags: {
@@ -15,3 +16,5 @@ export default {
     },
   ],
 };
+
+export default lambda;
