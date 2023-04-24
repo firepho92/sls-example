@@ -5,7 +5,7 @@ const serverlessConfiguration: AWS = {
   frameworkVersion: '3',
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs16.x',
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
     },
@@ -22,7 +22,7 @@ const serverlessConfiguration: AWS = {
           Type: "REQUEST",
           IdentitySource: 'method.request.header.Authorization',
           RestApiId:  '${env:ApiGatewayId,"restApiId"}',
-          Name: 'GSAuthorizer-booking-${env:STAGE, "stage"}',
+          Name: 'PR-Architecture-Authorizer-${env:Stage, "stage"}',
           AuthorizerResultTtlInSeconds: 0
         }
       },

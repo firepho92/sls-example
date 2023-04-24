@@ -1,12 +1,12 @@
 import 'reflect-metadata';
 import { injectable } from 'inversify';
 import { EntityNotFoundError, SelectQueryBuilder } from 'typeorm';
-import Warning from '../../../../shared/error/Warning';
-import ErrorCode from '../../../../shared/error/ErrorCode';
-import Exception from '../../../../shared/error/Exception';
-import HttpStatusCode from '../../../../shared/enums/HttpStatusCode';
-import PostgresSQLErrorCodes from '../../../../shared/enums/PostgresSQLErrorCodes';
 import Repository from './Repository';
+import HttpStatusCode from 'src/utils/enums/httpStatusCode';
+import PostgresSQLErrorCodes from 'src/utils/enums/postgresSQLErrorCodes';
+import Exception from 'src/utils/error/Exception';
+import Warning from 'src/utils/error/Warning';
+import ErrorCode from 'src/utils/error/errorCode';
 
 //const logger = LoggerFactory.getInstance();
 
@@ -21,7 +21,7 @@ import Repository from './Repository';
  * @updatedBy Alexandro Aguilar
  */
 @injectable()
-export default abstract class FindOneBaseRepository<T, U> implements Repository<T, U> {
+export default abstract class FindOneBaseRepository<T, U> implements Repository<T, Promise<U>> {
 
   protected abstract buildQuery(port?: T): Promise<SelectQueryBuilder<U>>;
   /**
