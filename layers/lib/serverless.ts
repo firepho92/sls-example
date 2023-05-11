@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     logRetentionInDays: 30,
     esbuild: {
-      external:['mjml'],
+      external:['aws-sdk'],
       bundle: true,
       minify: false,
       sourcemap: process.env.IS_OFFLINE === 'true',

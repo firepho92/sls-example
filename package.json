@@ -4,7 +4,8 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "start": "sls offline",
+    "start": "symlinks & sls offline",
+    "symlinks": "yarn paquete",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -13,7 +14,7 @@
   "dependencies": {
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
-    "camelcase-keys-deep": "^0.1.0",
+    "camelcase-keys-deep": "0.1.0",
     "joi": "^17.7.0",
     "middy": "^0.36.0",
     "pg": "^8.8.0",
