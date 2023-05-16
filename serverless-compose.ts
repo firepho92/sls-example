@@ -16,7 +16,7 @@ const serverlessCompose = {
       params: {
         'commonLib': '${architecture-example-layer-lib.CommonArchitectureExampleLibLambdaLayerQualifiedArn, "architecture-example-layer-lib.CommonArchitectureExampleLibLambdaLayerQualifiedArn"}',
         'commonDb': '${architecture-example-layer-db.CommonArchitectureExampleDbLambdaLayerQualifiedArn, "architecture-example-layer-db.CommonArchitectureExampleDbLambdaLayerQualifiedArn"}',
-        // 'authorizer': '${default-authorizer.DefaultAuthorizer}'
+        'authorizer': '${default-authorizer.DefaultAuthorizer}'
       }
     },
   }
