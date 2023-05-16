@@ -14,15 +14,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    CommonArchitectureExampleDb: {
+    ArchitectureDb: {
       path: './'
     }
   },
   resources: {
     Outputs: {
-      CommonArchitectureExampleDbLambdaLayerQualifiedArn: {
+      ArchitectureDbLambdaLayerQualifiedArn: {
         Value: {
-          "Ref": "CommonArchitectureExampleDbLambdaLayer"
+          "Ref": "ArchitectureDbLambdaLayer"
         }
       }
     }
