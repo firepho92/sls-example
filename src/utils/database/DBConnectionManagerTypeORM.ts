@@ -28,7 +28,7 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
           password: process.env.DB_POSTGRES_PASSWORD,
           host: process.env.DB_POSTGRES_HOST,
           port: process.env.DB_POSTGRES_PORT,
-          dbname: process.env.DB_POSTGRES_DB_NAME,
+          dbname: process.env.DB_POSTGRES_NAME,
         };
         // console.log('Secrets', this.secrets)
       }
