@@ -1,6 +1,9 @@
 import BaseEntity from 'src/modules/common/domain/entity/BaseEntity';
 import { Entity, ManyToOne } from 'typeorm';
 import Person from './Person';
+import Warning from 'src/utils/error/Warning';
+import HttpStatusCode from 'src/utils/enums/httpStatusCode';
+import ErrorCode from 'src/utils/error/errorCode';
 
 @Entity({name: 'couple'})
 export default class Couple extends BaseEntity {
@@ -12,8 +15,9 @@ export default class Couple extends BaseEntity {
 
   constructor(principal: Person, companion: Person) {
     super();
-    if (principal?.age < 18 && companion?.age < 18)
-      throw new Error('Couple participants must be adults');
+    console.log(principal, companion);
+    if (principal?.age < 18 || companion?.age < 18)
+      throw new Warning(HttpStatusCode.BAD_REQUEST, ErrorCode.ERR1001);
     this.principal = principal;
     this.companion = companion;
   }

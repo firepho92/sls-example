@@ -99,6 +99,12 @@ const ErrorCode: { [key: string]: ErrorType } = {
     msg: 'RULE_NOT_APPLY',
     description: '',
   },
+  ERR1001: {
+    code: 'ERR1001',
+    category: ErrorCategory.BUSINESS,
+    msg: 'Couple participants must be adults',
+    description: '',
+  },
   //#endregion General
 
   //#region ERR0100 ... ERR0499 = Booking
