@@ -15,6 +15,7 @@ const lambda: AWS['functions']['k'] = {
       },
     },
   ],
+  reservedConcurrency: 2,
 };
 
 export default lambda;

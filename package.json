@@ -4,8 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "start": "symlinks & sls offline",
-    "symlinks": "yarn paquete",
+    "start": "sls offline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
