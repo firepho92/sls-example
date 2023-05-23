@@ -13,7 +13,7 @@ const lambda: AWS['functions']['k'] = {
         method: 'get',
         path: 'v1/ejemplo',
       },
-    },
+    }
   ],
   reservedConcurrency: 2,
 };
