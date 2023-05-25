@@ -65,8 +65,8 @@ const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) => {
     } catch (err) {
       console.log('JOI ERR: ', err)
 
-      let errorCodes = [];
-      err.details.map( (detail: { message: string; }) => {
+      const errorCodes = [];
+      err.details.forEach( (detail: { message: string; }) => {
         if (ErrorCode[detail.message]){
           errorCodes.push(ErrorCode[detail.message]);
         }
