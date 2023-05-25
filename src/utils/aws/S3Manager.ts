@@ -1,10 +1,15 @@
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+  PutObjectCommandInput,
+  ListObjectsV2Command,
+  } from '@aws-sdk/client-s3';
 import S3Base from './S3Base';
+import BucketParams from './BucketParams';
 
 export default class S3Manager implements S3Base {
   s3Client: S3Client;
-  bucketParams: any;
+  bucketParams: BucketParams;
 
   constructor(region: string, bucketName: string, keyId?: string, accessKey?: string) {
     const configAwsClient = {
@@ -19,6 +24,31 @@ export default class S3Manager implements S3Base {
     this.bucketParams = {
       Bucket: bucketName,
     };
+  }
+
+  async listObjects(prefix: string): Promise<string[]> {
+    console.log('S3Manager listObjects');
+    const command = new ListObjectsV2Command({
+      ...this.bucketParams,
+      Prefix: prefix,
+      MaxKeys: 1000
+    });
+    try {
+      let isTruncated = true;
+      let contents = "";
+  
+      while (isTruncated) {
+        const { Contents = [], IsTruncated = false, NextContinuationToken } = await this.s3Client.send(command);
+        const contentsList = Contents.map((c) => `${c.Key}`).join("\n");
+        contents += contentsList + "\n";
+        isTruncated = IsTruncated;
+        command.input.ContinuationToken = NextContinuationToken;
+      }
+      return contents.split('\n');
+    } catch (error) {
+      console.error('S3Manager ListObjects error', error);
+      throw error;
+    }
   }
 
   async getObjectFile(path: string): Promise<any> {
@@ -36,25 +66,13 @@ export default class S3Manager implements S3Base {
     }
   }
 
-  async getSignedUrl(path: string): Promise<any> {
-    this.bucketParams.Key = path;
-    try {
-      const command = new GetObjectCommand(this.bucketParams);
-      const url = await getSignedUrl(this.s3Client, command, { expiresIn: 604800 });
-      return url;
-    } catch (error) {
-      console.error('Error al obtener objeto de S3', error);
-    }
-  }
-
-  async uploadFiles(filters: {}): Promise<any> {
+  async uploadFiles(port: Omit<PutObjectCommandInput, 'Bucket'>): Promise<any> {
     let success = true;
     try {
-      var params = {
+      const command = new PutObjectCommand({
         ...this.bucketParams,
-        ...filters,
-      };
-      const command = new PutObjectCommand(params);
+        ...port
+      });
       await this.s3Client.send(command);
     } catch (err) {
       success = false;

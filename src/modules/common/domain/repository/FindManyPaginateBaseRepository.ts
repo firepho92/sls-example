@@ -21,7 +21,7 @@ import PaginationQueryDTO from '../dto/PaginationQueryDTO';
  * @updatedBy Alexandro Aguilar
  */
 @injectable()
-export default abstract class FindManyPaginateBaseRepository<T, U> implements Repository<PaginationQueryDTO<T>, Promise<[U[], number]>> {
+export default abstract class FindManyPaginateBaseRepository<T, U> implements Repository<PaginationQueryDTO<T>, Promise<{items: U[], count: number}>> {
 
   protected abstract buildQuery(port?: T): Promise<SelectQueryBuilder<U>>;
   /**
@@ -31,13 +31,13 @@ export default abstract class FindManyPaginateBaseRepository<T, U> implements Re
    * @description Finds all items paginated
    * @belongsTo Repository
    */
-  async execute(port?: PaginationQueryDTO<T>): Promise<[U[], number]> {
+  async execute(port?: PaginationQueryDTO<T>): Promise<{items: U[], count: number}> {
     try {
       const query = await this.buildQuery(port.criteria) as SelectQueryBuilder<U>;
       query.skip((port.pageNumber - 1) * port.size).take(port.size);
       const result = await query.getManyAndCount();
 
-      return result;
+      return { items: result[0], count: result[1] };
     } catch (error) {
       console.error(error);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)

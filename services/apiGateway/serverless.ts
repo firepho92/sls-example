@@ -20,7 +20,7 @@ const serverlessConfiguration: AWS = {
       department: '${env:Department, "ti"}',
       environment: '${env:Stage, "local"}',
       project_name: '${env:ProjectName, "project"}',
-      cost_center: '${env:CostCenter, "cost_center"}',
+      cost_center: '${env:CostCenter, "cost-center"}',
     },
     stage: '${env:Stage, "dev"}',
     apiGateway: {

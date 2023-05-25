@@ -17,7 +17,7 @@ const lambda: AWS['functions']['k'] = {
     {
       sqs: {
         arn: 'arn:aws:sqs:us-east-1:427784172992:dev-cdk-aws-infra-PaginatedExample-sqs.fifo',
-        batchSize: 1
+        batchSize: 1,
       }
     }
   ],

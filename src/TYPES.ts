@@ -1,9 +1,13 @@
 export default {
   DBConnectionManager: Symbol.for('DBConnectionManager'),
+  ApiGatewayGetAdapter: Symbol.for('ApiGatewayGetAdapter'),
   ApiGatewayPostAdapter: Symbol.for('ApiGatewayPostAdapter'),
+  ApiGatewayGetUseCase: Symbol.for('ApiGatewayGetUseCase'),
   ApiGatewayPostUseCase: Symbol.for('ApiGatewayPostUseCase'),
+  CoupleFindPaginatedRepository: Symbol.for('CoupleFindPaginatedRepository'),
   PersonMapper: Symbol.for('PersonMapper'),
   CoupleMapper: Symbol.for('CoupleMapper'),
+  PaginationMapperService: Symbol.for('PaginationMapperService'),
   CoupleCreateOneRepository: Symbol.for('CoupleCreateOneRepository'),
   PersonCreateOneRepository: Symbol.for('PersonCreateOneRepository'),
   PropertyGetAdapter: Symbol.for('PropertyGetAdapter'),

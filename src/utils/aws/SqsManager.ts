@@ -1,29 +1,20 @@
-import AWS from 'aws-sdk';
-// import { SQSClient, AddPermissionCommand } from "@aws-sdk/sqs";
-import SqsBase from './SqsBase';
-import SqsMessage from 'src/modules/common/domain/dto/SqsMessage';
+import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
+import SqsBase, { SqsMessageParameter } from './SqsBase';
 export default class SqsManager implements SqsBase {
-  private sqsClient: AWS.SQS;
+  private sqsClient: SQSClient;
 
   constructor (
     region = process.env.REGION,
+    apiVersion = '2012-11-05'
   ) {
-    this.sqsClient = new AWS.SQS({ region, apiVersion: '2012-11-05' });
+    this.sqsClient = new SQSClient({ region, apiVersion });
   }
 
-  async sendMessage(sqsMessage: SqsMessage): Promise<any> {
+  async sendMessage(sqsMessage: SqsMessageParameter): Promise<any> {
     try {
-      return new Promise((resolve, reject) => {
-        this.sqsClient.sendMessage(sqsMessage, (error, response) => {
-          if(error){
-            reject(error);
-          }
-          else{
-            console.log(response);
-            resolve(response);
-          }
-        })
-      });
+      const command = new SendMessageCommand(sqsMessage);
+      const response = await this.sqsClient.send(command);
+      return response;
     } catch (error) {
       console.log('SqsManager error', error);
       throw error;

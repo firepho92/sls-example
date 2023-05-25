@@ -1,14 +1,17 @@
+import {
+  PutObjectCommandInput
+} from '@aws-sdk/client-s3';
+
 export default interface S3Base {
   /**
    * @function getObjectFile
    * @param path {string}
    * @description returns an S3 object
    */
-  getObjectFile(path: string): Promise<any>;
+  getObjectFile(port: string): Promise<string>;
 
-  getSignedUrl(path: string): Promise<any>;
+  listObjects(prefix: string): Promise<Array<string>>;
 
-  uploadFiles(filters: {}): Promise<any>;
+  uploadFiles(port: Omit<PutObjectCommandInput, 'Bucket'>): Promise<any>;
 
-  streamToString(stream: any): Promise<any>;
 }
