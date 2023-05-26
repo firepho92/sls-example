@@ -15,15 +15,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    ['${env:Stage}' + '-ArchitectureLib']: {
+    ['prueba-ArchitectureLib']: {
       path: './'
     }
   },
   resources: {
     Outputs: {
-      ArchitectureLibLambdaLayerQualifiedArn: {
+      ['prueba-ArchitectureLibLambdaLayerQualifiedArn']: {
         Value: {
-          "Ref": "ArchitectureLibLambdaLayer"
+          "Ref": "prueba-ArchitectureLibLambdaLayer"
         }
       }
     }
