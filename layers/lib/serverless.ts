@@ -15,15 +15,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    "@@stage@@ArchitectureLib": {
+    '${env:Stage}ArchitectureLib': {
       path: './'
     }
   },
   resources: {
     Outputs: {
-      "@@stage@@ArchitectureLibLambdaLayerQualifiedArn": {
+      "${env:Stage}ArchitectureLibLambdaLayerQualifiedArn": {
         Value: {
-          "Ref": "@@stage@@ArchitectureLibLambdaLayer"
+          "Ref": "${env:Stage}ArchitectureLibLambdaLayer"
         }
       }
     }
