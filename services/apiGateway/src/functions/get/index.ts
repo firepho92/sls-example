@@ -8,18 +8,12 @@ const lambda: AWS['functions']['k'] = {
     Name: 'apiGateway-get'
   },
   events: [
-    // {
-    //   http: {
-    //     method: 'get',
-    //     path: 'v1/ejemplo',
-    //   },
-    // },
     {
-      sqs: {
-        arn: 'arn:aws:sqs:us-east-1:427784172992:dev-cdk-aws-infra-PaginatedExample-sqs.fifo',
-        batchSize: 1,
-      }
-    }
+      http: {
+        method: 'get',
+        path: 'v1/ejemplo',
+      },
+    },
   ],
   timeout: 240
 };
