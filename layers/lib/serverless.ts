@@ -1,5 +1,5 @@
 import type { AWS } from '@serverless/typescript';
-const stage = process.env.Stage;
+
 const serverlessConfiguration: AWS = {
   service: 'architecture-example-layer-lib-${env:Stage, "local"}',
   frameworkVersion: '3',
@@ -15,15 +15,16 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    [`${stage}ArchitectureLib`]: {
-      path: './'
+    ArchitectureLib: {
+      path: './',
+      name: '${env:Stage, "local"}-architecture-example-layer-lib',
     }
   },
   resources: {
     Outputs: {
-      [`${stage}ArchitectureLibLambdaLayerQualifiedArn`]: {
+      ArchitectureLibLambdaLayerQualifiedArn: {
         Value: {
-          "Ref": `${stage}ArchitectureLibLambdaLayer`
+          "Ref": 'ArchitectureLibLambdaLayer'
         }
       }
     }
