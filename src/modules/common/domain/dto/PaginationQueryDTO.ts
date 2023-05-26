@@ -1,10 +1,12 @@
-export default class PaginationQueryDTO<T=object, O extends {sort: 'ASC' | 'DESC'} = undefined> {
+import Order from "./Order";
+
+export default class PaginationQueryDTO<T=object> {
   private _criteria?: T;
-  private _order?: O;
+  private _order?: Order;
   private _pageNumber: number;
   private _size: number;
 
-  constructor(pageNumber: number, size: number, criteria?: T, order?: O) {
+  constructor(pageNumber: number, size: number, criteria?: T, order?: Order) {
     this._pageNumber = pageNumber ?? 1;
     this._size = size ?? 10;
     this._criteria = criteria;
@@ -19,11 +21,11 @@ export default class PaginationQueryDTO<T=object, O extends {sort: 'ASC' | 'DESC
     this._criteria = criteria;
   }
 
-  get order(): O | undefined {
+  get order(): Order | undefined {
     return this._order;
   }
 
-  set order(order: O) {
+  set order(order: Order) {
     this._order = order;
   }
 

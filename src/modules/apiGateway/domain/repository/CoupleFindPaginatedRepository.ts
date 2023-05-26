@@ -2,15 +2,29 @@ import 'reflect-metadata';
 import TYPES from 'src/TYPES';
 import Couple from '../entity/Couple';
 import { injectable, inject } from 'inversify';
-import Repository from 'src/modules/common/domain/repository/Repository';
+import PaginationQueryDTO from 'src/modules/common/domain/dto/PaginationQueryDTO';
+import FindManyPaginateBaseRepository from 'src/modules/common/domain/repository/FindManyPaginateBaseRepository';
+import { DataSource, QueryRunner, SelectQueryBuilder } from 'typeorm';
+import DBConnectionManager from 'src/utils/database/DBConnectionManager';
 
 @injectable()
-export default class CoupleFindPaginatedRepository implements Repository<any, Promise<Array<Couple>>> {
+export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseRepository<PaginationQueryDTO, Couple> {
   constructor(
-    @inject(TYPES.CoupleFindPaginatedRepository) private repository: Repository<any, Promise<Array<Couple>>>
-  ) {}
-
-  execute(port?: any): Promise<Couple[]> {
-    throw new Error('Method not implemented.');
-  }
+    @inject(TYPES.DBConnectionManager) private dbConnectionManager: DBConnectionManager
+    ) {
+      super();
+    }
+    
+    protected async buildQuery(port?: PaginationQueryDTO): Promise<SelectQueryBuilder<Couple>> {
+      const connection: DataSource | QueryRunner = await this.dbConnectionManager.getActiveConnection();
+      const queryBuilder = connection.manager.createQueryBuilder()
+        .select('couple')
+        .from(Couple, 'couple')
+        .leftJoinAndSelect('couple.principal', 'principal')
+        .leftJoinAndSelect('couple.companion', 'companion')
+        .where('principal.active = :active', { active: true });
+        if (port.order)
+          queryBuilder.orderBy(`couple.${port.order.field}`, port.order.direction);
+      return queryBuilder;
+    }
 }
