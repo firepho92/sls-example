@@ -16,7 +16,6 @@ phases:
       - yarn --prod
       - cd ../../..
       - ls
-      - find . -type f -name "serverless*.ts" -exec sed -i 's/@@stage@@/$Stage/g' {} +
   build:
     commands:
       - echo $Stage
