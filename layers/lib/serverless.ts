@@ -15,7 +15,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   layers: {
-    [`${'${env:Stage}'}ArchitectureLib`]: {
+    ['${env:Stage}' + '-ArchitectureLib']: {
       path: './'
     }
   },
