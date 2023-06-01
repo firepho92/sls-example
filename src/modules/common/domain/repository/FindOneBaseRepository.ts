@@ -35,10 +35,9 @@ export default abstract class FindOneBaseRepository<T, U> implements Repository<
     try {
       const query = await this.buildQuery(port) as SelectQueryBuilder<U>;
       const result = await query.getOneOrFail();
-      //logger.log(`🚀  ~ Returns - `, JSON.stringify(result));
       return result;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)
         throw new Warning(HttpStatusCode.NOT_FOUND, [], ErrorCode.ERR0001);
       if (error.code === PostgresSQLErrorCodes.INVALID_TEXT_REPRESENTATI)

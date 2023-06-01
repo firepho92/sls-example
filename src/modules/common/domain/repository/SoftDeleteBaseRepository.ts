@@ -40,7 +40,7 @@ export default abstract class SoftDeleteBaseRepository<T> implements Repository<
         .execute();
       return camelcaseKeysDeep(result.raw.at(0)) as T;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)
         throw new Warning(HttpStatusCode.NOT_FOUND, [], ErrorCode.ERR0001);
       if (error.code === PostgresSQLErrorCodes.INVALID_TEXT_REPRESENTATI)
