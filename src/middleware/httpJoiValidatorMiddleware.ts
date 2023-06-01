@@ -63,7 +63,7 @@ const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) => {
         );
       }
     } catch (err) {
-      console.log('JOI ERR: ', err)
+      console.error('JOI ERR: ', err)
 
       const errorCodes = [];
       err.details.forEach( (detail: { message: string; }) => {

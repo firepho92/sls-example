@@ -74,10 +74,9 @@ export default class S3Manager implements S3Base {
         ...port
       });
       await this.s3Client.send(command);
-    } catch (err) {
+    } catch (error) {
       success = false;
-      console.error('Error al subir archivo a S3.', err);
-      console.log(err);
+      console.error('Error al subir archivo a S3.', error);
     }
     return success;
   }

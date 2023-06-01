@@ -19,7 +19,7 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   public async connect(): Promise<DataSource> {
     // tslint:disable-next-line:no-console
     try {
-      console.log('🚀 ~ DBConnectionManager: Connect');
+      console.log('🔌 ~ DBConnectionManager: Connect');
       if (process.env.IS_OFFLINE !== 'true') {
         if (!this.secrets) this.secrets = await (new Secrets()).get(); console.log(this.secrets);
       } else {
@@ -39,18 +39,18 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
       } else if (!this.connection.isInitialized) {
         await this.connection.initialize();
       }
-      console.log('🚀 ~ DBConnectionManager: Connected');
+      console.log('🔌 ~ DBConnectionManager: Connected');
       return this.connection;
     } catch (error) {
       // tslint:disable-next-line:no-console
-      console.log(error);
+      console.error(error);
       throw error;
     }
   }
 
   private async beginTransaction(): Promise<QueryRunner> {
     try {
-      console.log('🚀 ~ DBConnectionManager: Begin Transaction');
+      console.log('🔌 ~ DBConnectionManager: Begin Transaction');
       await this.connect();
 
       if (!this.queryRunner || this.queryRunner.isReleased) {
@@ -58,10 +58,10 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
         await this.queryRunner.startTransaction();
       }
 
-      console.log('🚀 ~ DBConnectionManager: Transaction created');
+      console.log('🔌 ~ DBConnectionManager: Transaction created');
       return this.queryRunner;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       throw new Exception(HttpStatusCode.INTERNAL_SERVER_ERROR, [ErrorCode.ERR0014], []);
     }
   }
@@ -80,20 +80,20 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
 
   async endTransaction(): Promise<void> {
     try {
-      console.log('🚀 ~ DBConnectionManager: End Transaction');
+      console.log('🔌 ~ DBConnectionManager: End Transaction');
       await this.queryRunner?.release();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       throw new Exception(HttpStatusCode.INTERNAL_SERVER_ERROR, [ErrorCode.ERR0015], []);
     }
   }
 
   async disconnect(): Promise<void> {
     try {
-      console.log('🚀 ~ DBConnectionManager: Disconnect');
+      console.log('🔌 ~ DBConnectionManager: Disconnect');
       await this.connection?.destroy();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       throw new Exception(HttpStatusCode.INTERNAL_SERVER_ERROR, [ErrorCode.ERR0000], []);
     }
   }

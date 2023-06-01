@@ -50,7 +50,7 @@ export default abstract class HardDeleteBaseRepository<T> {
       const query: SelectQueryBuilder<T> = connection.manager.createQueryBuilder(this.type, 'entity');
       await query.delete().from(this.type).where('entity.id = :id', { id }).execute();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)
         throw new Warning(HttpStatusCode.NOT_FOUND, [], ErrorCode.ERR0001);
       if (error.code === PostgresSQLErrorCodes.INVALID_TEXT_REPRESENTATI)

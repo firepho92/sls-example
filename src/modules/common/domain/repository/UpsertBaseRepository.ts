@@ -54,7 +54,7 @@ export default abstract class UpserManyBaseRepository<T> {
 
       return upsertedItems;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.code === PostgresSQLErrorCodes.FOREIGN_KEY_VIOLATION)
         throw new Warning(HttpStatusCode.NOT_FOUND, [], ErrorCode.ERR0001);
       if (error.code === PostgresSQLErrorCodes.INVALID_TEXT_REPRESENTATI)

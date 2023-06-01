@@ -22,7 +22,7 @@ const httpRequestHandlerMiddleware = () => {
         const token = jwt_decode(authorizationHeader, { header: false });
         request.event.user = token;
       } catch (error) {
-        console.log(error);
+        console.error(error);
         request.event.user = {};
       }
     }
