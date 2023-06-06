@@ -8,7 +8,7 @@ import { DataSource, QueryRunner, SelectQueryBuilder } from 'typeorm';
 import DBConnectionManager from 'src/utils/database/DBConnectionManager';
 
 @injectable()
-export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseRepository<PaginationQueryDTO, Couple> {
+export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseRepository<Couple> {
   constructor(
     @inject(TYPES.DBConnectionManager) private dbConnectionManager: DBConnectionManager
     ) {
@@ -16,6 +16,7 @@ export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseR
     }
     
     protected async buildQuery(port?: PaginationQueryDTO): Promise<SelectQueryBuilder<Couple>> {
+      console.log('CoupleFindPaginatedRepository buildQuery', port);
       const connection: DataSource | QueryRunner = await this.dbConnectionManager.getActiveConnection();
       const queryBuilder = connection.manager.createQueryBuilder()
         .select('couple')

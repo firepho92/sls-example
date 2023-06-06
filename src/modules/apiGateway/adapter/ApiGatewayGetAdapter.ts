@@ -19,6 +19,7 @@ export default class ApiGatewayGetAdapter implements Adapter<PaginationQueryDTO,
   ) {}
 
   async execute(port?: PaginationQueryDTO): Promise<PaginationResponseDTO<Array<CoupleDto>>> {
+    console.log('ApiGatewayGetAdapter execute', port);
     const { items: couples, count } = await this.apiGatewayGetUseCase.execute(port);
     const couplesDto: Array<CoupleDto> = this.coupleMapper.execute(couples);
     const couplesPaginated: PaginationResponseDTO<Array<CoupleDto>> = this.paginationMapperService.execute(new PaginationMapperParams(port.pageNumber, port.size, count, couplesDto));

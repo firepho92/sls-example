@@ -11,7 +11,7 @@ const lambda: AWS['functions']['k'] = {
     {
       http: {
         method: 'get',
-        path: 'v1/ejemplo',
+        path: 'ejemplo',
       },
     },
   ],

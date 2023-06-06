@@ -6,7 +6,7 @@ export default class PaginationQueryDTO<T=object> {
   private _pageNumber: number;
   private _size: number;
 
-  constructor(pageNumber: number, size: number, criteria?: T, order?: Order) {
+  constructor(pageNumber: number, size: number, order?: Order, criteria?: T) {
     this._pageNumber = pageNumber ?? 1;
     this._size = size ?? 10;
     this._criteria = criteria;

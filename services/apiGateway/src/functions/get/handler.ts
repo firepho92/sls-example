@@ -13,10 +13,6 @@ import TYPES from '../../../../../src/TYPES';
 export const main = middy(async (event: APIGatewayProxyEvent) => {
   const adapter: Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>> = container.get<Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>>>(TYPES.ApiGatewayGetAdapter);
   const response = await adapter.execute(new PaginationQueryDTO(1, 10));
-  console.log('event')
-  console.log(event)
-  console.log('context')
-  console.log(event.requestContext)
   return formatJSONResponse({
     response,
   });

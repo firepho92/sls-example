@@ -8,7 +8,7 @@ const lambda: AWS['functions']['k'] = {
     {
       http: {
         method: 'post',
-        path: 'v1/ejemplo',
+        path: 'ejemplo',
       },
     },
   ],

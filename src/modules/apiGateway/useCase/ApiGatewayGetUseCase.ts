@@ -14,6 +14,7 @@ export default class ApiGatewayGetUseCase implements UseCase<PaginationQueryDTO,
   ) { }
 
   async execute(port?: PaginationQueryDTO): Promise<FindManyPaginatedBaseRepositoryParams<Couple>> {
+    console.log('ApiGatewayGetUseCase execute', port);
     try {
       const items = await this.coupleFindPaginatedRepository.execute(port);
       return items;
