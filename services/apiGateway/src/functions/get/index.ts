@@ -14,8 +14,7 @@ const lambda: AWS['functions']['k'] = {
         path: 'ejemplo',
       },
     },
-  ],
-  timeout: 240
+  ]
 };
 
 export default lambda;
