@@ -110,7 +110,7 @@ const serverlessConfiguration: AWS = {
     },
     service: 'api-gateway',
     stage: '${env:Stage, "local"}',
-    func_prefix: '${self:custom.service}',
+    func_prefix: '${self:custom.stage}-${self:custom.service}',
   },
 };
 
