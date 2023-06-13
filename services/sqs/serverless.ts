@@ -108,7 +108,7 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
-    service: 'api-gateway',
+    service: 'sqs',
     stage: '${env:Stage, "local"}',
     func_prefix: '${self:custom.stage}-${self:custom.service}',
   },
