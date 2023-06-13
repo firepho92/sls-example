@@ -33,7 +33,7 @@ export default abstract class FindManyPaginateBaseRepository<U> implements Repos
    * @description Finds all items paginated
    * @belongsTo Repository
    */
-  async execute(port?: PaginationQueryDTO): Promise<FindManyPaginatedBaseRepositoryParams<U>> {
+  public async execute(port?: PaginationQueryDTO): Promise<FindManyPaginatedBaseRepositoryParams<U>> {
     console.log('FindManyPaginateBaseRepository execute port', port);
     try {
       const query = await this.buildQuery(port) as SelectQueryBuilder<U>;

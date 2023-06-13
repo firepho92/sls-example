@@ -8,7 +8,6 @@ import PaginationQueryDTO from '../../../../../src/modules/common/domain/dto/Pag
 import ApiGatewayGetAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayGetAdapter';
 import CoupleDto from '../../../../../src/modules/apiGateway/domain/dto/CoupleDto';
 import BaseMapper from '../../../../../src/modules/common/domain/mapper/BaseMapper';
-import Repository from '../../../../../src/modules/common/domain/repository/Repository';
 import CoupleMapper from '../../../../../src/modules/apiGateway/domain/mapper/CoupleMapper';
 import ApiGatewayGetUseCase from '../../../../../src/modules/apiGateway/useCase/ApiGatewayGetUseCase';
 import DBConnectionManagerTypeORM from '../../../../../src/utils/database/DBConnectionManagerTypeORM';
@@ -16,6 +15,7 @@ import PaginationResponseDTO from '../../../../../src/modules/common/domain/dto/
 import PaginationMapperParams from '../../../../../src/modules/common/domain/dto/PaginationMapperParams';
 import PaginationMapperService from '../../../../../src/modules/common/domain/mapper/PaginationMapperService';
 import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway/domain/repository/CoupleFindPaginatedRepository';
+import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
 import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/common/domain/repository/FindManyPaginatedBaseRepositoryParams';
 
 const container: Container = new Container();
@@ -25,6 +25,6 @@ container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMappe
 container.bind<BaseMapper<PaginationMapperParams<Array<CoupleDto>>, PaginationResponseDTO<Array<CoupleDto>>>>(TYPES.PaginationMapperService).to(PaginationMapperService);
 container.bind<Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>>>(TYPES.ApiGatewayGetAdapter).to(ApiGatewayGetAdapter);
 container.bind<UseCase<PaginationQueryDTO, Promise<FindManyPaginatedBaseRepositoryParams<Couple>>>>(TYPES.ApiGatewayGetUseCase).to(ApiGatewayGetUseCase);
-container.bind<any>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
+container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 
 export default container

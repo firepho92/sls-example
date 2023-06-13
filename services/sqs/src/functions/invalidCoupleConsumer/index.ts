@@ -9,6 +9,26 @@ const lambda: AWS['functions']['k'] = {
       sqs: {
         arn: '${env:SqsDemoSingleExampleSQSArn}',
         batchSize: 1,
+        filterPatterns: [
+          {
+            body: {
+              principal: {
+                age: [
+                  {
+                    numeric: ['<', 17]
+                  }
+                ]
+              },
+              companion: {
+                age: [
+                  {
+                    numeric: ['<', 17]
+                  }
+                ]
+              },
+            }
+          }
+        ]
       },
     },
   ],
