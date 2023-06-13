@@ -15,14 +15,7 @@ const lambda: AWS['functions']['k'] = {
               principal: {
                 age: [
                   {
-                    numeric: ['>', 17]
-                  }
-                ]
-              },
-              companion: {
-                age: [
-                  {
-                    numeric: ['>', 17]
+                    numeric: [">", 17]
                   }
                 ]
               },
