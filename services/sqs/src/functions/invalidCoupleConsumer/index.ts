@@ -12,21 +12,8 @@ const lambda: AWS['functions']['k'] = {
         filterPatterns: [
           {
             body: {
-              principal: {
-                age: [
-                  {
-                    numeric: ['<=', 17]
-                  }
-                ]
-              },
-              companion: {
-                age: [
-                  {
-                    numeric: ['<=', 17]
-                  }
-                ]
-              },
-            }
+              type: ['invalid'],
+            },
           }
         ]
       },
