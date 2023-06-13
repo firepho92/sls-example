@@ -13,8 +13,8 @@ import FindManyPaginatedBaseRepositoryParams from './FindManyPaginatedBaseReposi
 
 /**
  * @class FindManyPaginateBaseRepository
- * @template T, U
- * @implements Repository<T, U>
+ * @template T
+ * @implements Repository<T>
  * @description class to findmany items and paginate them
  * @author Daniel Campos
  * @created 2022-07-27
@@ -22,9 +22,9 @@ import FindManyPaginatedBaseRepositoryParams from './FindManyPaginatedBaseReposi
  * @updatedBy Alexandro Aguilar
  */
 @injectable()
-export default abstract class FindManyPaginateBaseRepository<U> implements Repository<PaginationQueryDTO, Promise<FindManyPaginatedBaseRepositoryParams<U>>> {
+export default abstract class FindManyPaginateBaseRepository<T> implements Repository<PaginationQueryDTO, Promise<FindManyPaginatedBaseRepositoryParams<T>>> {
 
-  protected abstract buildQuery(port?: PaginationQueryDTO): Promise<SelectQueryBuilder<U>>;
+  protected abstract buildQuery(port?: PaginationQueryDTO): Promise<SelectQueryBuilder<T>>;
   /**
    * @function execute
    * @param {PaginationQueryDTO} port
@@ -33,13 +33,13 @@ export default abstract class FindManyPaginateBaseRepository<U> implements Repos
    * @description Finds all items paginated
    * @belongsTo Repository
    */
-  public async execute(port?: PaginationQueryDTO): Promise<FindManyPaginatedBaseRepositoryParams<U>> {
+  public async execute(port?: PaginationQueryDTO): Promise<FindManyPaginatedBaseRepositoryParams<T>> {
     console.log('FindManyPaginateBaseRepository execute port', port);
     try {
-      const query = await this.buildQuery(port) as SelectQueryBuilder<U>;
+      const query = await this.buildQuery(port) as SelectQueryBuilder<T>;
       query.skip((port.pageNumber - 1) * port.size).take(port.size);
       const result = await query.getManyAndCount();
-      const response = new FindManyPaginatedBaseRepositoryParams<U>(result[0], result[1]);
+      const response = new FindManyPaginatedBaseRepositoryParams<T>(result[0], result[1]);
       console.log('FindManyPaginateBaseRepository execute response', response);
       return response;
     } catch (error) {
