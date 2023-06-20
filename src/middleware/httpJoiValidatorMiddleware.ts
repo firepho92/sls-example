@@ -36,7 +36,7 @@ export enum VALIDATOR_TYPE {
  * @TODO Add option to validate multiple path params if required
  */
 interface ValidationInput {
-  schemas: {[key: string]: Joi.ObjectSchema<any> | Joi.ArraySchema | Joi.StringSchema};
+  schemas: {[key: string]: Joi.ObjectSchema | Joi.ArraySchema | Joi.StringSchema};
   type: VALIDATOR_TYPE;
   pathParam?: string;
 }
