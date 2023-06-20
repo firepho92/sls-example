@@ -45,10 +45,6 @@ const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
   // console.log('validateData', validationInput);
 
   const validatorMiddleware = async (request: any) => {
-    // console.log('validateData request', request);
-    // const regex = /version=([\d.]+)/;
-    // const matches = request.event.headers['Accept'].match(regex);
-    // const version = matches ? matches.at(1) : '1.0.0';
     const schema = validationInput.schemas[request.event.version];
     // console.log('schema', schema);
     try {

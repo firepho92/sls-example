@@ -7,7 +7,9 @@ const httpRequestVersionHandlerMiddleware = (versions: Array<string>) => {
     // console.log('httpRequestVersionHandlerMiddleware');
     const regex = /version=([\d.]+)/;
     const matches = request.event.headers['Accept'].match(regex);
+    console.log('matches', matches);
     const version = matches ? matches.at(1) : 'Default';
+    console.log('version', version);
     if (!versions.includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);
     request.event.version = version;
   };
