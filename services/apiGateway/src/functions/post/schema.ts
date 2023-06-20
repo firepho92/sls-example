@@ -15,6 +15,7 @@ const v1_0_1 = Joi.object({
 }).required();
 
 export default {
+  'Default': v1_0_0,
   '1.0.0': v1_0_0,
   '1.0.1': v1_0_1
 }
