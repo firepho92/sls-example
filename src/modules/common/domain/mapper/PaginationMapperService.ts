@@ -1,8 +1,8 @@
 import PaginationMapperParams from '../dto/PaginationMapperParams';
 import PaginationResponseDTO from '../dto/PaginationResponseDTO';
-import MapperService from './BaseMapper';
+import BaseMapper from './BaseMapper';
 
-export default class PaginationMapperService<T> extends MapperService<PaginationMapperParams<T>, PaginationResponseDTO<T>> {
+export default class PaginationMapperService<T> extends BaseMapper<PaginationMapperParams<T>, PaginationResponseDTO<T>> {
   protected transform(port: PaginationMapperParams<T>): PaginationResponseDTO<T> {
     return {
       currentPage: port.pageNumber,

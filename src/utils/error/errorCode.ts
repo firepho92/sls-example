@@ -99,6 +99,18 @@ const ErrorCode: { [key: string]: ErrorType } = {
     msg: 'RULE_NOT_APPLY',
     description: '',
   },
+  ERR0016: {
+    code: 'ERR0016',
+    category: ErrorCategory.SYSTEM,
+    msg: 'CANNOT_CONNECT_TO_DATABASE',
+    description: '',
+  },
+  ERR0017: {
+    code: 'ERR0017',
+    category: ErrorCategory.SYSTEM,
+    msg: 'API_VERSION_NOT_SUPPORTED',
+    description: '',
+  },
   ERR1001: {
     code: 'ERR1001',
     category: ErrorCategory.BUSINESS,

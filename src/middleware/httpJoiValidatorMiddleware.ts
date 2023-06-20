@@ -15,50 +15,63 @@ export enum VALIDATOR_TYPE {
   QUERY = 'QUERY',
 }
 
-/**
- * @interface IValidatorMiddleware
- * @description ValidatorMiddleware to adapt the data of validation
- * @property {Joi.ObjectSchema<any>} schema
- * @property {VALIDATOR_TYPE} type
- * @property {string} pathParam
- */
+// /**
+//  * @interface IValidatorMiddleware
+//  * @description ValidatorMiddleware to adapt the data of validation
+//  * @property {Joi.ObjectSchema<any>} schema
+//  * @property {VALIDATOR_TYPE} type
+//  * @property {string} pathParam
+//  */
 
-export interface IValidatorMiddleware {
-  schema: Joi.ObjectSchema<any> | Joi.ArraySchema | Joi.StringSchema;
-  type: VALIDATOR_TYPE;
-  pathParam?: string;
-}
+// export interface IValidatorMiddleware {
+//   schema: Joi.ObjectSchema<any> | Joi.ArraySchema | Joi.StringSchema;
+//   type: VALIDATOR_TYPE;
+//   pathParam?: string;
+// }
 
 /**
  * @function httpJoiValidatorMiddleware
  * @description Middleware to validate data
- * @param {IValidatorMiddleware} validationData
+ * @param {ValidationInput} validationInput
  * @TODO Add option to validate multiple path params if required
  */
+interface ValidationInput {
+  schemas: {[key: string]: Joi.ObjectSchema<any> | Joi.ArraySchema | Joi.StringSchema};
+  type: VALIDATOR_TYPE;
+  pathParam?: string;
+}
 
-const httpJoiValidatorMiddleware = (validateData: IValidatorMiddleware) => {
+const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
+  // console.log('validateData', validationInput);
+
   const validatorMiddleware = async (request: any) => {
+    // console.log('validateData request', request);
+    // const regex = /version=([\d.]+)/;
+    // const matches = request.event.headers['Accept'].match(regex);
+    // const version = matches ? matches.at(1) : '1.0.0';
+    const schema = validationInput.schemas[request.event.version];
+    // console.log('schema', schema);
     try {
       // Validation for body
-      if (validateData.type === VALIDATOR_TYPE['BODY']) {
-        await validateData.schema.validateAsync(
+      if (validationInput.type === VALIDATOR_TYPE['BODY']) {
+        await schema.validateAsync(
           request.event.body,
           { abortEarly: false }
         );
       }
 
       // Validation for query
-      if (validateData.type === VALIDATOR_TYPE['QUERY']) {
-        await validateData.schema.validateAsync(
+      if (validationInput.type === VALIDATOR_TYPE['QUERY']) {
+        await schema.validateAsync(
           request.event.queryStringParameters ? request.event.queryStringParameters : {},
           { abortEarly: false }
         );
       }
 
       // Validation for path
-      if (validateData.type === VALIDATOR_TYPE['PATH']) {
-        await validateData.schema.validateAsync(
-          request.event.pathParameters[validateData.pathParam ? validateData.pathParam : 'id'],
+      if (validationInput.type === VALIDATOR_TYPE['PATH']) {
+        await schema.validateAsync(
+          request.event.pathParameters[validationInput.pathParam ? validationInput.pathParam : 'id'],
           { abortEarly: false }
         );
       }

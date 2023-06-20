@@ -1,7 +1,10 @@
 import { Container } from 'inversify';
 import TYPES from '../../../../../src/TYPES';
+import Handler from '../../../../../src/modules/common/app/Handler';
 import Adapter from '../../../../../src/modules/common/adapter/Adapter';
 import UseCase from '../../../../../src/modules/common/useCase/UseCase';
+import ApiGatewayHandler1_0_0 from '../../../../../src/modules/apiGateway/app/ApiGatewayHandler1_0_0';
+import ApiGatewayHandler1_0_1 from '../../../../../src/modules/apiGateway/app/ApiGatewayHandler1_0_1';
 import ApiGatewayPostAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapter';
 import ApiGatewayPostUseCase from '../../../../../src/modules/apiGateway/useCase/ApiGatewayPostUseCase';
 import ApiGatewayPostAdapterParams from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapterParams';
@@ -19,6 +22,9 @@ import DBConnectionManagerTypeORM from '../../../../../src/utils/database/DBConn
 
 const container: Container = new Container();
 
+container.bind<Handler<Promise<any>>>(TYPES.Default).to(ApiGatewayHandler1_0_0);
+container.bind<Handler<Promise<any>>>(TYPES['1.0.0']).to(ApiGatewayHandler1_0_0);
+container.bind<Handler<Promise<any>>>(TYPES['1.0.1']).to(ApiGatewayHandler1_0_1);
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>>(TYPES.ApiGatewayPostAdapter).to(ApiGatewayPostAdapter);
 container.bind<UseCase<ApiGatewayPostUseCaseParams, Promise<ApiGatewayPostUseCaseParams>>>(TYPES.ApiGatewayPostUseCase).to(ApiGatewayPostUseCase);

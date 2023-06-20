@@ -62,7 +62,7 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
       return this.queryRunner;
     } catch (error) {
       console.error(error);
-      throw new Exception(HttpStatusCode.INTERNAL_SERVER_ERROR, [ErrorCode.ERR0014], []);
+      throw new Exception(HttpStatusCode.INTERNAL_SERVER_ERROR, [ErrorCode.ERR0016], []);
     }
   }
 
