@@ -1,15 +1,15 @@
 import 'reflect-metadata';
 import schema from './schema';
 import middy from '@middy/core';
-import TYPES from '../../../../../src/TYPES';
-import httpJsonBodyParser from '@middy/http-json-body-parser';
-import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
-import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
-import { APIGatewayProxyEvent } from 'aws-lambda';
-import httpRequestVersionHandlerMiddleware from '../../../../../src/middleware/httpRequestVersionHandlerMiddleware'
 import versions from './versions';
 import container from './inversify.config';
+import TYPES from '../../../../../src/TYPES';
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import httpJsonBodyParser from '@middy/http-json-body-parser';
 import Handler from '../../../../../src/modules/infrastructure/app/Handler';
+import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
+import httpRequestVersionHandlerMiddleware from '../../../../../src/middleware/httpRequestVersionHandlerMiddleware';
+import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
 
 export const main = middy(async (event: APIGatewayProxyEvent & {version: string}) => {
   // console.log('main handler', event.version);
