@@ -10,7 +10,6 @@ const serverlessConfiguration: AWS = {
     'serverless-esbuild',
     'serverless-offline',
     'serverless-dotenv-plugin',
-    'serverless-plugin-log-retention'
   ],
   provider: {
     name: 'aws',
