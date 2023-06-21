@@ -2,11 +2,11 @@ import 'reflect-metadata';
 import TYPES from 'src/TYPES';
 import { inject, injectable } from 'inversify';
 import CoupleDto from '../domain/dto/CoupleDto';
-import Adapter from 'src/modules/common/adapter/Adapter';
+import Adapter from 'src/modules/infrastructure/adapter/Adapter';
 import formatJSONResponse from 'src/utils/response/formatJSONResponse';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import ApiGatewayPostAdapterParams from '../adapter/ApiGatewayPostAdapterParams';
-import Handler from 'src/modules/common/app/Handler';
+import Handler from 'src/modules/infrastructure/app/Handler';
 
 @injectable()
 export default class ApiGatewayHandler1_0_1 implements Handler<Promise<any>> {

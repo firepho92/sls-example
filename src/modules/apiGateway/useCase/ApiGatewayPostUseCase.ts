@@ -3,9 +3,9 @@ import TYPES from 'src/TYPES';
 import Couple from '../domain/entity/Couple';
 import Person from '../domain/entity/Person';
 import { inject, injectable } from 'inversify';
-import UseCase from 'src/modules/common/useCase/UseCase';
+import UseCase from 'src/modules/infrastructure/useCase/UseCase';
 import ApiGatewayPostUseCaseParams from './ApiGatewayPostUseCaseParams';
-import CreateBaseRepository from 'src/modules/common/domain/repository/CreateBaseRepository';
+import CreateBaseRepository from 'src/modules/infrastructure/domain/repository/CreateBaseRepository';
 import DBConnectionManager from 'src/utils/database/DBConnectionManager';
 
 @injectable()
@@ -27,7 +27,7 @@ export default class ApiGatewayPostUseCase implements UseCase<ApiGatewayPostUseC
       // console.log('companion', companion);
       const couple = new Couple(principal, companion);
       await this.coupleCreateOneRepository.execute(couple);
-      console.log('couple', couple);
+      // console.log('couple', couple);
       await transaction.commitTransaction();
       return couple;
     } catch (error) {

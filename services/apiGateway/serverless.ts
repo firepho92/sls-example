@@ -88,9 +88,11 @@ const serverlessConfiguration: AWS = {
     logRetentionInDays: 30,
     esbuild: {
       external:[
+        "@middy/core",
         "pg-native",
         "joi",
         "@middy",
+        "camelcase-keys-deep",
         "pg",
         "typeorm",
         "inversify",

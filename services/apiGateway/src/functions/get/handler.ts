@@ -3,10 +3,10 @@ import middy from '@middy/core'
 import formatJSONResponse from '../../../../../src/utils/response/formatJSONResponse';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import Adapter from '../../../../../src/modules/common/adapter/Adapter';
+import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
 import Couple from '../../../../../src/modules/apiGateway/domain/entity/Couple';
-import PaginationQueryDTO from '../../../../../src/modules/common/domain/dto/PaginationQueryDTO';
-import PaginationResponseDTO from '../../../../../src/modules/common/domain/dto/PaginationResponseDTO';
+import PaginationQueryDTO from '../../../../../src/modules/infrastructure/domain/dto/PaginationQueryDTO';
+import PaginationResponseDTO from '../../../../../src/modules/infrastructure/domain/dto/PaginationResponseDTO';
 import container from './inversify.config';
 import TYPES from '../../../../../src/TYPES';
 

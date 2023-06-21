@@ -1,4 +1,4 @@
-import BaseMapper from '../../../../../src/modules/common/domain/mapper/BaseMapper';
+import BaseMapper from '../../../infrastructure/domain/mapper/BaseMapper';
 import CoupleDto from '../dto/CoupleDto';
 import Couple from '../entity/Couple';
 import PersonMapper from './PersonMapper';

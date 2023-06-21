@@ -1,22 +1,22 @@
 import { Container } from 'inversify';
 import TYPES from '../../../../../src/TYPES';
-import Adapter from '../../../../../src/modules/common/adapter/Adapter';
-import UseCase from '../../../../../src/modules/common/useCase/UseCase';
+import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
+import UseCase from '../../../../../src/modules/infrastructure/useCase/UseCase';
 import Couple from '../../../../../src/modules/apiGateway/domain/entity/Couple';
 import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
-import PaginationQueryDTO from '../../../../../src/modules/common/domain/dto/PaginationQueryDTO';
+import PaginationQueryDTO from '../../../../../src/modules/infrastructure/domain/dto/PaginationQueryDTO';
 import ApiGatewayGetAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayGetAdapter';
 import CoupleDto from '../../../../../src/modules/apiGateway/domain/dto/CoupleDto';
-import BaseMapper from '../../../../../src/modules/common/domain/mapper/BaseMapper';
+import BaseMapper from '../../../../../src/modules/infrastructure/domain/mapper/BaseMapper';
 import CoupleMapper from '../../../../../src/modules/apiGateway/domain/mapper/CoupleMapper';
 import ApiGatewayGetUseCase from '../../../../../src/modules/apiGateway/useCase/ApiGatewayGetUseCase';
 import DBConnectionManagerTypeORM from '../../../../../src/utils/database/DBConnectionManagerTypeORM';
-import PaginationResponseDTO from '../../../../../src/modules/common/domain/dto/PaginationResponseDTO';
-import PaginationMapperParams from '../../../../../src/modules/common/domain/dto/PaginationMapperParams';
-import PaginationMapperService from '../../../../../src/modules/common/domain/mapper/PaginationMapperService';
+import PaginationResponseDTO from '../../../../../src/modules/infrastructure/domain/dto/PaginationResponseDTO';
+import PaginationMapperParams from '../../../../../src/modules/infrastructure/domain/dto/PaginationMapperParams';
+import PaginationMapperService from '../../../../../src/modules/infrastructure/domain/mapper/PaginationMapperService';
 import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway/domain/repository/CoupleFindPaginatedRepository';
 // import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
-import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/common/domain/repository/FindManyPaginatedBaseRepositoryParams';
+import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginatedBaseRepositoryParams';
 
 const container: Container = new Container();
 

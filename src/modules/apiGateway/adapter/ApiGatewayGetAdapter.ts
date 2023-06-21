@@ -3,12 +3,12 @@ import TYPES from 'src/TYPES';
 import Couple from '../domain/entity/Couple';
 import { injectable, inject } from 'inversify';
 import CoupleDto from '../domain/dto/CoupleDto';
-import Adapter from 'src/modules/common/adapter/Adapter';
-import UseCase from 'src/modules/common/useCase/UseCase';
-import BaseMapper from 'src/modules/common/domain/mapper/BaseMapper';
-import PaginationQueryDTO from 'src/modules/common/domain/dto/PaginationQueryDTO';
-import PaginationResponseDTO from 'src/modules/common/domain/dto/PaginationResponseDTO';
-import PaginationMapperParams from 'src/modules/common/domain/dto/PaginationMapperParams';
+import Adapter from 'src/modules/infrastructure/adapter/Adapter';
+import UseCase from 'src/modules/infrastructure/useCase/UseCase';
+import BaseMapper from 'src/modules/infrastructure/domain/mapper/BaseMapper';
+import PaginationQueryDTO from 'src/modules/infrastructure/domain/dto/PaginationQueryDTO';
+import PaginationResponseDTO from 'src/modules/infrastructure/domain/dto/PaginationResponseDTO';
+import PaginationMapperParams from 'src/modules/infrastructure/domain/dto/PaginationMapperParams';
 
 @injectable()
 export default class ApiGatewayGetAdapter implements Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Array<CoupleDto>>>> {
