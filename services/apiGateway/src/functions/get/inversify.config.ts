@@ -15,6 +15,7 @@ import PaginationResponseDTO from '../../../../../src/modules/common/domain/dto/
 import PaginationMapperParams from '../../../../../src/modules/common/domain/dto/PaginationMapperParams';
 import PaginationMapperService from '../../../../../src/modules/common/domain/mapper/PaginationMapperService';
 import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway/domain/repository/CoupleFindPaginatedRepository';
+// import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
 import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/common/domain/repository/FindManyPaginatedBaseRepositoryParams';
 
 const container: Container = new Container();
