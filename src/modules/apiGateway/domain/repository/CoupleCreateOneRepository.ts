@@ -15,7 +15,7 @@ export default class CoupleCreateOneRepository extends CreateBaseRepository<Coup
     super();
   }
 
-  protected async buildQuery(port?: Partial<Couple> | Couple[]): Promise<InsertQueryBuilder<Couple>> {
+  protected async buildQuery(port?: Partial<Couple>): Promise<InsertQueryBuilder<Couple>> {
     const connection: DataSource | QueryRunner = await this.dbConnectionManager.getActiveConnection();
 
     const queryBuilder = connection.manager.createQueryBuilder()
