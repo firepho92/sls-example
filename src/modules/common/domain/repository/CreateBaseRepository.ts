@@ -21,7 +21,7 @@ import Exception from 'src/utils/error/Exception';
 @injectable()
 export default abstract class CreateBaseRepository<T> implements Repository<Partial<T>, Promise<T>> {
   
-  protected abstract buildQuery(port?: Partial<T> | Partial<T[]>): Promise<InsertQueryBuilder<T>>;
+  protected abstract buildQuery(port?: Partial<T> | Partial<T>[]): Promise<InsertQueryBuilder<T>>;
 
   /**
    * @function execute
@@ -33,7 +33,7 @@ export default abstract class CreateBaseRepository<T> implements Repository<Part
    */
   public async execute(port?: T): Promise<T>;
   public async execute(port?: T[]): Promise<T[]>;
-  public async execute(port?: Partial<T> | Partial<T[]>): Promise<T | T[]> {
+  public async execute(port?: Partial<T> | Partial<T>[]): Promise<T | T[]> {
     console.log('CreateBaseRepository', port);
     try {
       const query: InsertQueryBuilder<T> = await this.buildQuery(port)
