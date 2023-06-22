@@ -5,8 +5,9 @@ import PersonMapper from './PersonMapper';
 
 export default class CoupleMapper extends BaseMapper<Couple, CoupleDto> {
   protected transform(entity: Couple): CoupleDto {
-    console.log('CoupleMapper', entity);
+    // console.log('CoupleMapper', entity);
     return {
+      id: entity.id,
       principal: new PersonMapper().execute(entity.principal),
       companion: new PersonMapper().execute(entity.companion)
     }

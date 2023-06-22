@@ -3,6 +3,7 @@ export default {
   Default: Symbol.for('Default'),
   '1.0.0': Symbol.for('ApiGatewayHandler1_0_0'),
   '1.0.1': Symbol.for('ApiGatewayHandler1_0_1'),
+  APIGatewayResultMapperService: Symbol.for('APIGatewayResultMapperService'),
   ApiGatewayGetAdapter: Symbol.for('ApiGatewayGetAdapter'),
   ApiGatewayPostAdapter: Symbol.for('ApiGatewayPostAdapter'),
   ApiGatewayGetUseCase: Symbol.for('ApiGatewayGetUseCase'),

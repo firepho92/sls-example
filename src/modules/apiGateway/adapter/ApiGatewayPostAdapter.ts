@@ -25,7 +25,7 @@ export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParam
     const couple = await this.apiGatewayPostUseCase.execute(apiGatewayPostUseCaseParams);
     // console.log('ApiGatewayAdapter couple', couple);
     const coupleDto = this.coupleMapper.execute(couple);
-    console.log('coupleDto', coupleDto);
+    // console.log('coupleDto', coupleDto);
     return coupleDto;
   }
 }
