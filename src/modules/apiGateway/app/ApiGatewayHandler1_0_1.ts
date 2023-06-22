@@ -1,23 +1,20 @@
 import 'reflect-metadata';
 import TYPES from 'src/TYPES';
 import { inject, injectable } from 'inversify';
-import CoupleDto from '../domain/dto/CoupleDto';
-import Adapter from 'src/modules/infrastructure/adapter/Adapter';
-import formatJSONResponse from 'src/utils/response/formatJSONResponse';
-import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
-import ApiGatewayPostAdapterParams from '../adapter/ApiGatewayPostAdapterParams';
-import Handler from 'src/modules/infrastructure/app/Handler';
+import APIGatewayProxyEventBaseHandler from 'src/modules/infrastructure/app/APIGatewayProxyEventBaseHandler';
+import Mapper from 'src/modules/infrastructure/domain/mapper/Mapper';
+import APIGatewayResult from 'src/modules/infrastructure/domain/dto/APIGatewayResult';
 
 @injectable()
-export default class ApiGatewayHandler1_0_1 implements Handler<Promise<any>> {
-
+export default class ApiGatewayHandler1_0_1 extends APIGatewayProxyEventBaseHandler<string> {
+  
   constructor(
-    @inject(TYPES.ApiGatewayPostAdapter) private adapter: Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>
-  ) {}
-
-  async execute(port: APIGatewayProxyEvent): Promise<any> {
-    console.log('ApiGatewayHandler1_0_1');
-    // console.log('body', port.body);
-    return formatJSONResponse('hola');
+    @inject(TYPES.APIGatewayResultMapperService) apiGatewayResultMapperService: Mapper<string, APIGatewayResult<string>>
+    ) {
+      super(apiGatewayResultMapperService);
+    }
+    
+  protected async run(): Promise<string> {
+    return 'hola';
   }
 }
