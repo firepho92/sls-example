@@ -1,5 +1,5 @@
 import { Container } from 'inversify';
-import TYPES from '../../../../../src/TYPES';
+import TYPES from './TYPES';
 import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
 import UseCase from '../../../../../src/modules/infrastructure/useCase/UseCase';
 import ApiGatewayHandler1_0_0 from '../../../../../src/modules/apiGateway/app/ApiGatewayHandler1_0_0';
