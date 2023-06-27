@@ -3,7 +3,7 @@ import schema from './schema';
 import middy from '@middy/core';
 import versions from './versions';
 import container from './inversify.config';
-import TYPES from '../../../../../src/TYPES';
+import TYPES from './TYPES';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
 import Handler from '../../../../../src/modules/infrastructure/app/Handler';
