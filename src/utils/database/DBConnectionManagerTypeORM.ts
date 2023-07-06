@@ -1,41 +1,40 @@
-import { injectable } from 'inversify';
-import { DataSource, QueryRunner } from 'typeorm';
-
-import Exception from '../error/Exception';
-import HttpStatusCode from '../enums/httpStatusCode';
+import 'reflect-metadata'
+import TYPES from 'src/TYPES';
 import ErrorCode from '../error/errorCode';
-
-import DBConnectionHelper from '../helpers/DBConnectionHelper';
+import Exception from '../error/Exception';
+import { inject, injectable } from 'inversify';
+import { DataSource, QueryRunner } from 'typeorm';
+import HttpStatusCode from '../enums/httpStatusCode';
 import DBConnectionManager from './DBConnectionManager';
-import Secrets from '../aws/secrets';
+import DBConnectionHelperFactory from './DBConnectionHelperFactory';
+import DBConnectionHelper from './DBConnectionHelper';
 
+interface ConnectionOptions {
+  username: string;
+  password: string;
+  host: string;
+  port: string;
+  dbname: string;
+}
 @injectable()
 export default class DBConnectionManagerTypeORM implements DBConnectionManager {
-  private queryRunner: QueryRunner;
-  private connection: DataSource;
-  private secrets: any;
+  private queryRunner?: QueryRunner;
+  private connection?: DataSource;
+  // private connectionOptions?: ConnectionOptions;
 
-  
+  constructor(
+    @inject(DBConnectionHelperFactory) private dbConnectionHelperFactory: DBConnectionHelperFactory
+  ) {}
+
   public async connect(): Promise<DataSource> {
-    // tslint:disable-next-line:no-console
     try {
       console.log('🔌 ~ DBConnectionManager: Connect');
-      if (process.env.IS_OFFLINE !== 'true') {
-        if (!this.secrets) this.secrets = await (new Secrets()).get(); console.log(this.secrets);
-      } else {
-        this.secrets = {
-          username: process.env.DB_POSTGRES_USERNAME,
-          password: process.env.DB_POSTGRES_PASSWORD,
-          host: process.env.DB_POSTGRES_HOST,
-          port: process.env.DB_POSTGRES_PORT,
-          dbname: process.env.DB_POSTGRES_NAME,
-        };
-        // console.log('Secrets', this.secrets)
-      }
 
       if (!this.connection) {
         //const { dbname, port, password, host, username } = this.secrets;
-        this.connection = await new DBConnectionHelper().connect(this.secrets);
+        const dbConnectionHelper: DBConnectionHelper = this.dbConnectionHelperFactory.create();
+        this.connection = await dbConnectionHelper.connect();
+        // this.connection = await new DBConnectionHelper().connect(this.secrets);
       } else if (!this.connection.isInitialized) {
         await this.connection.initialize();
       }
@@ -67,7 +66,11 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   }
 
   async getConnection(): Promise<DataSource> {
-    return this.connection && this.connection.isInitialized ? this.connection : this.connect();
+    if (this.connection && this.connection.isInitialized) {
+      return this.connection;
+    } else {
+      return this.connect();
+    }
   }
 
   async getTransaction(): Promise<QueryRunner> {
