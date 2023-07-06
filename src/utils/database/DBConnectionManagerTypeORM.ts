@@ -12,7 +12,7 @@ import DBConnectionHelper from './DBConnectionHelper';
 export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   private queryRunner?: QueryRunner;
   private connection?: DataSource;
-  // private connectionOptions?: ConnectionOptions;
+
 
   constructor(
     @inject(DBConnectionHelperFactory) private dbConnectionHelperFactory: DBConnectionHelperFactory
@@ -23,17 +23,16 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
       console.log('🔌 ~ DBConnectionManager: Connect');
 
       if (!this.connection) {
-        //const { dbname, port, password, host, username } = this.secrets;
+
         const dbConnectionHelper: DBConnectionHelper = this.dbConnectionHelperFactory.create();
         this.connection = await dbConnectionHelper.connect();
-        // this.connection = await new DBConnectionHelper().connect(this.secrets);
+
       } else if (!this.connection.isInitialized) {
         await this.connection.initialize();
       }
       console.log('🔌 ~ DBConnectionManager: Connected');
       return this.connection;
     } catch (error) {
-      // tslint:disable-next-line:no-console
       console.error(error);
       throw error;
     }
