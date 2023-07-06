@@ -1,5 +1,4 @@
 import 'reflect-metadata'
-import TYPES from 'src/TYPES';
 import ErrorCode from '../error/errorCode';
 import Exception from '../error/Exception';
 import { inject, injectable } from 'inversify';
@@ -9,13 +8,6 @@ import DBConnectionManager from './DBConnectionManager';
 import DBConnectionHelperFactory from './DBConnectionHelperFactory';
 import DBConnectionHelper from './DBConnectionHelper';
 
-interface ConnectionOptions {
-  username: string;
-  password: string;
-  host: string;
-  port: string;
-  dbname: string;
-}
 @injectable()
 export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   private queryRunner?: QueryRunner;
@@ -53,11 +45,14 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
       await this.connect();
 
       if (!this.queryRunner || this.queryRunner.isReleased) {
-        this.queryRunner = this.connection.createQueryRunner();
-        await this.queryRunner.startTransaction();
+        this.queryRunner = this.connection?.createQueryRunner();
+        await this.queryRunner?.startTransaction();
       }
 
       console.log('🔌 ~ DBConnectionManager: Transaction created');
+      if (!this.queryRunner) {
+        throw new Error('QueryRunner is undefined');
+      }
       return this.queryRunner;
     } catch (error) {
       console.error(error);

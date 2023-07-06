@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import TYPES from 'src/TYPES';
+import TYPES from '../../TYPES';
 import entities from './Entities';
 import { DataSource } from 'typeorm';
 import SecretsBase from '../aws/SecretsBase';
