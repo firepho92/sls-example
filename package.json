@@ -14,6 +14,7 @@
     "@aws-sdk/client-secrets-manager": "^3.360.0",
     "@aws-sdk/client-sqs": "^3.354.0",
     "@middy/core": "^3.4.0",
+    "@middy/event-normalizer": "^4.5.5",
     "@middy/http-json-body-parser": "^3.4.0",
     "camelcase-keys-deep": "0.1.0",
     "inversify": "^6.0.1",

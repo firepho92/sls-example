@@ -2391,6 +2391,13 @@
   resolved "https://registry.yarnpkg.com/@middy/core/-/core-3.6.2.tgz#8d3fd3b4aa4c62a9f21a340559d6b6d3c0b37ca7"
   integrity sha512-/vyvG34RIt7CTmuB/jksGkk9vs6RCoOlRFPfdQq11dHkiKlT2mm8j/jZx7gSpEhXXh9LeaEMuKPnsgWBIlGS1g==
 
+"@middy/event-normalizer@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@middy/event-normalizer/-/event-normalizer-4.5.5.tgz#f5f7ffc5d941b6b675bc4baa6d92f33ad18ee078"
+  integrity sha512-L1NOZ1JbxQUX7HJOfdFmcUHU9WtqDk0e2iUqRDCOnRmyRTJ2Js7c85flWbzXhk/HKMj29IEf9WH7r7hP7FN4hg==
+  dependencies:
+    "@middy/util" "4.5.5"
+
 "@middy/http-json-body-parser@^3.4.0":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-3.6.2.tgz#1e030a39eac5fe5fa282a363d9ed533bc3158256"
@@ -2402,6 +2409,11 @@
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@middy/util/-/util-3.6.2.tgz#2d49a4f9b6ab7fe3635b1123cfcfe35892743e5c"
   integrity sha512-zjyjF5BdSNnDlZbTvfQwwuUIs3H5PpN/R3wOAipXhaGD/SjpIUBcJJPLUQHySeHoZym1FC3MJYczJDbYQWKWdg==
+
+"@middy/util@4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@middy/util/-/util-4.5.5.tgz#0d141d7c35b074b75261de0b540efe547a57c3f4"
+  integrity sha512-Dx4L/8cAvKqHKo7VA2oS3fv5nvGsDgGsgFfsvMZ/1p7+WkPCCyS2tWD0o/aioZiuLy0DTq8u1W6U0+8k8nQgpQ==
 
 "@nicolo-ribaudo/semver-v6@^6.3.3":
   version "6.3.3"
