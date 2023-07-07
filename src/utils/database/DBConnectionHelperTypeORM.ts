@@ -6,8 +6,9 @@ import SecretsBase from '../aws/SecretsBase';
 import { inject } from 'inversify/lib/annotation/inject';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { injectable } from 'inversify';
 
-//refactor this code
+@injectable()
 export default class DBConnectionHelperTypeORM {
 	private dataSourceOptions?: PostgresConnectionOptions;
 

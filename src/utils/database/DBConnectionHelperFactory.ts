@@ -1,7 +1,6 @@
 import 'reflect-metadata';
-import { Container } from 'inversify';
+import { Container, inject, injectable } from 'inversify';
 import DBConnectionHelper from './DBConnectionHelper';
-import { injectable } from 'inversify/lib/annotation/injectable';
 import DBConnectionHelperTypeORM from './DBConnectionHelperTypeORM';
 import DBConnectionOfflineHelperTypeORM from './DBConnectionOfflineHelperTypeORM';
 import EnvironmentHelper from '../helpers/EnvironmentHelper';
@@ -9,7 +8,7 @@ import EnvironmentHelper from '../helpers/EnvironmentHelper';
 @injectable()
 export default class DBConnectionHelperFactory {
   constructor(
-    private container: Container
+    @inject(Container) private container: Container
     ) {}
     
     public create(): DBConnectionHelper {

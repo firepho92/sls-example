@@ -21,7 +21,8 @@ import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConne
 
 const container: Container = new Container();
 
-container.bind<DBConnectionHelperFactory>(DBConnectionHelperFactory).toSelf().inSingletonScope();
+container.bind<Container>(Container).toConstantValue(container);
+container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DBConnectionHelperFactory).inSingletonScope();
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);
 container.bind<BaseMapper<PaginationMapperParams<Array<CoupleDto>>, PaginationResponseDTO<Array<CoupleDto>>>>(TYPES.PaginationMapperService).to(PaginationMapperService);

@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import TYPES from 'src/TYPES';
 import ErrorCode from '../error/errorCode';
 import Exception from '../error/Exception';
 import { inject, injectable } from 'inversify';
@@ -14,7 +15,7 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   private connection?: DataSource;
 
   constructor(
-    @inject(DBConnectionHelperFactory) private dbConnectionHelperFactory: DBConnectionHelperFactory
+    @inject(TYPES.DBConnectionHelperFactory) private dbConnectionHelperFactory: DBConnectionHelperFactory
   ) {}
 
   public async connect(): Promise<DataSource> {

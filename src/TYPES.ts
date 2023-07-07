@@ -2,6 +2,7 @@ export default {
   DBConnectionManager: Symbol.for('DBConnectionManager'),
   DBConnectionHelperTypeORM: Symbol.for('DBConnectionHelperTypeORM'),
   DBConnectionOfflineHelper: Symbol.for('DBConnectionOfflineHelper'),
+  DBConnectionHelperFactory: Symbol.for('DBConnectionHelperFactory'),
   SecretsManager: Symbol.for('SecretsManager'),
   APIGatewayResultMapperService: Symbol.for('APIGatewayResultMapperService'),
   ApiGatewayGetAdapter: Symbol.for('ApiGatewayGetAdapter'),
