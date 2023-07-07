@@ -85,7 +85,6 @@ const serverlessConfiguration: AWS = {
     patterns: ['!**/node_modules/**', '!node_modules/']
   },
   custom: {
-    logRetentionInDays: 30,
     esbuild: {
       external:[
         "@middy/core",
