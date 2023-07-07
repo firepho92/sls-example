@@ -17,15 +17,10 @@ import PaginationMapperService from '../../../../../src/modules/infrastructure/d
 import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway/domain/repository/CoupleFindPaginatedRepository';
 // import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
 import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginatedBaseRepositoryParams';
-import DBConnectionHelper from '../../../../../src/utils/database/DBConnectionHelper';
-import DBConnectionOfflineHelperTypeORM from '../../../../../src/utils/database/DBConnectionOfflineHelperTypeORM';
-import DBConnectionHelperTypeORM from '../../../../../src/utils/database/DBConnectionHelperTypeORM';
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 
 const container: Container = new Container();
 
-container.bind<DBConnectionHelper>(DBConnectionOfflineHelperTypeORM).toSelf();
-container.bind<DBConnectionHelper>(DBConnectionHelperTypeORM).toSelf();
 container.bind<DBConnectionHelperFactory>(DBConnectionHelperFactory).toSelf().inSingletonScope();
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);

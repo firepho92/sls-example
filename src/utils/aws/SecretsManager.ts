@@ -1,5 +1,5 @@
 import SecretsBase from './SecretsBase';
-import { injectable } from 'inversify/lib/annotation/injectable';
+import { injectable } from 'inversify';
 import { SecretsManagerClient, GetSecretValueCommand, GetSecretValueCommandInput } from '@aws-sdk/client-secrets-manager';
 
 @injectable()

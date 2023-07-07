@@ -13,7 +13,6 @@ export default class DBConnectionManagerTypeORM implements DBConnectionManager {
   private queryRunner?: QueryRunner;
   private connection?: DataSource;
 
-
   constructor(
     @inject(DBConnectionHelperFactory) private dbConnectionHelperFactory: DBConnectionHelperFactory
   ) {}
