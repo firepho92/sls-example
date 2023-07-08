@@ -18,10 +18,13 @@ import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway
 // import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
 import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginatedBaseRepositoryParams';
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
+import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
+import SecretsManager from '../../../../../src/utils/aws/SecretsManager';
 
 const container: Container = new Container();
 
 container.bind<Container>(Container).toConstantValue(container);
+container.bind<SecretsBase>(TYPES.SecretsManager).to(SecretsManager);
 container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DBConnectionHelperFactory).inSingletonScope();
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);
