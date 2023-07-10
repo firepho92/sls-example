@@ -24,6 +24,7 @@ export default class DBConnectionHelperTypeORM {
 	}
 
 	async connect(): Promise<DataSource> {
+		console.log('secrets name', process.env.SECRET_NAME);
 		const credentials = await this.secretsManager.retrieveSecretValue<PostgresConnectionOptions>(process.env.SECRET_NAME ?? '');
 		console.log('secret', credentials);
 		this.dataSourceOptions = {
