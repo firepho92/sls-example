@@ -1,5 +1,6 @@
-import SecretsBase from './SecretsBase';
+import 'reflect-metadata';
 import { injectable } from 'inversify';
+import SecretsBase from './SecretsBase';
 import { SecretsManagerClient, GetSecretValueCommand, GetSecretValueCommandInput } from '@aws-sdk/client-secrets-manager';
 
 @injectable()
@@ -19,6 +20,9 @@ export default class SecretsManager implements SecretsBase {
 
     const secret = await this.secretsManagerClient.send(new GetSecretValueCommand(commandInput));
     const secretValue = JSON.parse(secret.SecretString);
-    return secretValue;
+    return {
+      ...secretValue,
+      database: secretValue.dbname
+    };
   }
 }
