@@ -7,6 +7,7 @@ import { inject } from 'inversify/lib/annotation/inject';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { injectable } from 'inversify';
+import EnvironmentHelper from '../helpers/EnvironmentHelper';
 
 @injectable()
 export default class DBConnectionHelperTypeORM {
@@ -24,8 +25,8 @@ export default class DBConnectionHelperTypeORM {
 	}
 
 	async connect(): Promise<DataSource> {
-		console.log('secrets name', process.env.SECRET_NAME);
-		const credentials = await this.secretsManager.retrieveSecretValue<PostgresConnectionOptions>(process.env.SECRET_NAME ?? '');
+		console.log('secrets name', EnvironmentHelper.SECRET_NAME);
+		const credentials = await this.secretsManager.retrieveSecretValue<PostgresConnectionOptions>(EnvironmentHelper.SECRET_NAME ?? '');
 		console.log('secret', credentials);
 		this.dataSourceOptions = {
 			...this.dataSourceOptions,
