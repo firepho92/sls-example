@@ -12,12 +12,13 @@ export default class SecretsManager implements SecretsBase {
     this.secretsManagerClient = new SecretsManagerClient({ region });
   }
 
-  async retrieveSecretValue(secretName: string): Promise<any> {
+  async retrieveSecretValue<T>(secretName: string): Promise<T> {
     const commandInput: GetSecretValueCommandInput = {
       SecretId: secretName
     }
 
     const secret = await this.secretsManagerClient.send(new GetSecretValueCommand(commandInput));
-    return secret;
+    const secretValue = JSON.parse(secret.SecretString);
+    return secretValue;
   }
 }
