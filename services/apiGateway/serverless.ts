@@ -96,6 +96,7 @@ const serverlessConfiguration: AWS = {
         "@aws-sdk/client-sqs",
         "@middy/core",
         "@middy/http-json-body-parser",
+        "@middy/sqs-partial-batch-failure",
         "camelcase-keys-deep",
         "inversify",
         "joi",

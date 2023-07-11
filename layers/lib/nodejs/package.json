@@ -16,6 +16,7 @@
     "@middy/core": "^3.4.0",
     "@middy/event-normalizer": "^4.5.5",
     "@middy/http-json-body-parser": "^3.4.0",
+    "@middy/sqs-partial-batch-failure": "^4.5.5",
     "camelcase-keys-deep": "0.1.0",
     "inversify": "^6.0.1",
     "joi": "^17.9.2",

@@ -2405,6 +2405,11 @@
   dependencies:
     "@middy/util" "3.6.2"
 
+"@middy/sqs-partial-batch-failure@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@middy/sqs-partial-batch-failure/-/sqs-partial-batch-failure-4.5.5.tgz#4b53c192bfd7585d11c3a48bf0f173afb23e4cd1"
+  integrity sha512-tTxk2CzSz+UeU8qdUTZRd7u7TquaXzlLcvs13SROJWzvh6G78nEC0orZqimaj3Vcnjq41EoQk5bS0Ok1vmu7/Q==
+
 "@middy/util@3.6.2":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@middy/util/-/util-3.6.2.tgz#2d49a4f9b6ab7fe3635b1123cfcfe35892743e5c"
