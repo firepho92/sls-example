@@ -13,9 +13,7 @@ const lambda: AWS['functions']['k'] = {
         filterPatterns: [
           {
             body: {
-              type: [
-                { "anything-but": [ {"prefix": "us-" }  ] }
-              ]
+              type: ['invalid'],
             },
           }
         ]
