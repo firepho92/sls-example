@@ -17,5 +17,6 @@ export default {
   PersonCreateOneRepository: Symbol.for('PersonCreateOneRepository'),
   PropertyGetAdapter: Symbol.for('PropertyGetAdapter'),
   PropertyGetUseCase: Symbol.for('PropertyGetUseCase'),
-  PropertyFindRepository: Symbol.for('PropertyFindRepository')
+  PropertyFindRepository: Symbol.for('PropertyFindRepository'),
+  InvalidCoupleAdapter: Symbol.for('InvalidCoupleAdapter')
 }
