@@ -6,7 +6,7 @@ import APIGatewayResult from '../domain/dto/APIGatewayResult';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
 @injectable()
-export default abstract class APIGatewayProxyEventBaseHandler<T> implements Handler<APIGatewayResult<T>> {
+export default abstract class APIGatewayProxyEventBaseHandler<T> implements Handler<APIGatewayProxyEvent, APIGatewayResult<T>> {
   constructor(
     protected apiGatewayResultMapperService: Mapper<T, APIGatewayResult<T>>
   ){}
