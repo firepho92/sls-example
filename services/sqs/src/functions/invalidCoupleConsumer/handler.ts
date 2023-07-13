@@ -6,7 +6,7 @@ import container from './inversify.config';
 import eventNormalizerMiddleware from '@middy/event-normalizer';
 // import sqsPartialBatchFailure from '@middy/sqs-partial-batch-failure';
 import Handler from '../../../../../src/modules/infrastructure/app/Handler';
-import httpRequestVersionHandlerMiddleware from '../../../../../src/middleware/httpRequestVersionHandlerMiddleware';
+import normalizedRequestVersionHandlerMiddleware from '../../../../../src/middleware/normalizedRequestVersionHandlerMiddleware';
 
 export const main = middy(async (event: any): Promise<void> => {
   console.log('invalid', event);
@@ -15,5 +15,5 @@ export const main = middy(async (event: any): Promise<void> => {
 });
 
 main
-  .use(httpRequestVersionHandlerMiddleware(versions))
+  .use(normalizedRequestVersionHandlerMiddleware(versions))
   .use(eventNormalizerMiddleware());
