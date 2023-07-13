@@ -9,7 +9,7 @@ const lambda: AWS['functions']['k'] = {
     {
       sqs: {
         arn: '${env:SqsDemoSingleExampleSQSArn}',
-        batchSize: 1,
+        batchSize: 10,
         filterPatterns: [
           {
             body: {
