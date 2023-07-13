@@ -12,6 +12,6 @@ export default abstract class NormalizedEventBaseHandler<T> implements Handler<S
   async execute(port?: SQSEvent): Promise<SQSBatchResponse> {
     const response = await this.run(port);
     console.log('NormalizedEventBaseHandler')
-    return response;
+    return null;
   }
 }
