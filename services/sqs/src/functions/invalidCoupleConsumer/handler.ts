@@ -9,7 +9,7 @@ import Handler from '../../../../../src/modules/infrastructure/app/Handler';
 import normalizedRequestVersionHandlerMiddleware from '../../../../../src/middleware/normalizedRequestVersionHandlerMiddleware';
 
 export const main = middy(async (event: any): Promise<void> => {
-  console.log('invalid', event);
+  // console.log('invalid', event);
   const handler =  container.get<Handler>(TYPES[event.version]);
   const response = await handler.execute(event);
 });

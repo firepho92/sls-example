@@ -12,7 +12,7 @@ export default class InvalidCoupleConsumerHandler1_0_0 extends NormalizedEventBa
     super();
   }
   protected run(port?: SQSEvent): Promise<any> {
-    console.log('InvalidCoupleConsumerHandler1_0_0', port);
+    console.log('InvalidCoupleConsumerHandler1_0_0', JSON.stringify(port));
     return this.adapter.execute(port);
   }
 }
