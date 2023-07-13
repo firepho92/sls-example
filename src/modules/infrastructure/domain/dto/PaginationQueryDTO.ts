@@ -6,9 +6,10 @@ export default class PaginationQueryDTO<T=object> {
   private _pageNumber: number;
   private _size: number;
 
-  constructor(pageNumber: number, size: number, order?: Order, criteria?: T) {
-    this._pageNumber = pageNumber ?? 1;
-    this._size = size ?? 10;
+  constructor(pageNumber: number | string = 1, size: number | string = 10, order?: Order, criteria?: T) {
+    console.log('PaginationQueryDTO', pageNumber, size, order, criteria);
+    this._pageNumber = Number(pageNumber);
+    this._size = Number(size);
     this._criteria = criteria;
     this._order = order;
   }

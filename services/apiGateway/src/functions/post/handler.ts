@@ -12,11 +12,10 @@ import httpRequestVersionHandlerMiddleware from '../../../../../src/middleware/h
 import httpJoiValidatorMiddleware, { VALIDATOR_TYPE } from '../../../../../src/middleware/httpJoiValidatorMiddleware';
 
 export const main = middy(async (event: APIGatewayProxyEvent & {version: string}) => {
-  // console.log('main handler', event.version);
+  console.log('main handler', event.version);
   const handler = container.get<Handler>(TYPES[event.version]);
-  // const response = await handlers[event.version](event);
   const response = await handler.execute(event);
-  // console.log('main handler response', response);
+  console.log('main handler response', response);
   return response;
 });
 

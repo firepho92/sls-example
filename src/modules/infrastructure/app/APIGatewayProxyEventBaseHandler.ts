@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import Handler from './Handler';
-import Mapper from '../domain/mapper/Mapper';
 import { injectable } from 'inversify';
+import Mapper from '../domain/mapper/Mapper';
 import APIGatewayResult from '../domain/dto/APIGatewayResult';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
@@ -14,6 +14,7 @@ export default abstract class APIGatewayProxyEventBaseHandler<T> implements Hand
   protected abstract run(port?: APIGatewayProxyEvent): Promise<T>;
 
   async execute(port?: APIGatewayProxyEvent): Promise<APIGatewayResult<T>> {
+    console.log('APIGatewayProxyEventBaseHandler', port);
     const entityDto: T = await this.run(port);
     const response = this.apiGatewayResultMapperService.execute(entityDto);
     return response;

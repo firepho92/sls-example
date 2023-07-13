@@ -1,5 +1,5 @@
 import { Container } from 'inversify';
-import TYPES from '../../../../../src/TYPES';
+import TYPES from './TYPES';
 import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
 import UseCase from '../../../../../src/modules/infrastructure/useCase/UseCase';
 import Couple from '../../../../../src/modules/apiGateway/domain/entity/Couple';
@@ -20,11 +20,16 @@ import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/in
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
 import SecretsManager from '../../../../../src/utils/aws/SecretsManager';
+import APIGatewayGetHandler1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayGetHandler1_0_0';
+import APIGatewayResultMapperService from '../../../../../src/modules/infrastructure/domain/mapper/APIGatewayResultMapperService';
 
 const container: Container = new Container();
 
+container.bind(TYPES.Default).to(APIGatewayGetHandler1_0_0);
+container.bind(TYPES['1.0.0']).to(APIGatewayGetHandler1_0_0);
 container.bind<Container>(Container).toConstantValue(container);
 container.bind<SecretsBase>(TYPES.SecretsManager).to(SecretsManager);
+container.bind(TYPES.APIGatewayResultMapperService).to(APIGatewayResultMapperService);
 container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DBConnectionHelperFactory).inSingletonScope();
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);
