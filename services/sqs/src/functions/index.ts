@@ -3,7 +3,7 @@ import validCoupleConsumer from './validCoupleConsumer';
 import invalidCoupleConsumer from './invalidCoupleConsumer';
 
 export default {
-  validCoupleConsumer,
+  // validCoupleConsumer,
   invalidCoupleConsumer,
   coupleDLQConsumer
 }
