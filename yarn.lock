@@ -2398,22 +2398,17 @@
   dependencies:
     "@middy/util" "4.5.5"
 
-"@middy/http-json-body-parser@^3.4.0":
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-3.6.2.tgz#1e030a39eac5fe5fa282a363d9ed533bc3158256"
-  integrity sha512-vFvlVtR99zwnr9clQkS+D9PAwDcjH4owLpYZ3yAkNI3z40L4QMF/s+5KI5fUd5RvZgTakAeZ5Qf+1QwTrts+Gw==
+"@middy/http-json-body-parser@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-4.5.5.tgz#cb5e3abe5f11cbe2ba442189813ae4f5a1954a1d"
+  integrity sha512-B3mtKk07ubpmKQNLHXmgqpdoFkKarhyjFeI66jVQyWTTseDvXrqsJaNNV6fdf/3jJPdBwr14ck1Y5JKNVbVdoA==
   dependencies:
-    "@middy/util" "3.6.2"
+    "@middy/util" "4.5.5"
 
 "@middy/sqs-partial-batch-failure@^4.5.5":
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/@middy/sqs-partial-batch-failure/-/sqs-partial-batch-failure-4.5.5.tgz#4b53c192bfd7585d11c3a48bf0f173afb23e4cd1"
   integrity sha512-tTxk2CzSz+UeU8qdUTZRd7u7TquaXzlLcvs13SROJWzvh6G78nEC0orZqimaj3Vcnjq41EoQk5bS0Ok1vmu7/Q==
-
-"@middy/util@3.6.2":
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/@middy/util/-/util-3.6.2.tgz#2d49a4f9b6ab7fe3635b1123cfcfe35892743e5c"
-  integrity sha512-zjyjF5BdSNnDlZbTvfQwwuUIs3H5PpN/R3wOAipXhaGD/SjpIUBcJJPLUQHySeHoZym1FC3MJYczJDbYQWKWdg==
 
 "@middy/util@4.5.5":
   version "4.5.5"
