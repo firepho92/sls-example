@@ -15,7 +15,7 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
   }
 
   protected async run(port?: SQSEvent): Promise<any> {
-    console.log('InvalidCoupleHandler', port);
+    console.log('InvalidCoupleHandler', JSON.stringify(port));
     const responses = port.Records.map(async (record) => {
       console.log('record', record);
     });
