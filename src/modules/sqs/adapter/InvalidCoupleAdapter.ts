@@ -6,6 +6,9 @@ import Adapter from '../../infrastructure/adapter/Adapter';
 export default class InvalidCoupleAdapter implements Adapter<any, Promise<string>> {
   async execute(port?: any): Promise<string> {
     // console.log('InvalidCoupleAdapter', JSON.stringify(port));
-    return 'hola'
+    const randomNumber = Math.random();
+    if (randomNumber > 0.5)
+      throw new Error('La función ha fallado');
+    return 'OK';
   }
 }
