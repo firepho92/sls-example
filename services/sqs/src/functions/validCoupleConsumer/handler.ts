@@ -1,5 +1,5 @@
 import middy from '@middy/core';
 
 export const main = middy(async (event: any) => {
-  console.log('valid', event);
+  console.log('valid', JSON.stringify(event));
 });
