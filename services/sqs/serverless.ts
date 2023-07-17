@@ -112,8 +112,9 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
     service: 'sqs',
+    'project-name': 'architecture',
     stage: '${env:Stage, "local"}',
-    func_prefix: '${self:custom.stage}-${self:custom.service}',
+    func_prefix: '${self:custom.stage}-${self:custom.project-name}-${self:custom.service}',
   },
 };
 
