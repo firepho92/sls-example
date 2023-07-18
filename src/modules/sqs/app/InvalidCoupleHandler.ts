@@ -19,7 +19,7 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
     const responses = port.Records.map(async (record) => {
       console.log('record', record);
       // const response = await this.adapter.execute(record.body);
-      return response;
+      return record;
     });
     const response = await Promise.allSettled(responses);
     console.log('Promise response', response);
