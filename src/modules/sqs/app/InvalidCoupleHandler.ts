@@ -4,7 +4,7 @@ import type { SQSEvent } from 'aws-lambda';
 import { inject, injectable } from 'inversify';
 import Adapter from 'src/modules/infrastructure/adapter/Adapter';
 import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
-import { PromiseStatus } from 'src/utils/enums/promiseStatus';
+import { PromiseStatus } from 'src/utils/enums/PromiseStatus2';
 
 @injectable()
 export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any> {
