@@ -12,6 +12,7 @@ export const main = middy(async (event: any): Promise<void> => {
   // console.log('invalid', event);
   const handler =  container.get<Handler>(TYPES[event.version]);
   const response = await handler.execute(event);
+  console.log('handler', response);
 });
 
 main
