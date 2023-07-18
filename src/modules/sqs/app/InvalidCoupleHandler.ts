@@ -22,7 +22,7 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
       return record;
     });
     const response = await Promise.allSettled(responses);
-    console.log('Promise response', response);
+    console.log('Promise response', JSON.stringify(response));
     return response;
   }
 }
