@@ -4,7 +4,7 @@ import type { SQSEvent } from 'aws-lambda';
 import { inject, injectable } from 'inversify';
 import Adapter from 'src/modules/infrastructure/adapter/Adapter';
 import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
-import { PromiseStatus } from 'src/utils/enums/PromiseStatus2';
+import { PromiseStatus } from 'src/utils/enums/PromiseStatus';
 
 @injectable()
 export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any> {
@@ -22,7 +22,9 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
       await this.adapter.execute(record.body);
       return record;
     });
-    const retryItems = (await Promise.allSettled(responses)).filter((item) => item.status === PromiseStatus.REJECTED);
+    const items = await Promise.allSettled(responses);
+    console.log('promises completed', items);
+    const retryItems = items.filter((item) => item.status === PromiseStatus.REJECTED);
     console.log('Promise response', JSON.stringify(retryItems));
     return retryItems;
   }
