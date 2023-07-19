@@ -5,7 +5,7 @@ import versions from './versions';
 import container from './inversify.config';
 import { SQSEvent, SQSRecord } from 'aws-lambda';
 import eventNormalizerMiddleware from '@middy/event-normalizer';
-// import sqsPartialBatchFailure from '@middy/sqs-partial-batch-failure';
+import sqsPartialBatchFailure from '@middy/sqs-partial-batch-failure';
 import Handler from '../../../../../src/modules/infrastructure/app/Handler';
 import normalizedRequestVersionHandlerMiddleware from '../../../../../src/middleware/normalizedRequestVersionHandlerMiddleware';
 
@@ -19,4 +19,5 @@ export const main = middy(async (event: any): Promise<SQSRecord[]> => {
 
 main
   .use(normalizedRequestVersionHandlerMiddleware(versions))
-  .use(eventNormalizerMiddleware());
+  .use(eventNormalizerMiddleware())
+  .use(sqsPartialBatchFailure());
