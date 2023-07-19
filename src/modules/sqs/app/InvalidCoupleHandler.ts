@@ -24,7 +24,13 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
     });
 
     const items = await Promise.allSettled(responses);
-    console.log('promises completed', items);
-    return items;
+    // console.log('promises completed', items);
+    const retryItems = port.Records.filter((record) => {
+      return !items.find((item) => {
+        return item.status === PromiseStatus.FULFILLED && item.value === record;
+      });
+    });
+    console.log('Promise response', JSON.stringify(retryItems));
+    return retryItems;
   }
 }
