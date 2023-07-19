@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import TYPES from 'src/TYPES';
-import type { SQSEvent } from 'aws-lambda';
 import { inject, injectable } from 'inversify';
-import Adapter from 'src/modules/infrastructure/adapter/Adapter';
-import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
 import { PromiseStatus } from 'src/utils/enums/PromiseStatus';
+import Adapter from 'src/modules/infrastructure/adapter/Adapter';
+import type { SQSBatchResponse, SQSEvent, SQSRecord } from 'aws-lambda';
+import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
 
 @injectable()
-export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any> {
+export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<SQSEvent, PromiseSettledResult<SQSRecord>[], SQSBatchResponse> {
 
   constructor(
     @inject(TYPES.InvalidCoupleAdapter) private adapter: Adapter<any, Promise<string>>
@@ -15,7 +15,7 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
     super();
   }
 
-  protected async run(port?: SQSEvent): Promise<any> {
+  protected async run(port?: SQSEvent): Promise<PromiseSettledResult<SQSRecord>[]> {
     console.log('InvalidCoupleHandler', JSON.stringify(port));
     const responses = port.Records.map(async (record) => {
       // console.log('record', record);
@@ -25,12 +25,12 @@ export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<any
 
     const items = await Promise.allSettled(responses);
     // console.log('promises completed', items);
-    const retryItems = port.Records.filter((record) => {
-      return !items.find((item) => {
-        return item.status === PromiseStatus.FULFILLED && item.value === record;
-      });
-    });
-    console.log('Promise response', JSON.stringify(retryItems));
-    return retryItems;
+    // const retryItems = port.Records.filter((record) => {
+    //   return !items.find((item) => {
+    //     return item.status === PromiseStatus.FULFILLED && item.value === record;
+    //   });
+    // });
+    // console.log('Promise response', JSON.stringify(retryItems));
+    return items;
   }
 }
