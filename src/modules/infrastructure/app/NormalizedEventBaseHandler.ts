@@ -13,6 +13,7 @@ export default abstract class NormalizedEventBaseHandler<T, U, V> implements Han
 
   async execute(port?: SQSEvent): Promise<V> {
     const items = await this.run(port);
+    console.log('items', items);
     const retryItems = port.Records.filter((record) => {
       return !items.find((item) => {
         return item.status === PromiseStatus.FULFILLED && item.value === record;
