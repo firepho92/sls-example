@@ -19,12 +19,18 @@ import PersonCreateOneRepository from '../../../../../src/modules/apiGateway/dom
 import Person from '../../../../../src/modules/apiGateway/domain/entity/Person';
 import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
 import DBConnectionManagerTypeORM from '../../../../../src/utils/database/DBConnectionManagerTypeORM';
+import SecretsManager from '../../../../../src/utils/aws/SecretsManager';
+import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
+import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 
 const container: Container = new Container();
 
 container.bind(TYPES.Default).to(ApiGatewayHandler1_0_0);
 container.bind(TYPES['1.0.0']).to(ApiGatewayHandler1_0_0);
 container.bind(TYPES['1.0.1']).to(ApiGatewayHandler1_0_1);
+container.bind<Container>(Container).toConstantValue(container);
+container.bind<SecretsBase>(TYPES.SecretsManager).to(SecretsManager);
+container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DBConnectionHelperFactory).inSingletonScope();
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind(TYPES.APIGatewayResultMapperService).to(APIGatewayResultMapperService);
 container.bind<Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>>(TYPES.ApiGatewayPostAdapter).to(ApiGatewayPostAdapter);

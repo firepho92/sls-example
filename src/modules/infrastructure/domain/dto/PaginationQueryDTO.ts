@@ -18,31 +18,15 @@ export default class PaginationQueryDTO<T=object> {
     return this._criteria;
   }
 
-  set criteria(criteria: T) {
-    this._criteria = criteria;
-  }
-
   get order(): Order | undefined {
     return this._order;
-  }
-
-  set order(order: Order) {
-    this._order = order;
   }
 
   get pageNumber(): number {
     return this._pageNumber;
   }
 
-  set pageNumber(pageNumber: number) {
-    this._pageNumber = pageNumber;
-  }
-
   get size(): number {
     return this._size;
-  }
-
-  set size(size: number) {
-    this._size = size;
   }
 }
