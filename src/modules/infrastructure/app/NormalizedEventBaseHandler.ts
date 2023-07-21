@@ -11,10 +11,11 @@ export default abstract class NormalizedEventBaseHandler<T={}, U={}, V={}> imple
 
   protected abstract run(port?: SQSEvent): Promise<PromiseSettledResult<SQSRecord>[]>;
 
-  async execute(port?: SQSEvent): Promise<SQSRecord[] | V> {
+  async execute(port?: SQSEvent): Promise<Options[] | V> {
     const items = await this.run(port);
     console.log('items', items);
-    const retryItems = port.Records.filter((record) => {
+    const retryItems = port.Records.filter((record, index) => {
+      console.log('record', record, items[index]);
       return !items.find((item) => {
         return item.status === PromiseStatus.FULFILLED && item.value === record;
       });
