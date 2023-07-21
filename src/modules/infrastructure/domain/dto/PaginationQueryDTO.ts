@@ -1,25 +1,15 @@
-import Order from "./Order";
+import FindQueryDTO from './FindQueryDTO';
+import { PaginationQueryDTOParams } from './PaginationQueryDTOParams';
 
-export default class PaginationQueryDTO<T=object> {
-  private _criteria?: T;
-  private _order?: Order;
+export default class PaginationQueryDTO<T=object> extends FindQueryDTO<T> {
   private _pageNumber: number;
   private _size: number;
 
-  constructor(pageNumber: number | string = 1, size: number | string = 10, order?: Order, criteria?: T) {
-    console.log('PaginationQueryDTO', pageNumber, size, order, criteria);
-    this._pageNumber = Number(pageNumber);
-    this._size = Number(size);
-    this._criteria = criteria;
-    this._order = order;
-  }
-
-  get criteria(): T | undefined {
-    return this._criteria;
-  }
-
-  get order(): Order | undefined {
-    return this._order;
+  constructor(params?: PaginationQueryDTOParams<T>) {
+    super({ order: params.order, criteria: params.criteria });
+    console.log('PaginationQueryDTO', params.pageNumber, params.size, params.order, params.criteria);
+    this._pageNumber = Number(params.pageNumber);
+    this._size = Number(params.size);
   }
 
   get pageNumber(): number {
