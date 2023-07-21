@@ -7,7 +7,7 @@ import type { SQSBatchResponse, SQSEvent, SQSRecord } from 'aws-lambda';
 import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
 
 @injectable()
-export default class InvalidCoupleHandler extends NormalizedEventBaseHandler<SQSEvent, PromiseSettledResult<SQSRecord>[], SQSBatchResponse> {
+export default class InvalidCoupleHandler extends NormalizedEventBaseHandler {
 
   constructor(
     @inject(TYPES.InvalidCoupleAdapter) private adapter: Adapter<any, Promise<string>>
