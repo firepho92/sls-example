@@ -6,7 +6,7 @@ export default class FindQueryDTO<T=object> {
   private _order?: Order;
 
   constructor(params?: FindQueryDTOParams<T>) {
-    console.log('PaginationQueryDTO', params.order, params.criteria);
+    console.log('FindQueryDTO', params.order, params.criteria);
     this._criteria = params.criteria;
     this._order = params.order;
   }

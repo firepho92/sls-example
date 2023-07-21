@@ -22,7 +22,7 @@ export default class APIGatewayGetHandler1_0_0 extends APIGatewayProxyEventBaseH
 
   protected async run(port?: APIGatewayProxyEvent): Promise<PaginationResponseDTO<Couple>> {
     console.log('ApiGatewayHandler1_0_0', port);
-    const couplesPaginated: PaginationResponseDTO<Couple> = await this.adapter.execute(new PaginationQueryDTO(port.queryStringParameters?.pageNumber, port.queryStringParameters?.size));
+    const couplesPaginated: PaginationResponseDTO<Couple> = await this.adapter.execute(new PaginationQueryDTO({ pageNumber: port.queryStringParameters?.pageNumber, size: port.queryStringParameters?.size }));
     return couplesPaginated;
   }
 }
