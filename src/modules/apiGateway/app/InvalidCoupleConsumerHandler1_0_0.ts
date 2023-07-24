@@ -5,7 +5,7 @@ import { inject } from 'inversify/lib/annotation/inject';
 import Adapter from 'src/modules/infrastructure/adapter/Adapter';
 import NormalizedEventBaseHandler from 'src/modules/infrastructure/app/NormalizedEventBaseHandler';
 
-export default class InvalidCoupleConsumerHandler1_0_0 extends NormalizedEventBaseHandler<any> {
+export default class InvalidCoupleConsumerHandler1_0_0 extends NormalizedEventBaseHandler {
   constructor (
     @inject(TYPES.InvalidCoupleAdapter) private readonly adapter: Adapter<any, Promise<string>>
   ) {
