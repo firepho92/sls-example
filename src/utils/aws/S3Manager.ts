@@ -11,9 +11,9 @@ export default class S3Manager implements S3Base {
   s3Client: S3Client;
   bucketParams: BucketParams;
 
-  constructor(region: string, bucketName: string, keyId?: string, accessKey?: string) {
+  constructor(bucketName: string, region: string, keyId?: string, accessKey?: string) {
     const configAwsClient = {
-      region: region,
+      region: region ?? 'us-east-1',
       accessKeyId: keyId,
       secretAccessKey: accessKey,
       apiVersion: '2006-03-01',

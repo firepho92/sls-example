@@ -6,7 +6,7 @@ import APIGatewayResult from '../domain/dto/APIGatewayResult';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
 @injectable()
-export default abstract class APIGatewayProxyEventBaseHandler<T> implements Handler<APIGatewayProxyEvent, APIGatewayResult<T>> {
+export default abstract class APIGatewayProxyEventBaseHandler<T=object> implements Handler<APIGatewayProxyEvent, APIGatewayResult<T>> {
   constructor(
     protected apiGatewayResultMapperService: Mapper<T, APIGatewayResult<T>>
   ){}
@@ -14,7 +14,7 @@ export default abstract class APIGatewayProxyEventBaseHandler<T> implements Hand
   protected abstract run(port?: APIGatewayProxyEvent): Promise<T>;
 
   async execute(port?: APIGatewayProxyEvent): Promise<APIGatewayResult<T>> {
-    console.log('APIGatewayProxyEventBaseHandler', port);
+    // console.log('APIGatewayProxyEventBaseHandler', port);
     const entityDto: T = await this.run(port);
     const response = this.apiGatewayResultMapperService.execute(entityDto);
     return response;
