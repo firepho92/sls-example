@@ -15,6 +15,7 @@ export default class APIGatewayEventBaseHandlerFactory {
 
     //Finds the version in the Accept header and sets default version if not found
   private getVersion(event: APIGatewayProxyEvent): string {
+    console.log('event.headers', event.headers);
     const regex = /version=([\d.]+)/;
     const matches = event.headers['Accept'].match(regex);
     console.log('matches', matches);
