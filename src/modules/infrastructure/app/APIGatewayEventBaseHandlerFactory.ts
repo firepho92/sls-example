@@ -4,17 +4,21 @@ import Exception from 'src/utils/error/Exception';
 import HttpStatusCode from 'src/utils/enums/httpStatusCode';
 import APIGatewayEventBaseHandler from './APIGatewayProxyEventBaseHandler';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
+import EventBaseHandler from './EventBaseHandler';
+import Handler from './Handler';
 
-export default class APIGatewayEventBaseHandlerFactory {
+export default class APIGatewayEventBaseHandlerFactory extends EventBaseHandler<APIGatewayProxyEvent> {
 
   constructor(
     private readonly container: Container,
     private readonly event: APIGatewayProxyEvent,
     private readonly handlerTypes: { [key: string]: symbol }
-  ) {}
+  ) {
+    super();
+  }
 
     //Finds the version in the Accept header and sets default version if not found
-  private getVersion(event: APIGatewayProxyEvent): string {
+  protected getVersion(event: APIGatewayProxyEvent): string {
     console.log('event.headers', event.headers);
     const regex = /version=([\d.]+)/;
     const matches = event.headers['Accept'].match(regex);
@@ -24,7 +28,7 @@ export default class APIGatewayEventBaseHandlerFactory {
     return version;
   }
 
-  getInstance(): APIGatewayEventBaseHandler {
+  public getInstance(): Handler {
     // console.log('httpRequestVersionHandlerMiddleware');
     const version = this.getVersion(this.event);
     // if (!versions.includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);

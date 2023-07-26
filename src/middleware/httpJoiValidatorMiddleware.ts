@@ -15,27 +15,13 @@ export enum VALIDATOR_TYPE {
   QUERY = 'QUERY',
 }
 
-// /**
-//  * @interface IValidatorMiddleware
-//  * @description ValidatorMiddleware to adapt the data of validation
-//  * @property {Joi.ObjectSchema<any>} schema
-//  * @property {VALIDATOR_TYPE} type
-//  * @property {string} pathParam
-//  */
-
-// export interface IValidatorMiddleware {
-//   schema: Joi.ObjectSchema<any> | Joi.ArraySchema | Joi.StringSchema;
-//   type: VALIDATOR_TYPE;
-//   pathParam?: string;
-// }
-
 /**
  * @function httpJoiValidatorMiddleware
  * @description Middleware to validate data
  * @param {ValidationInput} validationInput
  * @TODO Add option to validate multiple path params if required
  */
-interface ValidationInput {
+export interface ValidationInput {
   schemas: {[key: string]: Joi.ObjectSchema | Joi.ArraySchema | Joi.StringSchema};
   type: VALIDATOR_TYPE;
   pathParam?: string;
