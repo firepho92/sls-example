@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import HttpStatusCode from '../utils/enums/httpStatusCode';
-import ErrorCode from '../utils/error/errorCode';
 import Warning from '../utils/error/Warning';
+import ErrorCode from '../utils/error/errorCode';
+import HttpStatusCode from '../utils/enums/httpStatusCode';
 
 /**
  * Enum for validation type
@@ -22,21 +22,21 @@ export enum VALIDATOR_TYPE {
  * @TODO Add option to validate multiple path params if required
  */
 export interface ValidationInput {
-  schemas: {[key: string]: Joi.ObjectSchema | Joi.ArraySchema | Joi.StringSchema};
+  schema: Joi.ObjectSchema | Joi.ArraySchema | Joi.StringSchema;
   type: VALIDATOR_TYPE;
   pathParam?: string;
 }
 
-const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
+export const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
   // console.log('validateData', validationInput);
 
   const validatorMiddleware = async (request: any) => {
-    const schema = validationInput.schemas[request.event.version];
+    // const schema = validationInput.schemas[request.event.version];
     // console.log('schema', schema);
     try {
       // Validation for body
       if (validationInput.type === VALIDATOR_TYPE['BODY']) {
-        await schema.validateAsync(
+        await validationInput.schema.validateAsync(
           request.event.body,
           { abortEarly: false }
         );
@@ -44,7 +44,7 @@ const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
 
       // Validation for query
       if (validationInput.type === VALIDATOR_TYPE['QUERY']) {
-        await schema.validateAsync(
+        await validationInput.schema.validateAsync(
           request.event.queryStringParameters ? request.event.queryStringParameters : {},
           { abortEarly: false }
         );
@@ -52,7 +52,7 @@ const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
 
       // Validation for path
       if (validationInput.type === VALIDATOR_TYPE['PATH']) {
-        await schema.validateAsync(
+        await validationInput.schema.validateAsync(
           request.event.pathParameters[validationInput.pathParam ? validationInput.pathParam : 'id'],
           { abortEarly: false }
         );
@@ -80,3 +80,7 @@ const httpJoiValidatorMiddleware = (validationInput: ValidationInput) => {
 };
 
 export default httpJoiValidatorMiddleware;
+
+  // console.log('validateData', validationInput);
+
+  

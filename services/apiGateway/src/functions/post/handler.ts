@@ -12,12 +12,12 @@ import APIGatewayEventBaseHandlerFactory from '../../../../../src/modules/infras
 import APIGatewayProxyEventHandlerParams from '../../../../../src/modules/infrastructure/app/APIGatewayProxyEventHandlerParams';
 
 export const main = middy(async (event: APIGatewayProxyEvent) => {
-  console.log('main handler', event);
+  // console.log('main handler', event);
   const handlerFactory = new APIGatewayEventBaseHandlerFactory(container, event, TYPES);
-  const handler: Handler<APIGatewayProxyEventHandlerParams> = handlerFactory.getInstance();
+  const handler: Handler<APIGatewayProxyEvent> = handlerFactory.getInstance();
   // const handler = container.get<Handler>(TYPES[event.version]);
-  const response = await handler.execute({ event, validation: { schemas: schema, type: VALIDATOR_TYPE.BODY } });
-  console.log('main handler response', response);
+  const response = await handler.execute(event);
+  // console.log('main handler response', response);
   return response;
 });
 

@@ -1,13 +1,16 @@
 import 'reflect-metadata';
 import TYPES from 'src/TYPES';
+import schema from './schema';
 import { inject, injectable } from 'inversify';
 import CoupleDto from '../../../domain/dto/CoupleDto';
 import Adapter from 'src/modules/infrastructure/adapter/Adapter';
 import Mapper from 'src/modules/infrastructure/domain/mapper/Mapper';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
-import ApiGatewayPostAdapterParams from '../../../adapter/ApiGatewayPostAdapterParams';
+import { VALIDATOR_TYPE } from 'src/middleware/httpJoiValidatorMiddleware';
 import APIGatewayResult from 'src/modules/infrastructure/domain/dto/APIGatewayResult';
+import ApiGatewayPostAdapterParams from '../../../adapter/ApiGatewayPostAdapterParams';
 import APIGatewayProxyEventBaseHandler from 'src/modules/infrastructure/app/APIGatewayProxyEventBaseHandler';
+import Validator from 'src/utils/request/Validator';
 
 @injectable()
 export default class ApiGatewayHandler extends APIGatewayProxyEventBaseHandler<CoupleDto> {
@@ -21,7 +24,12 @@ export default class ApiGatewayHandler extends APIGatewayProxyEventBaseHandler<C
 
   protected async run(port?: APIGatewayProxyEvent): Promise<CoupleDto> {
     console.log('ApiGatewayHandler1_0_0');
-    // console.log('body', port.body);
+    const validator = new Validator({
+      schema,
+      event: port,
+      type: VALIDATOR_TYPE.BODY
+    })
+    await validator.execute();
     const coupleDto: CoupleDto = await this.adapter.execute(port.body as unknown as ApiGatewayPostAdapterParams);
     return coupleDto;
   }
