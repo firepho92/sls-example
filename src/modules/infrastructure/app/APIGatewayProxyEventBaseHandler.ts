@@ -13,11 +13,11 @@ export default abstract class APIGatewayProxyEventBaseHandler<T=object> implemen
 
   protected abstract run(port: APIGatewayProxyEvent): Promise<T>;
 
-  protected abstract validator(port: APIGatewayProxyEvent): Promise<void>;
+  protected abstract validate(port: APIGatewayProxyEvent): Promise<void>;
 
   async execute(port?: APIGatewayProxyEvent): Promise<APIGatewayResult<T>> {
     // console.log('APIGatewayProxyEventBaseHandler', port);
-    await this.validator(port);
+    await this.validate(port);
     const entityDto: T = await this.run(port);
     const response = this.apiGatewayResultMapperService.execute(entityDto);
     return response;

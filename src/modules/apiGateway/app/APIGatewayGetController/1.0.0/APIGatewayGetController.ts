@@ -16,8 +16,12 @@ export default class APIGatewayGetHandler extends APIGatewayProxyEventBaseHandle
   constructor(
     @inject(TYPES.ApiGatewayGetAdapter) private readonly adapter: Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>>,
     @inject(TYPES.APIGatewayResultMapperService) apiGatewayResultMapperService: Mapper<PaginationResponseDTO<Couple>, APIGatewayResult<PaginationResponseDTO<Couple>>>
-  ) {
-    super(apiGatewayResultMapperService);
+    ) {
+      super(apiGatewayResultMapperService);
+    }
+    
+  protected validate(port: APIGatewayProxyEvent): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 
   protected async run(port?: APIGatewayProxyEvent): Promise<PaginationResponseDTO<Couple>> {

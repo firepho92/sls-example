@@ -20,13 +20,13 @@ import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/in
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
 import SecretsManager from '../../../../../src/utils/aws/SecretsManager';
-import APIGatewayGetHandler1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayGetHandler/1.0.0/APIGatewayGetHandler';
+import APIGatewayGetController1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayGetController/1.0.0/APIGatewayGetController';
 import APIGatewayResultMapperService from '../../../../../src/modules/infrastructure/domain/mapper/APIGatewayResultMapperService';
 
 const container: Container = new Container();
 
-container.bind(TYPES.Default).to(APIGatewayGetHandler1_0_0);
-container.bind(TYPES['1.0.0']).to(APIGatewayGetHandler1_0_0);
+container.bind(TYPES.Default).to(APIGatewayGetController1_0_0);
+container.bind(TYPES['1.0.0']).to(APIGatewayGetController1_0_0);
 container.bind<Container>(Container).toConstantValue(container);
 container.bind<SecretsBase>(TYPES.SecretsManager).to(SecretsManager);
 container.bind(TYPES.APIGatewayResultMapperService).to(APIGatewayResultMapperService);

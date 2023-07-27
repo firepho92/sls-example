@@ -22,7 +22,7 @@ export default class ApiGatewayHandler extends APIGatewayProxyEventBaseHandler<C
       super(apiGatewayResultMapperService);
     }
     
-  protected async validator(port: APIGatewayProxyEvent): Promise<void> {
+  protected async validate(port: APIGatewayProxyEvent): Promise<void> {
     const validator = new Validator({
       schema,
       event: port,
