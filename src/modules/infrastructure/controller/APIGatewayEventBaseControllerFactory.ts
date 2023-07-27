@@ -5,7 +5,7 @@ import HttpStatusCode from 'src/utils/enums/httpStatusCode';
 import APIGatewayProxyEventBaseController from './APIGatewayProxyEventBaseController';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import EventBaseControllerFactory from './EventBaseControllerFactory';
-import Handler from './Controller';
+import Controller from './Controller';
 
 export default class APIGatewayEventBaseControllerFactory extends EventBaseControllerFactory<APIGatewayProxyEvent> {
 
@@ -28,7 +28,7 @@ export default class APIGatewayEventBaseControllerFactory extends EventBaseContr
     return version;
   }
 
-  public getInstance(): Handler {
+  public getInstance(): Controller {
     // console.log('httpRequestVersionHandlerMiddleware');
     const version = this.getVersion(this.event);
     // if (!versions.includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);

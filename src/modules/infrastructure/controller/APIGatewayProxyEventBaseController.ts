@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import Handler from './Controller';
+import Controller from './Controller';
 import { injectable } from 'inversify';
 import Mapper from '../domain/mapper/Mapper';
 import APIGatewayResult from '../domain/dto/APIGatewayResult';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
 @injectable()
-export default abstract class APIGatewayProxyEventBaseController<T=object> implements Handler<APIGatewayProxyEvent, APIGatewayResult<T>> {
+export default abstract class APIGatewayProxyEventBaseController<T=object> implements Controller<APIGatewayProxyEvent, APIGatewayResult<T>> {
   constructor(
     protected apiGatewayResultMapperService: Mapper<T, APIGatewayResult<T>>
   ){}
