@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import Handler from './Handler';
+import Handler from './Controller';
 import { injectable } from 'inversify';
 import Mapper from '../domain/mapper/Mapper';
 import APIGatewayResult from '../domain/dto/APIGatewayResult';

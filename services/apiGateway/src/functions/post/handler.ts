@@ -4,7 +4,7 @@ import container from './inversify.config';
 import TYPES from './TYPES';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
-import Handler from '../../../../../src/modules/infrastructure/controller/Handler';
+import Handler from '../../../../../src/modules/infrastructure/controller/Controller';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
 import APIGatewayEventBaseControllerFactory from '../../../../../src/modules/infrastructure/controller/APIGatewayEventBaseControllerFactory';
 

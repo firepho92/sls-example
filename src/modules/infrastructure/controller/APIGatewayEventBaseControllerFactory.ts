@@ -5,7 +5,7 @@ import HttpStatusCode from 'src/utils/enums/httpStatusCode';
 import APIGatewayProxyEventBaseController from './APIGatewayProxyEventBaseController';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import EventBaseControllerFactory from './EventBaseControllerFactory';
-import Handler from './Handler';
+import Handler from './Controller';
 
 export default class APIGatewayEventBaseControllerFactory extends EventBaseControllerFactory<APIGatewayProxyEvent> {
 

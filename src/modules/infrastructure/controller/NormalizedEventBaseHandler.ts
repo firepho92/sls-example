@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import Handler from './Handler';
+import Handler from './Controller';
 import { injectable } from 'inversify';
 import { SQSEvent, SQSRecord } from 'aws-lambda/trigger/sqs';
 import { PromiseStatus } from 'src/utils/enums/PromiseStatus';
