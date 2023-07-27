@@ -6,12 +6,12 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
 import Handler from '../../../../../src/modules/infrastructure/app/Handler';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
-import APIGatewayEventBaseHandlerFactory from '../../../../../src/modules/infrastructure/app/APIGatewayEventBaseHandlerFactory';
+import APIGatewayEventBaseControllerFactory from '../../../../../src/modules/infrastructure/app/APIGatewayEventBaseControllerFactory';
 
 export const main = middy(async (event: APIGatewayProxyEvent) => {
   // console.log('main handler', event);
-  const handlerFactory = new APIGatewayEventBaseHandlerFactory(container, event, TYPES);
-  const handler: Handler<APIGatewayProxyEvent> = handlerFactory.getInstance();
+  const controllerFactory = new APIGatewayEventBaseControllerFactory(container, event, TYPES);
+  const handler: Handler<APIGatewayProxyEvent> = controllerFactory.getInstance();
   // const handler = container.get<Handler>(TYPES[event.version]);
   const response = await handler.execute(event);
   // console.log('main handler response', response);

@@ -2,7 +2,7 @@ import { Container } from 'inversify';
 import ErrorCode from 'src/utils/error/errorCode';
 import Exception from 'src/utils/error/Exception';
 import HttpStatusCode from 'src/utils/enums/httpStatusCode';
-import APIGatewayEventBaseHandler from './APIGatewayProxyEventBaseHandler';
+import APIGatewayEventBaseHandler from './APIGatewayProxyEventBaseController';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
 export default class APIGatewayEventBaseHandlerFactory {

@@ -2,8 +2,8 @@ import { Container } from 'inversify';
 import TYPES from './TYPES';
 import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
 import UseCase from '../../../../../src/modules/infrastructure/useCase/UseCase';
-import ApiGatewayHandler1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayPostHandler/1.0.0/APIGatewayPostHandler';
-import ApiGatewayHandler1_0_1 from '../../../../../src/modules/apiGateway/app/APIGatewayPostHandler/1.0.1/APIGatewayPostHandler';
+import APIGatewayPostController1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayPostController/1.0.0/APIGatewayPostController';
+import APIGatewayPostController1_0_1 from '../../../../../src/modules/apiGateway/app/APIGatewayPostController/1.0.1/APIGatewayPostController';
 import APIGatewayResultMapperService from '../../../../../src/modules/infrastructure/domain/mapper/APIGatewayResultMapperService';
 import ApiGatewayPostAdapter from '../../../../../src/modules/apiGateway/adapter/ApiGatewayPostAdapter';
 import ApiGatewayPostUseCase from '../../../../../src/modules/apiGateway/useCase/ApiGatewayPostUseCase';
@@ -25,9 +25,9 @@ import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConne
 
 const container: Container = new Container();
 
-container.bind(TYPES.Default).to(ApiGatewayHandler1_0_0);
-container.bind(TYPES['1.0.0']).to(ApiGatewayHandler1_0_0);
-container.bind(TYPES['1.0.1']).to(ApiGatewayHandler1_0_1);
+container.bind(TYPES.Default).to(APIGatewayPostController1_0_0);
+container.bind(TYPES['1.0.0']).to(APIGatewayPostController1_0_0);
+container.bind(TYPES['1.0.1']).to(APIGatewayPostController1_0_1);
 container.bind<Container>(Container).toConstantValue(container);
 container.bind<SecretsBase>(TYPES.SecretsManager).to(SecretsManager);
 container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DBConnectionHelperFactory).inSingletonScope();

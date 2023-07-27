@@ -2,12 +2,12 @@ import { Container } from 'inversify';
 import ErrorCode from 'src/utils/error/errorCode';
 import Exception from 'src/utils/error/Exception';
 import HttpStatusCode from 'src/utils/enums/httpStatusCode';
-import APIGatewayEventBaseHandler from './APIGatewayProxyEventBaseHandler';
+import APIGatewayProxyEventBaseController from './APIGatewayProxyEventBaseController';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
-import EventBaseHandler from './EventBaseHandler';
+import EventBaseControllerFactory from './EventBaseControllerFactory';
 import Handler from './Handler';
 
-export default class APIGatewayEventBaseHandlerFactory extends EventBaseHandler<APIGatewayProxyEvent> {
+export default class APIGatewayEventBaseControllerFactory extends EventBaseControllerFactory<APIGatewayProxyEvent> {
 
   constructor(
     private readonly container: Container,
@@ -34,7 +34,7 @@ export default class APIGatewayEventBaseHandlerFactory extends EventBaseHandler<
     // if (!versions.includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);
     // request.event.version = version;
     if (!Object.keys(this.handlerTypes).includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);
-    const handler: APIGatewayEventBaseHandler = this.container.get<APIGatewayEventBaseHandler>(this.handlerTypes[version]);
+    const handler: APIGatewayProxyEventBaseController = this.container.get<APIGatewayProxyEventBaseController>(this.handlerTypes[version]);
     return handler;
   }
 }
