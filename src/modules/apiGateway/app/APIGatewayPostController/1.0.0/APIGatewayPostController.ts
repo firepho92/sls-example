@@ -10,7 +10,7 @@ import { VALIDATOR_TYPE } from 'src/middleware/httpJoiValidatorMiddleware';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import APIGatewayResult from 'src/modules/infrastructure/domain/dto/APIGatewayResult';
 import ApiGatewayPostAdapterParams from '../../../adapter/ApiGatewayPostAdapterParams';
-import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/app/APIGatewayProxyEventBaseController';
+import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 
 @injectable()
 export default class ApiGatewayHandler extends APIGatewayProxyEventBaseController<CoupleDto> {

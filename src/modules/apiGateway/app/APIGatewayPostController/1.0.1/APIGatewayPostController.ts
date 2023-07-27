@@ -3,7 +3,7 @@ import TYPES from 'src/TYPES';
 import { inject, injectable } from 'inversify';
 import Mapper from 'src/modules/infrastructure/domain/mapper/Mapper';
 import APIGatewayResult from 'src/modules/infrastructure/domain/dto/APIGatewayResult';
-import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/app/APIGatewayProxyEventBaseController';
+import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 
 @injectable()

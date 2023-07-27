@@ -4,9 +4,9 @@ import container from './inversify.config';
 import TYPES from './TYPES';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
-import Handler from '../../../../../src/modules/infrastructure/app/Handler';
+import Handler from '../../../../../src/modules/infrastructure/controller/Handler';
 import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpResponseHandlerMiddleware';
-import APIGatewayEventBaseControllerFactory from '../../../../../src/modules/infrastructure/app/APIGatewayEventBaseControllerFactory';
+import APIGatewayEventBaseControllerFactory from '../../../../../src/modules/infrastructure/controller/APIGatewayEventBaseControllerFactory';
 
 export const main = middy(async (event: APIGatewayProxyEvent) => {
   // console.log('main handler', event);

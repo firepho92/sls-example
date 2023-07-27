@@ -8,7 +8,7 @@ import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import APIGatewayResult from 'src/modules/infrastructure/domain/dto/APIGatewayResult';
 import PaginationQueryDTO from 'src/modules/infrastructure/domain/dto/PaginationQueryDTO';
 import PaginationResponseDTO from 'src/modules/infrastructure/domain/dto/PaginationResponseDTO';
-import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/app/APIGatewayProxyEventBaseController';
+import APIGatewayProxyEventBaseController from 'src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 
 @injectable()
 export default class APIGatewayGetHandler extends APIGatewayProxyEventBaseController<PaginationResponseDTO<Couple>> {
