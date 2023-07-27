@@ -18,18 +18,22 @@ export default class ApiGatewayHandler extends APIGatewayProxyEventBaseHandler<C
   constructor(
     @inject(TYPES.ApiGatewayPostAdapter) private readonly adapter: Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>,
     @inject(TYPES.APIGatewayResultMapperService) apiGatewayResultMapperService: Mapper<CoupleDto, APIGatewayResult<CoupleDto>>
-  ) {
-    super(apiGatewayResultMapperService);
-  }
-
-  protected async run(port?: APIGatewayProxyEvent): Promise<CoupleDto> {
-    console.log('ApiGatewayHandler1_0_0');
+    ) {
+      super(apiGatewayResultMapperService);
+    }
+    
+  protected async validator(port: APIGatewayProxyEvent): Promise<void> {
     const validator = new Validator({
       schema,
       event: port,
       type: VALIDATOR_TYPE.BODY
-    })
+    });
     await validator.execute();
+  }
+
+  protected async run(port?: APIGatewayProxyEvent): Promise<CoupleDto> {
+    console.log('ApiGatewayHandler1_0_0');
+    
     const coupleDto: CoupleDto = await this.adapter.execute(port.body as unknown as ApiGatewayPostAdapterParams);
     return coupleDto;
   }

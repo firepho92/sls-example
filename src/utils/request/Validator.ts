@@ -26,7 +26,7 @@ export default class Validator {
   async execute() {
     // const schema = validationInput.schemas[request.event.version];
     // console.log('schema', schema);
-    console.log('validateData', this.validationInput);
+    // console.log('validateData', this.validationInput);
     try {
       // Validation for body
       if (this.validationInput.type === VALIDATOR_TYPE['BODY']) {
