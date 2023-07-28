@@ -1,9 +1,9 @@
-import BaseEntity from 'src/modules/infrastructure/domain/entity/BaseEntity';
+import BaseEntity from '../../../../../src/modules/infrastructure/domain/entity/BaseEntity';
 import { Entity, ManyToOne } from 'typeorm';
 import Person from './Person';
-import Warning from 'src/utils/error/Warning';
-import HttpStatusCode from 'src/utils/enums/httpStatusCode';
-import ErrorCode from 'src/utils/error/errorCode';
+import Warning from '../../../../../src/utils/error/Warning';
+import HttpStatusCode from '../../../../../src/utils/enums/httpStatusCode';
+import ErrorCode from '../../../../../src/utils/error/errorCode';
 
 @Entity({name: 'couple'})
 export default class Couple extends BaseEntity {

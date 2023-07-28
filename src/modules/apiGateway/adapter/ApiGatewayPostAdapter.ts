@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import TYPES from 'src/TYPES';
+import TYPES from '../../../../src/TYPES';
 import Couple from '../domain/entity/Couple';
 import { inject, injectable } from 'inversify';
-import Adapter from 'src/modules/infrastructure/adapter/Adapter';
-import UseCase from 'src/modules/infrastructure/useCase/UseCase';
+import Adapter from '../../../../src/modules/infrastructure/adapter/Adapter';
+import UseCase from '../../../../src/modules/infrastructure/useCase/UseCase';
 import ApiGatewayAdapterParams from './ApiGatewayPostAdapterParams';
 import ApiGatewayPostUseCaseParams from '../useCase/ApiGatewayPostUseCaseParams';
-import BaseMapper from 'src/modules/infrastructure/domain/mapper/BaseMapper';
+import BaseMapper from '../../../../src/modules/infrastructure/domain/mapper/BaseMapper';
 import CoupleDto from '../domain/dto/CoupleDto';
 
 @injectable()

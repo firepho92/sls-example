@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import TYPES from 'src/TYPES';
+import TYPES from '../../../../../src/TYPES';
 import Couple from '../entity/Couple';
 import { injectable, inject } from 'inversify';
-import PaginationQueryDTO from 'src/modules/infrastructure/domain/dto/PaginationQueryDTO';
-import FindManyPaginateBaseRepository from 'src/modules/infrastructure/domain/repository/FindManyPaginateBaseRepository';
+import PaginationQueryDTO from '../../../../../src/modules/infrastructure/domain/dto/PaginationQueryDTO';
+import FindManyPaginateBaseRepository from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginateBaseRepository';
 import { DataSource, QueryRunner, SelectQueryBuilder } from 'typeorm';
-import DBConnectionManager from 'src/utils/database/DBConnectionManager';
+import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
 
 @injectable()
 export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseRepository<Couple> {

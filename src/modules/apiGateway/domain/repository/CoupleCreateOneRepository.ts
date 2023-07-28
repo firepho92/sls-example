@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import TYPES from 'src/TYPES';
+import TYPES from '../../../../../src/TYPES';
 import Couple from '../entity/Couple';
 import { inject, injectable } from 'inversify';
 import { DataSource, InsertQueryBuilder, QueryRunner } from 'typeorm';

@@ -1,6 +1,5 @@
 import { Container } from 'inversify';
 import TYPES from './TYPES';
-import Adapter from '../../../../../src/modules/infrastructure/adapter/Adapter';
 import UseCase from '../../../../../src/modules/infrastructure/useCase/UseCase';
 import Couple from '../../../../../src/modules/apiGateway/domain/entity/Couple';
 import DBConnectionManager from '../../../../../src/utils/database/DBConnectionManager';
@@ -34,7 +33,7 @@ container.bind<DBConnectionHelperFactory>(TYPES.DBConnectionHelperFactory).to(DB
 container.bind<DBConnectionManager>(TYPES.DBConnectionManager).to(DBConnectionManagerTypeORM).inSingletonScope();
 container.bind<BaseMapper<Couple, CoupleDto>>(TYPES.CoupleMapper).to(CoupleMapper);
 container.bind<BaseMapper<PaginationMapperParams<Array<CoupleDto>>, PaginationResponseDTO<Array<CoupleDto>>>>(TYPES.PaginationMapperService).to(PaginationMapperService);
-container.bind<Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>>>(TYPES.ApiGatewayGetAdapter).to(ApiGatewayGetAdapter);
+container.bind(TYPES.ApiGatewayGetAdapter).to(ApiGatewayGetAdapter);
 container.bind<UseCase<PaginationQueryDTO, Promise<FindManyPaginatedBaseRepositoryParams<Couple>>>>(TYPES.ApiGatewayGetUseCase).to(ApiGatewayGetUseCase);
 // El binding debería ser así, pero no funciona:
 // container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);

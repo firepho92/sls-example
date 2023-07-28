@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import TYPES from 'src/TYPES';
+import TYPES from '../../../src/TYPES';
 import ErrorCode from '../error/errorCode';
 import Exception from '../error/Exception';
 import { inject, injectable } from 'inversify';
