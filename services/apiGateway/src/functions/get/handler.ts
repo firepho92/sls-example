@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import TYPES from './TYPES';
-import middy from '@middy/core'
+import middy from '@middy/core';
 import container from './inversify.config';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import Controller from '../../../../../src/modules/infrastructure/controller/Controller';

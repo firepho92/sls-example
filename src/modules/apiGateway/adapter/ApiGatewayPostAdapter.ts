@@ -1,13 +1,13 @@
 import 'reflect-metadata';
-import TYPES from '../../../../src/TYPES';
-import Couple from '../domain/entity/Couple';
+import TYPES from 'src/TYPES';
 import { inject, injectable } from 'inversify';
-import Adapter from '../../../../src/modules/infrastructure/adapter/Adapter';
-import UseCase from '../../../../src/modules/infrastructure/useCase/UseCase';
+import Adapter from 'src/modules/infrastructure/adapter/Adapter';
+import UseCase from 'src/modules/infrastructure/useCase/UseCase';
+import Couple from 'src/modules/apiGateway/domain/entity/Couple';
+import CoupleDto from 'src/modules/apiGateway/domain/dto/CoupleDto';
 import ApiGatewayAdapterParams from './ApiGatewayPostAdapterParams';
+import BaseMapper from 'src/modules/infrastructure/domain/mapper/BaseMapper';
 import ApiGatewayPostUseCaseParams from '../useCase/ApiGatewayPostUseCaseParams';
-import BaseMapper from '../../../../src/modules/infrastructure/domain/mapper/BaseMapper';
-import CoupleDto from '../domain/dto/CoupleDto';
 
 @injectable()
 export default class ApiGatewayAdapter implements Adapter<ApiGatewayAdapterParams, Promise<CoupleDto>> {

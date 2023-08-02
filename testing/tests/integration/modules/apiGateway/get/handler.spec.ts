@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, Context } from 'aws-lambda';
-// import APIGatewayProxyEventMock from '../../../../mocks/aws/APIGatewayProxyEventMock';
-import { main as handler } from '../../../../../../services/apiGateway/src/functions/get/handler';
+import APIGatewayProxyEventMock from '../../../../mocks/aws/APIGatewayProxyEventMock';
+import { main } from '../../../../../../services/apiGateway/src/functions/get/handler';
 
 describe('GET /api/users', () => {
   
@@ -11,9 +11,8 @@ describe('GET /api/users', () => {
   test.each([
     [{httpMethod: 'GET', path: '/couples', queryStringParameters: {pageNumber: 1, size: 10}}, { statusCode: 200 }]
   ])('should return a list of couples', async (eventParams, expected) => {
-    console.log('eventParams', eventParams);
-    // const {httpMethod, path, queryStringParameters} = eventParams;
-    // const event: APIGatewayProxyEvent = new APIGatewayProxyEventMock({httpMethod, path, queryStringParameters});
+    const {httpMethod, path, queryStringParameters} = eventParams;
+    const event: APIGatewayProxyEvent = new APIGatewayProxyEventMock({httpMethod, path, queryStringParameters});
     const defaultEvent: APIGatewayProxyEvent = {
       httpMethod: 'post',
       headers: {Authorization: "dummyToken"},
@@ -21,13 +20,12 @@ describe('GET /api/users', () => {
       isBase64Encoded: false,
       path: '/change-expiry-elapsed-days',
       multiValueQueryStringParameters: null,
-      multiValueHeaders: null,
+      multiValueHeaders: {Authorization: ["dummyToken"]},
       pathParameters: null,
       queryStringParameters: null,
       stageVariables: null,
-      requestContext: null,
-      resource: '',
-      timeoutEarlyInMillis: 0,
+      requestContext: {} as any,
+      resource: ''
     };
 
     const context: Context = {
@@ -46,7 +44,7 @@ describe('GET /api/users', () => {
     }
     console.log(expected);
     // Act
-    const response = await handler(defaultEvent, context);
+    const response = await main(event, context);
     console.log('response', response);
     // Assert
     expect(1).toBe(1);

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    // "baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
       "@functions/*": [
         "src/functions/*"
