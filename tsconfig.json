@@ -21,7 +21,7 @@
     "**/src/**/*.ts",
     "serverless.ts",
     "./src/**/*.ts"
-  ],
+, "src/modules/apiGateway/app/InvalidCoupleConsumerController"  ],
   "exclude": [
     "./node_modules/**/*",
     "**/node_modules/**/*",
