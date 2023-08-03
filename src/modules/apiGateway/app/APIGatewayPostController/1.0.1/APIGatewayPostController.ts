@@ -7,7 +7,7 @@ import APIGatewayProxyEventBaseController from '../../../../../../src/modules/in
 import { APIGatewayProxyEvent } from 'aws-lambda';
 
 @injectable()
-export default class ApiGatewayHandler extends APIGatewayProxyEventBaseController<string> {
+export default class ApiGatewayPostController extends APIGatewayProxyEventBaseController<string> {
   
   constructor(
     @inject(TYPES.APIGatewayResultMapperService) apiGatewayResultMapperService: Mapper<string, APIGatewayResult<string>>

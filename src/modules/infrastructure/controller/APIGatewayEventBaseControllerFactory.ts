@@ -29,10 +29,9 @@ export default class APIGatewayEventBaseControllerFactory extends EventBaseContr
   }
 
   public getInstance(): Controller {
-    // console.log('httpRequestVersionHandlerMiddleware');
+    // console.log('APIGatewayEventBaseControllerFactory');
     const version = this.getVersion(this.event);
-    // if (!versions.includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);
-    // request.event.version = version;
+
     if (!Object.keys(this.handlerTypes).includes(version)) throw new Exception(HttpStatusCode.BAD_REQUEST, [ErrorCode.ERR0017], []);
     const controller: APIGatewayProxyEventBaseController = this.container.get<APIGatewayProxyEventBaseController>(this.handlerTypes[version]);
     return controller;

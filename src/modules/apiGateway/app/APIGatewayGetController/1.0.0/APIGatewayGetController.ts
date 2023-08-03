@@ -13,7 +13,7 @@ import PaginationResponseDTO from '../../../../../../src/modules/infrastructure/
 import APIGatewayProxyEventBaseController from '../../../../../../src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 
 @injectable()
-export default class APIGatewayGetHandler extends APIGatewayProxyEventBaseController<PaginationResponseDTO<Couple>> {
+export default class APIGatewayGetController extends APIGatewayProxyEventBaseController<PaginationResponseDTO<Couple>> {
   
   constructor(
     @inject(TYPES.ApiGatewayGetAdapter) private readonly adapter: Adapter<PaginationQueryDTO, Promise<PaginationResponseDTO<Couple>>>,

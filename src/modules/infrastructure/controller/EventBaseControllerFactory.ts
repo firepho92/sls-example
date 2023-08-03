@@ -1,4 +1,4 @@
-import Controller from "./Controller";
+import Controller from './Controller';
 
 export default abstract class EventBaseControllerFactory<T> {
   protected abstract getVersion(event: T): string;

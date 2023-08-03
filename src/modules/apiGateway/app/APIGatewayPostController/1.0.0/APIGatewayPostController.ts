@@ -13,7 +13,7 @@ import APIGatewayResult from '../../../../../../src/modules/infrastructure/domai
 import APIGatewayProxyEventBaseController from '../../../../../../src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 
 @injectable()
-export default class ApiGatewayHandler extends APIGatewayProxyEventBaseController<CoupleDto> {
+export default class ApiGatewayPostController extends APIGatewayProxyEventBaseController<CoupleDto> {
   
   constructor(
     @inject(TYPES.ApiGatewayPostAdapter) private readonly adapter: Adapter<ApiGatewayPostAdapterParams, Promise<CoupleDto>>,
@@ -32,7 +32,7 @@ export default class ApiGatewayHandler extends APIGatewayProxyEventBaseControlle
   }
 
   protected async run(port?: APIGatewayProxyEvent): Promise<CoupleDto> {
-    console.log('ApiGatewayController1_0_0');
+    console.log('ApiGatewayPostController1_0_0');
     
     const coupleDto: CoupleDto = await this.adapter.execute(port.body as unknown as ApiGatewayPostAdapterParams);
     return coupleDto;
