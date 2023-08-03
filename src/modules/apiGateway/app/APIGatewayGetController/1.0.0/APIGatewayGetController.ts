@@ -1,7 +1,9 @@
 import 'reflect-metadata';
-import TYPES from '../../../../../../src/TYPES';
+import schema from './schema';
 import { inject, injectable } from 'inversify';
+import TYPES from '../../../../../../src/TYPES';
 import Couple from '../../../domain/entity/Couple';
+import Validator, { VALIDATOR_TYPE } from 'src/utils/request/Validator';
 import Adapter from '../../../../../../src/modules/infrastructure/adapter/Adapter';
 import Mapper from '../../../../../../src/modules/infrastructure/domain/mapper/Mapper';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
@@ -20,13 +22,17 @@ export default class APIGatewayGetHandler extends APIGatewayProxyEventBaseContro
       super(apiGatewayResultMapperService);
     }
     
-  protected validate(port: APIGatewayProxyEvent): Promise<void> {
-    console.log(port);
-    throw new Error('Method not implemented.');
+  protected async validate(port: APIGatewayProxyEvent): Promise<void> {
+    const validator = new Validator({
+      schema,
+      event: port,
+      type: VALIDATOR_TYPE.QUERY
+    });
+    await validator.execute();
   }
 
   protected async run(port?: APIGatewayProxyEvent): Promise<PaginationResponseDTO<Couple>> {
-    console.log('ApiGatewayHandler1_0_0', port);
+    console.log('ApiGatewayController1_0_0', port);
     const couplesPaginated: PaginationResponseDTO<Couple> = await this.adapter.execute(new PaginationQueryDTO({ pageNumber: port.queryStringParameters?.pageNumber, size: port.queryStringParameters?.size }));
     return couplesPaginated;
   }

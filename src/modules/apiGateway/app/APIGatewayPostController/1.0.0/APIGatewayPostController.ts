@@ -32,7 +32,7 @@ export default class ApiGatewayHandler extends APIGatewayProxyEventBaseControlle
   }
 
   protected async run(port?: APIGatewayProxyEvent): Promise<CoupleDto> {
-    console.log('ApiGatewayHandler1_0_0');
+    console.log('ApiGatewayController1_0_0');
     
     const coupleDto: CoupleDto = await this.adapter.execute(port.body as unknown as ApiGatewayPostAdapterParams);
     return coupleDto;
