@@ -8,15 +8,16 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 
 @injectable()
 export default class ApiGatewayHandler extends APIGatewayProxyEventBaseController<string> {
-  protected validate(port: APIGatewayProxyEvent): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
   
   constructor(
     @inject(TYPES.APIGatewayResultMapperService) apiGatewayResultMapperService: Mapper<string, APIGatewayResult<string>>
-    ) {
-      super(apiGatewayResultMapperService);
-    }
+  ) {
+    super(apiGatewayResultMapperService);
+  }
+
+  protected validate(port: APIGatewayProxyEvent): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
     
   protected async run(): Promise<string> {
     return 'hola';

@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import TYPES from '../../../../../../src/TYPES';
 import schema from './schema';
 import { inject, injectable } from 'inversify';
-import Validator from '../../../../../../src/utils/request/Validator';
+import TYPES from '../../../../../../src/TYPES';
 import CoupleDto from '../../../domain/dto/CoupleDto';
+import Validator from '../../../../../../src/utils/request/Validator';
+import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import Adapter from '../../../../../../src/modules/infrastructure/adapter/Adapter';
+import ApiGatewayPostAdapterParams from '../../../adapter/ApiGatewayPostAdapterParams';
 import Mapper from '../../../../../../src/modules/infrastructure/domain/mapper/Mapper';
 import { VALIDATOR_TYPE } from '../../../../../../src/middleware/httpJoiValidatorMiddleware';
-import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 import APIGatewayResult from '../../../../../../src/modules/infrastructure/domain/dto/APIGatewayResult';
-import ApiGatewayPostAdapterParams from '../../../adapter/ApiGatewayPostAdapterParams';
 import APIGatewayProxyEventBaseController from '../../../../../../src/modules/infrastructure/controller/APIGatewayProxyEventBaseController';
 
 @injectable()
