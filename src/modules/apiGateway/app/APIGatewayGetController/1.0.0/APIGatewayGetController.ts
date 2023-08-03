@@ -3,7 +3,7 @@ import schema from './schema';
 import { inject, injectable } from 'inversify';
 import TYPES from '../../../../../../src/TYPES';
 import Couple from '../../../domain/entity/Couple';
-import Validator, { VALIDATOR_TYPE } from 'src/utils/request/Validator';
+import Validator, { VALIDATOR_TYPE } from '../../../../../../src/utils/request/Validator';
 import Adapter from '../../../../../../src/modules/infrastructure/adapter/Adapter';
 import Mapper from '../../../../../../src/modules/infrastructure/domain/mapper/Mapper';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
