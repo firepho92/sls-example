@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import Warning from 'src/utils/error/Warning';
-import ErrorCode from 'src/utils/error/errorCode';
-import HttpStatusCode from 'src/utils/enums/httpStatusCode';
+import Warning from '../../../src/utils/error/Warning';
+import ErrorCode from '../../../src/utils/error/errorCode';
+import HttpStatusCode from '../../../src/utils/enums/httpStatusCode';
 import { APIGatewayProxyEvent } from 'aws-lambda/trigger/api-gateway-proxy';
 
 export interface ValidationInput {
