@@ -5,12 +5,12 @@ import { SQSEvent, SQSRecord } from 'aws-lambda/trigger/sqs';
 
 //TODO: Renombrar a SQSEventBaseHandler
 @injectable()
-export default abstract class NormalizedEventBaseHandler implements Controller<SQSEvent, PromiseSettledResult<SQSRecord>[]> {
+export default abstract class NormalizedEventBasecontroller<TPort = object, TResponse = object> implements Controller<TPort, PromiseSettledResult<SQSRecord>[]> {
   constructor(){}
 
-  protected abstract run(port?: SQSEvent): Promise<PromiseSettledResult<SQSRecord>[]>;
+  protected abstract run(port?: TPort): Promise<PromiseSettledResult<SQSRecord>[]>;
 
-  async execute(port?: SQSEvent): Promise<PromiseSettledResult<SQSRecord>[]> {
+  async execute(port?: TPort): Promise<PromiseSettledResult<SQSRecord>[]> {
     const items = await this.run(port);
     console.log('items', items);
     return items;

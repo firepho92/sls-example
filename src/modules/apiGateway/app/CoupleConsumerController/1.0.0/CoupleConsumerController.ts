@@ -3,16 +3,16 @@ import TYPES from '../../../../../TYPES';
 import { SQSEvent } from 'aws-lambda';
 import { inject } from 'inversify/lib/annotation/inject';
 import Adapter from '../../../../infrastructure/adapter/Adapter';
-import NormalizedEventBaseHandler from '../../../../infrastructure/controller/NormalizedEventBaseHandler';
+import NormalizedEventBaseHandler from '../../../../infrastructure/controller/NormalizedEventBaseController';
 
-export default class InvalidCoupleConsumerHandler1_0_0 extends NormalizedEventBaseHandler {
+export default class CoupleConsumerController extends NormalizedEventBaseHandler {
   constructor (
     @inject(TYPES.InvalidCoupleAdapter) private readonly adapter: Adapter<any, Promise<string>>
   ) {
     super();
   }
   protected run(port?: SQSEvent): Promise<any> {
-    console.log('InvalidCoupleConsumerController_0_0', JSON.stringify(port));
+    console.log('CoupleConsumerController1_0_0', JSON.stringify(port));
     return this.adapter.execute(port);
   }
 }
