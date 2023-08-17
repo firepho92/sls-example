@@ -19,7 +19,7 @@ import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/in
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
 import SecretsManager from '../../../../../src/utils/aws/SecretsManager';
-import APIGatewayGetController1_0_0 from '../../../../../src/modules/apiGateway/app/APIGatewayGetController/1.0.0/APIGatewayGetController';
+import APIGatewayGetController1_0_0 from '../../../../../src/modules/apiGateway/controller/APIGatewayGetController/1.0.0/APIGatewayGetController';
 import APIGatewayResultMapperService from '../../../../../src/modules/infrastructure/domain/mapper/APIGatewayResultMapperService';
 
 const container: Container = new Container();
@@ -40,4 +40,4 @@ container.bind<UseCase<PaginationQueryDTO, Promise<FindManyPaginatedBaseReposito
 // Por lo que se hace así:
 container.bind(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Sólo es una excepción, el resto de bindings funcionan bien.
-export default container
+export default container;
