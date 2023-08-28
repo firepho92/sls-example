@@ -38,6 +38,6 @@ container.bind<UseCase<PaginationQueryDTO, Promise<FindManyPaginatedBaseReposito
 // El binding debería ser así, pero no funciona:
 container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Por lo que se hace así:
-container.bind(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
+// container.bind(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Sólo es una excepción, el resto de bindings funcionan bien.
 export default container
