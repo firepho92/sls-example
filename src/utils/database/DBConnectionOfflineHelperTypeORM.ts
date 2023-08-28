@@ -5,6 +5,7 @@ import DBConnectionHelper from './DBConnectionHelper';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { injectable } from 'inversify/lib/annotation/injectable';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import EnvironmentHelper from '../helpers/EnvironmentHelper';
 
 
 @injectable()
@@ -17,11 +18,11 @@ export default class DBConnectionOfflineHelperTypeORM implements DBConnectionHel
       namingStrategy: new SnakeNamingStrategy(),
       entities,
       logging: true,
-      host: process.env.DB_POSTGRES_HOST,
-      username: process.env.DB_POSTGRES_USERNAME,
-      password: process.env.DB_POSTGRES_PASSWORD,
-      database: process.env.DB_POSTGRES_NAME,
-      port: parseInt(process.env.DB_POSTGRES_PORT ?? '5432', 10)
+      host: EnvironmentHelper.DB_POSTGRES_HOST,
+      username: EnvironmentHelper.DB_POSTGRES_USERNAME,
+      password: EnvironmentHelper.DB_POSTGRES_PASSWORD,
+      database: EnvironmentHelper.DB_POSTGRES_NAME,
+      port: parseInt(EnvironmentHelper.DB_POSTGRES_PORT ?? '5432', 10)
     };
   }
 

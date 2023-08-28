@@ -1,10 +1,11 @@
-import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 import SqsBase, { SqsMessageParameter } from './SqsBase';
+import EnvironmentHelper from '../helpers/EnvironmentHelper';
+import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 export default class SqsManager implements SqsBase {
   private sqsClient: SQSClient;
 
   constructor (
-    region = process.env.REGION,
+    region = EnvironmentHelper.REGION,
     apiVersion = '2012-11-05'
   ) {
     this.sqsClient = new SQSClient({ region, apiVersion });

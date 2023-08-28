@@ -1,8 +1,8 @@
 import { SecretsManager } from 'aws-sdk';
-
 import Exception from '../error/Exception';
-import HttpStatusCode from '../enums/httpStatusCode';
 import ErrorCode from '../error/errorCode';
+import HttpStatusCode from '../enums/httpStatusCode';
+import EnvironmentHelper from '../helpers/EnvironmentHelper';
 
 /** Secrets module
  *
@@ -13,11 +13,11 @@ export default class Secrets {
   private secrets = null;
 
   constructor() {
-    this.name = process.env.SECRET_NAME;
+    this.name = EnvironmentHelper.SECRET_NAME;
   }
 
   async init() {
-    this.client = new SecretsManager({ region: process.env.REGION });
+    this.client = new SecretsManager({ region: EnvironmentHelper.REGION });
     if (this.client) {
       const data = await this.client.getSecretValue({ SecretId: this.name }).promise();
       if ('SecretString' in data) {
