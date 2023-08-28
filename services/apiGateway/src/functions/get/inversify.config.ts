@@ -14,7 +14,7 @@ import PaginationResponseDTO from '../../../../../src/modules/infrastructure/dom
 import PaginationMapperParams from '../../../../../src/modules/infrastructure/domain/dto/PaginationMapperParams';
 import PaginationMapperService from '../../../../../src/modules/infrastructure/domain/mapper/PaginationMapperService';
 import CoupleFindPaginatedRepository from '../../../../../src/modules/apiGateway/domain/repository/CoupleFindPaginatedRepository';
-// import FindManyPaginatedBaseRepository from '../../../../../src/modules/common/domain/repository/FindManyPaginateBaseRepository';
+import FindManyPaginatedBaseRepository from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginateBaseRepository';
 import FindManyPaginatedBaseRepositoryParams from '../../../../../src/modules/infrastructure/domain/repository/FindManyPaginatedBaseRepositoryParams';
 import DBConnectionHelperFactory from '../../../../../src/utils/database/DBConnectionHelperFactory';
 import SecretsBase from '../../../../../src/utils/aws/SecretsBase';
@@ -36,7 +36,7 @@ container.bind<BaseMapper<PaginationMapperParams<Array<CoupleDto>>, PaginationRe
 container.bind(TYPES.ApiGatewayGetAdapter).to(ApiGatewayGetAdapter);
 container.bind<UseCase<PaginationQueryDTO, Promise<FindManyPaginatedBaseRepositoryParams<Couple>>>>(TYPES.ApiGatewayGetUseCase).to(ApiGatewayGetUseCase);
 // El binding debería ser así, pero no funciona:
-// container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
+container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Por lo que se hace así:
 container.bind(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Sólo es una excepción, el resto de bindings funcionan bien.
