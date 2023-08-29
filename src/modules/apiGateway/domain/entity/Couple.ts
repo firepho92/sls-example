@@ -7,10 +7,10 @@ import ErrorCode from '../../../../../src/utils/error/errorCode';
 
 @Entity({name: 'couple'})
 export default class Couple extends BaseEntity {
-  @ManyToOne(() => Person, (person) => person.principal)
+  @ManyToOne(() => Person, (person) => person.principal, {nullable: false})
   principal: Person;
 
-  @ManyToOne(() => Person, (person) => person.companion)
+  @ManyToOne(() => Person, (person) => person.companion, {nullable: false})
   companion: Person;
 
   constructor(principal: Person, companion: Person) {
