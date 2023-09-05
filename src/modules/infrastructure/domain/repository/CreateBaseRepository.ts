@@ -7,6 +7,8 @@ import HttpStatusCode from 'src/utils/enums/httpStatusCode';
 import ErrorCode from 'src/utils/error/errorCode';
 import Warning from 'src/utils/error/Warning';
 import Exception from 'src/utils/error/Exception';
+import QueryExecutionPlan from './QueryExecutionPlan';
+import EnvironmentHelper, { ApplicationMode } from 'src/utils/helpers/EnvironmentHelper';
 
 /**
  * @absract class CreateOneBaseRepository

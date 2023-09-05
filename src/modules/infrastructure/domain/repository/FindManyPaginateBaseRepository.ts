@@ -10,6 +10,8 @@ import PostgresSQLErrorCodes from '../../../../utils/enums/postgresSQLErrorCodes
 import Repository from './Repository';
 import PaginationQueryDTO from '../dto/PaginationQueryDTO';
 import FindManyPaginatedBaseRepositoryParams from './FindManyPaginatedBaseRepositoryParams';
+import EnvironmentHelper, { ApplicationMode } from 'src/utils/helpers/EnvironmentHelper';
+import QueryExecutionPlan from './QueryExecutionPlan';
 
 /**
  * @class FindManyPaginateBaseRepository
@@ -38,6 +40,7 @@ export default abstract class FindManyPaginateBaseRepository<T> implements Repos
     try {
       const query = await this.buildQuery(port) as SelectQueryBuilder<T>;
       query.skip((port.pageNumber - 1) * port.size).take(port.size);
+      EnvironmentHelper.MODE === ApplicationMode.LOCAL && console.log('Execution plan', await QueryExecutionPlan.execute(query, query.connection));
       const result = await query.getManyAndCount();
       const response = new FindManyPaginatedBaseRepositoryParams<T>(result[0], result[1]);
       console.log('FindManyPaginateBaseRepository execute response', response);

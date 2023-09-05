@@ -23,9 +23,9 @@ export default class CoupleFindPaginatedRepository extends FindManyPaginateBaseR
       const queryBuilder = connection.manager.createQueryBuilder()
         .select('couple')
         .from(Couple, 'couple')
-        .leftJoinAndSelect('couple.principal', 'principal')
-        .leftJoinAndSelect('couple.companion', 'companion')
-        .where('principal.active = :active', { active: true });
+        .innerJoinAndSelect('couple.principal', 'principal')
+        .innerJoinAndSelect('couple.companion', 'companion')
+        .where('couple.active = :active', { active: true })
         if (port.order)
           queryBuilder.orderBy(`couple.${port.order.field}`, port.order.direction);
       return queryBuilder;

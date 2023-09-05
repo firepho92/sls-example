@@ -8,7 +8,7 @@ import httpResponseHandlerMiddleware from '../../../../../src/middleware/httpRes
 import APIGatewayEventBaseControllerFactory from '../../../../../src/modules/infrastructure/controller/APIGatewayEventBaseControllerFactory';
 
 export const main = middy(async (event: APIGatewayProxyEvent) => {
-  // console.log('main handler', event);
+  console.log('main handler', JSON.stringify(event));
   const controllerFactory = new APIGatewayEventBaseControllerFactory(container, event, TYPES);
   const controller: Controller = controllerFactory.getInstance();
   const response = await controller.execute(event);
