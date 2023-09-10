@@ -11,3 +11,8 @@ jspm_packages
 .env
 
 .DS_Store
+
+# sonarqube
+sonar-project.properties
+.sonar_lock
+report-task.txt
