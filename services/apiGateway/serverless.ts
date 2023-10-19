@@ -61,7 +61,7 @@ const serverlessConfiguration: AWS = {
       CLEVER_FRM_SERVICES: '${env:CLEVER_FRM_SERVICES, "CLEVER_FRM_SERVICES"}',
       CLEVER_AUTH_SERVICES: '${env:CLEVER_AUTH_SERVICES, "CLEVER_AUTH_SERVICES"}',
       CLEVER_USER: '${ssm:CLEVER_USER, "CLEVER_USER"}',
-      CLEVER_USER_PWD: '${ssm:CLEVER_USER_PWD, "CLEVER_USER_PWD"}',      
+      CLEVER_USER_PWD: '${ssm:CLEVER_USER_PWD, "CLEVER_USER_PWD"}',
     },
     layers: [
       '${param:commonLib, "commonlib"}',
