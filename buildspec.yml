@@ -18,7 +18,8 @@ phases:
       - cd layers/db/nodejs
       - yarn --prod
       - cd ../../..
-      - snyk test --on-fail=all
+      - snyk test --on-fail=all && exit_code=$?
+      - echo $exit_code
       - snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e
   build:
     commands:
