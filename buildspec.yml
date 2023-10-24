@@ -18,8 +18,7 @@ phases:
       - cd layers/db/nodejs
       - yarn --prod
       - cd ../../..
-      - run_and_check_command() { snyk test --on-fail=all; if [ $? -ne 0 ]; then snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e; else exit $?; snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e; fi }
-      - run_and_check_command
+      - run_and_check_command() { snyk test --on-fail=all; if [ $? -ne 0 ]; then snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e; else exit $?; snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e; fi }; run_and_check_command
       - echo $?
       - snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e
   build:
