@@ -19,7 +19,7 @@ phases:
       - yarn --prod
       - cd ../../..
       - trap "snyk test --on-fail=all" EXIT
-      - echo $EXIT
+      - echo $?
       - snyk monitor --org=f7b6de39-69ab-4df6-a882-9b9b8a7f332e
   build:
     commands:
