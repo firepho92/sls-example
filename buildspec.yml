@@ -1,6 +1,6 @@
 version: 0.2
-env:
-  parameter-store:
+# env:
+  # parameter-store:
     # Requires that you have a secure string in AWS Systems Manager Parameter Store
     # called "snykAuthToken" with your Snyk token.
     # SNYK_TOKEN: "snykAuthToken"
