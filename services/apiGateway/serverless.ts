@@ -32,6 +32,7 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       BucketContentName: '${env:BucketContentName,"BucketContentName"}',
+      // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
       SecretDBName: '${env:SecretDBName,"SecretDBName"}',
       TableExampleTableName: '${env:TableExampleTableName,"TableExampleTableName"}',
       TableDemoDynamoDBName: '${env:TableDemoDynamoDBName,"TableDemoDynamoDBName"}',
