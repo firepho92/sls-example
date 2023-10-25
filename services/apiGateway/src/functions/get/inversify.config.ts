@@ -40,4 +40,4 @@ container.bind<FindManyPaginatedBaseRepository<Couple>>(TYPES.CoupleFindPaginate
 // Por lo que se hace así:
 // container.bind(TYPES.CoupleFindPaginatedRepository).to(CoupleFindPaginatedRepository);
 // Sólo es una excepción, el resto de bindings funcionan bien.
-export default container
+export default container;
