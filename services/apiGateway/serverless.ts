@@ -87,7 +87,7 @@ const serverlessConfiguration: AWS = {
   },
   custom: {
     esbuild: {
-      plugins: ['esbuild-plugins.ts'],
+      plugins: 'esbuild-plugins.ts',
       bundle: true,
       minify: false,
       sourcemap: process.env.IS_OFFLINE === 'true',
