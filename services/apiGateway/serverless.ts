@@ -16,12 +16,6 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs18.x',
     // region: 'us-east-1',
     region: '${env:AwsRegion, "us-east-1"}' as AWS['provider']['region'],
-    tags: {
-      department: '${env:Department, "ti"}',
-      environment: '${env:Stage, "local"}',
-      project_name: '${env:ProjectName, "project"}',
-      cost_center: '${env:CostCenter, "cost-center"}',
-    },
     stage: '${env:Stage, "dev"}',
     apiGateway: {
       restApiId: '${env:ApiGatewayId,"restApiId"}',
