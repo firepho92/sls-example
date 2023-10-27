@@ -87,6 +87,7 @@ const serverlessConfiguration: AWS = {
   },
   custom: {
     esbuild: {
+      external: ["aws-sdk"],
       plugins: 'esbuild-plugins.ts',
       bundle: true,
       minify: false,
