@@ -86,6 +86,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     logRetentionInDays: 30,
     esbuild: {
+      external: ['aws-sdk'],
       plugins: 'esbuild-plugins.ts',
       bundle: true,
       minify: false,
