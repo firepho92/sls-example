@@ -12,7 +12,7 @@ export const main = middy(async (event: APIGatewayProxyEvent) => {
   const controllerFactory = new APIGatewayEventBaseControllerFactory(container, event, TYPES);
   const controller: Controller = controllerFactory.getInstance();
   const response = await controller.execute(event);
-  console.log('main handler response', response);
+  console.log('main handler response hola', response);
   return response;
 });
 
