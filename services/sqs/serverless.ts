@@ -101,6 +101,9 @@ const serverlessConfiguration: AWS = {
     'project-name': 'architecture',
     stage: '${env:Stage, "local"}',
     func_prefix: '${self:custom.stage}-${self:custom.project-name}-${self:custom.service}',
+    dotenv: {
+      path: '../../.env',
+    }
   },
 };
 
