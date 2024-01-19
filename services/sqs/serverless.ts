@@ -12,7 +12,7 @@ const serverlessConfiguration: AWS = {
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs18.x',
+    runtime: 'nodejs16.x',
     region: '${env:AwsRegion, "us-east-1"}' as AWS['provider']['region'],
     tags: {
       department: '${env:Department, "ti"}',
