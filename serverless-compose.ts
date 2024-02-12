@@ -19,15 +19,15 @@ const serverlessCompose = {
         'authorizer': '${default-authorizer.DefaultAuthorizer}'
       }
     },
-    'sqs': {
-      path: 'services/sqs',
-      dependsOn: ['default-authorizer'],
-      params: {
-        'commonLib': '${architecture-example-layer-lib.ArchitectureLibLambdaLayerQualifiedArn}',
-        'commonDb': '${architecture-example-layer-db.ArchitectureDbLambdaLayerQualifiedArn}',
-        'authorizer': '${default-authorizer.DefaultAuthorizer}'
-      }
-    },
+    // 'sqs': {
+    //   path: 'services/sqs',
+    //   dependsOn: ['default-authorizer'],
+    //   params: {
+    //     'commonLib': '${architecture-example-layer-lib.ArchitectureLibLambdaLayerQualifiedArn}',
+    //     'commonDb': '${architecture-example-layer-db.ArchitectureDbLambdaLayerQualifiedArn}',
+    //     'authorizer': '${default-authorizer.DefaultAuthorizer}'
+    //   }
+    // },
   }
 }
 

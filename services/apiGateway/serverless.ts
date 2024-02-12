@@ -13,10 +13,10 @@ const serverlessConfiguration: AWS = {
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs16.x',
+    runtime: 'nodejs20.x',
     // region: 'us-east-1',
-    region: '${env:AwsRegion, "us-east-1"}' as AWS['provider']['region'],
-    stage: '${env:Stage, "dev"}',
+    region: '${env:AWS_REGION, "us-east-1"}' as AWS['provider']['region'],
+    stage: '${env:ENVIRONMENT, "local"}',
     apiGateway: {
       restApiId: '${env:ApiGatewayId,"restApiId"}',
       restApiRootResourceId: '${env:ApiGatewayResourcesId,"restApiRootResourceId"}',
@@ -25,7 +25,7 @@ const serverlessConfiguration: AWS = {
       lambda: true,
     },
     environment: {
-      BucketContentName: '${env:BucketContentName,"BucketContentName"}',
+      // BucketContentName: '${env:BucketContentName,"BucketContentName"}',
       // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
       // SecretDBName: '${env:SecretDBName,"SecretDBName"}',
       // TableExampleTableName: '${env:TableExampleTableName,"TableExampleTableName"}',
@@ -63,7 +63,7 @@ const serverlessConfiguration: AWS = {
       "${param:commonDb, 'commondb'}",
     ],
     deploymentBucket: {
-      name: '${ssm:s3_bucket_deploy_sls, "s3bucketdeploysls"}',
+      name: '${ssm:/SLS/DEPLOYMENT_BUCKET, "s3bucketdeploysls"}',
     },
     // iam: {
     //   role: '${env:IamRole, "IamRole"}',
